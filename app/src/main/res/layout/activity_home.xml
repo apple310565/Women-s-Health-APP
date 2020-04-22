@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2CFFC107"
+    tools:context=".home"
+    android:padding="7sp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#4803A9F4"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:onClick="button_click"
+            app:srcCompat="@android:drawable/ic_menu_search" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="1234567"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display4" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="153dp"
+        android:layout_height="169dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginBottom="15dp"
+        android:background="#60FFC107"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.81">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:background="#00FFFFFF"
+            android:onClick="goto_M1"
+            android:text="經期倒數"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="79dp"
+            android:background="#00FFEB3B"
+            android:text="3"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textColor="#F44336"
+            android:textColorLink="#F44336" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginBottom="10dp"
+        android:background="#6FCDDC39"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.84000003">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#5ECDDC39"
+            android:drawableBottom="@android:color/holo_green_light"
+            android:onClick="button_click"
+            android:text="飲食建議"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginBottom="13dp"
+        android:background="#75CDDC39"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#68CDDC39"
+            android:onClick="button_click"
+            android:text="歷史查詢"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="146dp"
+        android:layout_height="154dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="97dp"
+        android:onClick="button_click"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.358"
+        app:srcCompat="@drawable/person" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
