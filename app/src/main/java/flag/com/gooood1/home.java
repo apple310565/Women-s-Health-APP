@@ -1,13 +1,16 @@
 package flag.com.gooood1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,6 +75,33 @@ public class home extends AppCompatActivity {
             if(mense>=peroid)mense=mense-peroid;
             if(is_mense()==0)out_memse();
             else in_memse();
+            TextView UserName = (TextView)findViewById(R.id.User);
+            UserName.setText(account);
+            //監聽
+            LinearLayout mm = (LinearLayout)findViewById(R.id.MM);
+            mm.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                   goto_M1_2();
+                }
+            });
+            LinearLayout P = (LinearLayout)findViewById(R.id.person);
+            P.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Nan();
+                }
+            });
+            LinearLayout H = (LinearLayout)findViewById(R.id.health);
+            H.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Nan();
+                }
+            });
+            LinearLayout S = (LinearLayout)findViewById(R.id.search);
+            S.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Nan();
+                }
+            });
         }
     }
 
@@ -107,7 +137,26 @@ public class home extends AppCompatActivity {
         intent.setClass(home.this, MainActivity.class);
         startActivity(intent);
     }
-    public void button_click(View view){
+    public void goto_M1_2(){
+        Intent intent = new Intent();
+        intent.setClass(home.this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void Nan(){
         Toast.makeText(this,"還未完工，敬請期待~ (,,・ω・,,)",Toast.LENGTH_SHORT).show();
+    }
+    public void change_color(int color){
+        Button bt1 = (Button)findViewById(R.id.button3);//純色
+        TextView tv1 =(TextView)findViewById(R.id.textView2) ;//純色
+        TextView tv2 =(TextView)findViewById(R.id.textView12) ;//純色
+        LinearLayout l1 = (LinearLayout)findViewById(R.id.person); //淺色
+        Button bt2 =(Button)findViewById(R.id.button4) ;//淺色
+        ConstraintLayout C = (ConstraintLayout)findViewById(R.id.CC) ;
+        String [] pure ={"#F37C57","#E91E63","#FF5A71F1"};
+        String [] ta ={"#B4F37C57","#FFFF699C","#A4536CF6"};
+        String [] bg ={"@drawable/background","@drawable/background_pink","@drawable/background_blue"};
+        l1.setBackgroundColor(Color.parseColor("#B4F37C57"));
+
+
     }
 }

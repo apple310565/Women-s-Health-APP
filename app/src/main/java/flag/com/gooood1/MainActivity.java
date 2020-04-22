@@ -211,17 +211,17 @@ public class MainActivity extends AppCompatActivity {
         return 0;
     }
     public void in_memse(){
-        ConstraintLayout bg =(ConstraintLayout)findViewById(R.id.day);
-        bg.setBackgroundColor(Color.parseColor("#FFB0E0E6"));
-        Button Bt = (Button)findViewById(R.id.button2);
-        Bt.setBackgroundColor(Color.parseColor("#FF6DD0CD"));
-        Bt.setTextColor(Color.parseColor("#FFFFFFFF"));
-        Button Bt2 = (Button)findViewById(R.id.button3);
-        Bt2.setBackgroundColor(Color.parseColor("#FF6DD0CD"));
-        Bt2.setTextColor(Color.parseColor("#FFFFFFFF"));
+        //ConstraintLayout bg =(ConstraintLayout)findViewById(R.id.day);
+        //bg.setBackgroundColor(Color.parseColor("#FFB0E0E6"));
+       // Button Bt = (Button)findViewById(R.id.button2);
+        //Bt.setBackgroundColor(Color.parseColor("#FF6DD0CD"));
+        //Bt.setTextColor(Color.parseColor("#FFFFFFFF"));
+        //Button Bt2 = (Button)findViewById(R.id.button3);
+        //Bt2.setBackgroundColor(Color.parseColor("#FF6DD0CD"));
+        //Bt2.setTextColor(Color.parseColor("#FFFFFFFF"));
         TextView text1 = (TextView)findViewById(R.id.text1);
         text1.setText("經期已經開始");
-        text1.setTextSize(18);
+        //text1.setTextSize(18);
         TextView tvDay = (TextView)findViewById(R.id.tvDay);
         int days=day1-day2;
         tvDay.setText(Integer.toString(days+1));
@@ -235,17 +235,17 @@ public class MainActivity extends AppCompatActivity {
         //Toast.makeText(this,"IN_MEMSE!!!!",Toast.LENGTH_SHORT).show();
     }
     public void out_memse(){
-        ConstraintLayout bg =(ConstraintLayout)findViewById(R.id.day);
-        bg.setBackgroundColor(Color.parseColor("#FFFCDF"));
-        Button Bt = (Button)findViewById(R.id.button2);
-        Bt.setBackgroundColor(Color.parseColor("#B8B8B8"));
-        Bt.setTextColor(Color.parseColor("#FFFFFFFF"));
-        Button Bt2 = (Button)findViewById(R.id.button3);
-        Bt2.setBackgroundColor(Color.parseColor("#B8B8B8"));
-        Bt2.setTextColor(Color.parseColor("#FFFFFFFF"));
+        //ConstraintLayout bg =(ConstraintLayout)findViewById(R.id.day);
+        //bg.setBackgroundColor(Color.parseColor("#FFFCDF"));
+       // Button Bt = (Button)findViewById(R.id.button2);
+        //Bt.setBackgroundColor(Color.parseColor("#B8B8B8"));
+        //Bt.setTextColor(Color.parseColor("#FFFFFFFF"));
+        //Button Bt2 = (Button)findViewById(R.id.button3);
+       // Bt2.setBackgroundColor(Color.parseColor("#B8B8B8"));
+        //Bt2.setTextColor(Color.parseColor("#FFFFFFFF"));
         TextView text1 = (TextView)findViewById(R.id.text1);
         text1.setText("經期倒數");
-        text1.setTextSize(24);
+        //text1.setTextSize(24);
         Switch i_S = (Switch)findViewById(R.id.switch3);
         if(day1>day2)i_S.setEnabled(true);
         else i_S.setEnabled(false);
