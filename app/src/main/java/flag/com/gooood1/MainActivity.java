@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener m1DataSetListerner;
     int [] Mon = {0,31,59,90,120,151,181,212,243,273,304,334};
     int Y,M,D,peroid=29,flag=0,a,flag2=0,day1=0,day2=0,i_M;
-    String account,passWD;
+    String account,passWD,email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             account=name[0];
             passWD=name[1];
             i_M=Integer.parseInt(name[4]);
+            email=name[5];
         }
         catch (IOException e){
             new AlertDialog.Builder(MainActivity.this)
@@ -263,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void firstDay(){
         peroid=day1-day2;
-        String str=account+","+passWD+","+peroid+","+m1DisplayDate.getText().toString()+","+"-1,";
+        String str=account+","+passWD+","+peroid+","+m1DisplayDate.getText().toString()+","+"-1,"+email+",";
         try {
             FileOutputStream out = openFileOutput("passwd.txt",MODE_PRIVATE);
             out.write(str.getBytes());
@@ -283,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void END(){
         i_M=day1-day2;
-        String str=account+","+passWD+","+peroid+","+Y+"/"+M+"/"+D+","+i_M+",";
+        String str=account+","+passWD+","+peroid+","+Y+"/"+M+"/"+D+","+i_M+","+email+",";
         try {
             FileOutputStream out = openFileOutput("passwd.txt",MODE_PRIVATE);
             out.write(str.getBytes());
@@ -394,7 +395,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void cancel_END(){
         i_M=-1;
-        String str=account+","+passWD+","+peroid+","+Y+"/"+M+"/"+D+","+i_M+",";
+        String str=account+","+passWD+","+peroid+","+Y+"/"+M+"/"+D+","+i_M+","+email+",";
         try {
             FileOutputStream out = openFileOutput("passwd.txt",MODE_PRIVATE);
             out.write(str.getBytes());
@@ -486,7 +487,7 @@ public class MainActivity extends AppCompatActivity {
                                     peroid=peroid+(day3-day2);
                                     if(i_M!=-1)i_M=i_M+(day2-day3);
 
-                                    String str=account+","+passWD+","+peroid+","+id2+","+i_M+",";
+                                    String str=account+","+passWD+","+peroid+","+id2+","+i_M+","+email+",";
                                     try {
                                         FileOutputStream out = openFileOutput("passwd.txt",MODE_PRIVATE);
                                         out.write(str.getBytes());

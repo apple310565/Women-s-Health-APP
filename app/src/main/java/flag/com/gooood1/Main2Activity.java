@@ -45,9 +45,10 @@ public class Main2Activity extends AppCompatActivity {
         EditText Passwd =(EditText) findViewById(R.id.passwd);
         EditText M1 =(EditText) findViewById(R.id.m1);
         EditText M2 =(EditText) findViewById(R.id.m2);
+        EditText Email =(EditText) findViewById(R.id.email);
         String Digit = "[0-9]+";
         String RE = "([0-9]|[a-z]|[A-Z])+";
-        if(Name.getText().toString().equals("")||Passwd.getText().toString().equals("")||M1.getText().toString().equals("")||M2.getText().toString().equals("")) {
+        if(Name.getText().toString().equals("")||Passwd.getText().toString().equals("")||M1.getText().toString().equals("")||M2.getText().toString().equals("")||Email.getText().toString().equals("")) {
             new AlertDialog.Builder(Main2Activity.this)
                     .setIcon(R.drawable.ic_launcher_background)
                     .setTitle("Message")
@@ -87,7 +88,7 @@ public class Main2Activity extends AppCompatActivity {
                     .show();
         }
         else{
-            String str = Name.getText().toString()+","+Passwd.getText().toString()+","+M2.getText().toString()+","+M1.getText().toString()+","+"0,";
+            String str = Name.getText().toString()+","+Passwd.getText().toString()+","+M2.getText().toString()+","+M1.getText().toString()+","+"0,"+Email.getText().toString()+",";
             try {
                 FileOutputStream out = openFileOutput("passwd.txt",MODE_PRIVATE);
                 out.write(str.getBytes());
