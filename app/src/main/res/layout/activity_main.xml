@@ -14,7 +14,7 @@
         android:layout_height="140dp"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="25dp"
 
         android:layout_marginRight="25dp"
@@ -29,7 +29,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="#BFFB5723"
+            android:background="#F37C57"
             android:orientation="horizontal">
 
             <TextView
@@ -86,7 +86,7 @@
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="10dp"
-        android:background="#BFFB5723"
+        android:background="#B4F37C57"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,13 +101,12 @@
 
             <TextView
                 android:id="@+id/textView16"
-                android:layout_width="124dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20sp"
-                android:layout_weight="1"
                 android:text="選擇日期"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvDate"
@@ -138,7 +137,7 @@
                 android:layout_marginRight="18dp"
                 android:text="經期開始"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <Switch
                 android:id="@+id/end"
@@ -148,15 +147,15 @@
                 android:enabled="false"
                 android:text="經期結束"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <Button
             android:id="@+id/button3"
             android:layout_width="181dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20sp"
-            android:background="#36FFFFFF"
+            android:layout_gravity="center"
+            android:background="#4FFFFFFF"
             android:onClick="change_firstday"
             android:text="更改經期開始時間"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -176,7 +175,7 @@
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="3dp"
-        android:background="#BFFB5723"
+        android:background="#F3F37C57"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -200,7 +199,7 @@
         <RadioGroup
             android:id="@+id/RGflow"
             android:layout_width="300dp"
-            android:layout_height="62dp"
+            android:layout_height="55dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginEnd="88dp"
@@ -262,7 +261,7 @@
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="3dp"
-        android:background="#BFFB5723"
+        android:background="#BFF16E44"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -286,7 +285,7 @@
         <RadioGroup
             android:id="@+id/RGcolor"
             android:layout_width="300dp"
-            android:layout_height="62dp"
+            android:layout_height="55dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginEnd="132dp"
@@ -346,8 +345,8 @@
         android:layout_marginTop="3dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="79dp"
-        android:background="#BFFB5723"
+        android:layout_marginBottom="50dp"
+        android:background="#BFF16E44"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -371,7 +370,7 @@
         <RadioGroup
             android:id="@+id/RGqaulity"
             android:layout_width="300dp"
-            android:layout_height="62dp"
+            android:layout_height="55dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginEnd="78dp"
@@ -435,6 +434,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
