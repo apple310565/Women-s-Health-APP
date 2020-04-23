@@ -48,6 +48,8 @@ public class Main2Activity extends AppCompatActivity {
         EditText Email =(EditText) findViewById(R.id.email);
         String Digit = "[0-9]+";
         String RE = "([0-9]|[a-z]|[A-Z])+";
+        //很長我知道，網路上找的email的RE
+        String RE2 = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
         if(Name.getText().toString().equals("")||Passwd.getText().toString().equals("")||M1.getText().toString().equals("")||M2.getText().toString().equals("")||Email.getText().toString().equals("")) {
             new AlertDialog.Builder(Main2Activity.this)
                     .setIcon(R.drawable.ic_launcher_background)
@@ -79,6 +81,19 @@ public class Main2Activity extends AppCompatActivity {
                     .setIcon(R.drawable.ic_launcher_background)
                     .setTitle("Message")
                     .setMessage("帳號和密碼只能由中英文組成喔(*´▽`*)")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .show();
+        }
+        else if(!Email.getText().toString().matches(RE2)){
+            new AlertDialog.Builder(Main2Activity.this)
+                    .setIcon(R.drawable.ic_launcher_background)
+                    .setTitle("Message")
+                    .setMessage("Email的格式錯誤喔(*´▽`*)")
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

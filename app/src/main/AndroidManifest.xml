@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/person"
-        android:label="老年人標配"
-        android:roundIcon="@drawable/person"
+        android:icon="@drawable/img"
+        android:label="月來越好"
+        android:roundIcon="@drawable/img"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
