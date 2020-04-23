@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/img"
+        android:icon="@drawable/leaf"
         android:label="月來越好"
-        android:roundIcon="@drawable/img"
+        android:roundIcon="@drawable/leaf"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
