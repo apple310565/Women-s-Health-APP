@@ -93,7 +93,7 @@ public class home extends AppCompatActivity {
             LinearLayout H = (LinearLayout)findViewById(R.id.health);
             H.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Nan();
+                    goto_M3();
                 }
             });
             LinearLayout S = (LinearLayout)findViewById(R.id.search);
@@ -142,6 +142,12 @@ public class home extends AppCompatActivity {
         intent.setClass(home.this, MainActivity.class);
         startActivity(intent);
     }
+    public void goto_M3(){
+        Intent intent = new Intent();
+        intent.setClass(home.this, Main3Activity.class);
+        startActivity(intent);
+    }
+
     public void Nan(){
         Toast.makeText(this,"還未完工，敬請期待~ (,,・ω・,,)",Toast.LENGTH_SHORT).show();
     }
