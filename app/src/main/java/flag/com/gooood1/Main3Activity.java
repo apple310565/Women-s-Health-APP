@@ -32,6 +32,7 @@ public class Main3Activity extends AppCompatActivity {
 
         TextView EAT = (TextView)findViewById(R.id.eat);
         SqlQuery("SELECT _name FROM EAT");
+
         EAT.setText(str);
     }
 
