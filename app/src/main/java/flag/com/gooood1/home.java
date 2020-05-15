@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -14,14 +16,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Calendar;
 
 public class home extends AppCompatActivity {
     int [] Mon = {0,31,59,90,120,151,181,212,243,273,304,334};
     int Y,M,D,peroid=29,flag=0,day1=0,day2=0,i_M,mense;
     String account,passWD;
+    private SQLiteDatabase db;
+    private StdDBHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +70,12 @@ public class home extends AppCompatActivity {
                     .show();
         }
         if(flag==1){
+            //建立SQLOHleper物件
+            dbHelper = new StdDBHelper(this);
+            db =dbHelper.getWritableDatabase();//開啟資料庫
+            load_eat();
             //初始化
+
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);
             int month =  calendar.get(Calendar.MONTH);
@@ -164,5 +176,38 @@ public class home extends AppCompatActivity {
         l1.setBackgroundColor(Color.parseColor("#B4F37C57"));
 
 
+    }
+
+    public void load_eat(){
+        try {
+            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("EAT.csv") );
+            //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            while((line = bufReader.readLine()) != null) {
+                String[] Eat = line.split(",");
+                    String name=Eat[0];
+                    String effect=Eat[1];
+                    String who =Eat[2];
+                    String method=Eat[3];
+                    String main1 =Eat[4];
+                    String main2 =Eat[5];
+                    String subset=Eat[6];
+                    int f=0;
+                    ContentValues cv = new ContentValues();
+                    cv.put("_name",name);
+                    cv.put("effect",effect);
+                    cv.put("who",who);
+                    cv.put("method",method);
+                    cv.put("subset",subset);
+                    cv.put("main",main1);
+                    cv.put("main2",main2);
+                    cv.put("favor",f);
+                    db.insert("EAT",null,cv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
+        }
     }
 }

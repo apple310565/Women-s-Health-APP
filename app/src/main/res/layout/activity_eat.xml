@@ -11,10 +11,10 @@
         android:id="@+id/linearLayout10"
         android:layout_width="0dp"
         android:layout_height="84dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,18 +25,18 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:layout_margin="10dp"
             android:layout_weight="1"
-             />
+            android:background="@drawable/spinner_style"
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_select"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:layout_margin="10dp"
             android:layout_weight="1"
-             />
+            android:background="@drawable/spinner_style"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,7 +65,7 @@
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="match_parent"
+                android:layout_width="249dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
@@ -74,11 +74,14 @@
                 android:textSize="30sp" />
 
             <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:id="@+id/star"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:background="#00FFFFFF"
-                app:srcCompat="@android:drawable/btn_star_big_off" />
+                android:onClick="star_click"
+                app:srcCompat="@drawable/star1"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"/>
 
         </LinearLayout>
 
@@ -131,9 +134,10 @@
             android:layout_width="wrap_content"
             android:layout_height="62dp"
             android:layout_gravity="bottom|left"
-            android:layout_marginRight="20dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
+            android:onClick="goto_M3"
             android:text="回上一頁" />
 
         <Button
@@ -144,6 +148,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:onClick="Click_Next"
             android:text="下一個" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

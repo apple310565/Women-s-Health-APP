@@ -1,8 +1,11 @@
 package flag.com.gooood1;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import java.io.FileInputStream;
+import android.content.Context;
 
 public class StdDBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Class";
@@ -14,6 +17,9 @@ public class StdDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         db.execSQL("CREATE TABLE Data(_date Text primary key, "+
                 "flow int , color int , quality int , isStart int , isEnd int)");
+
+        db.execSQL("CREATE TABLE EAT(_name Text primary key, "+
+                "subset Text ,effect Text , method Text , who Text , main Text , main2 Text ,favor int)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db,int oldVersion,int Version){
