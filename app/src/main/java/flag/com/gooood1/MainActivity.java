@@ -506,5 +506,11 @@ public class MainActivity extends AppCompatActivity {
         },year,month,day).show();
 
     }
+    public void  goto_home(View view){
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this,home.class);
+        startActivity(intent);
+        MainActivity.this.finish();
+    }
 }
 

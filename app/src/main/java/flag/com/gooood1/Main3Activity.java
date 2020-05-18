@@ -32,7 +32,6 @@ public class Main3Activity extends AppCompatActivity {
 
         TextView EAT = (TextView)findViewById(R.id.eat);
         SqlQuery("SELECT _name FROM EAT");
-
         EAT.setText(str);
     }
 
@@ -57,5 +56,12 @@ public class Main3Activity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void  goto_home(View view){
+        Intent intent = new Intent();
+        intent.setClass(Main3Activity.this,home.class);
+        startActivity(intent);
+        Main3Activity.this.finish();
     }
 }

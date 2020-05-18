@@ -148,16 +148,19 @@ public class home extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(home.this, MainActivity.class);
         startActivity(intent);
+        home.this.finish();
     }
     public void goto_M1_2(){
         Intent intent = new Intent();
         intent.setClass(home.this, MainActivity.class);
         startActivity(intent);
+        home.this.finish();
     }
     public void goto_M3(){
         Intent intent = new Intent();
         intent.setClass(home.this, Main3Activity.class);
         startActivity(intent);
+        home.this.finish();
     }
 
     public void Nan(){
@@ -193,6 +196,8 @@ public class home extends AppCompatActivity {
                     String main1 =Eat[4];
                     String main2 =Eat[5];
                     String subset=Eat[6];
+                    int P = Integer.parseInt(Eat[7]);
+                    int D = Integer.parseInt(Eat[8]);
                     int f=0;
                     ContentValues cv = new ContentValues();
                     cv.put("_name",name);
@@ -203,6 +208,8 @@ public class home extends AppCompatActivity {
                     cv.put("main",main1);
                     cv.put("main2",main2);
                     cv.put("favor",f);
+                    cv.put("P",P);
+                    cv.put("D",D);
                     db.insert("EAT",null,cv);
             }
         } catch (Exception e) {

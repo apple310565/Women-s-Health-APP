@@ -54,12 +54,12 @@ public class eat extends AppCompatActivity {
             c.moveToFirst();
             TextView title=(TextView)findViewById(R.id.title);
             title.setText(c.getString(0));
-            str += c.getString(1)+"\n\n";
-            str += c.getString(2)+"\n\n";
-            str += c.getString(3)+"\n\n";
-            str += c.getString(4)+"\n\n";
-            str += c.getString(5)+"\n\n";
-            str += c.getString(6)+"\n\n";
+            if(!c.getString(1).equals("NULL"))str += c.getString(1)+"\n\n";
+            if(!c.getString(2).equals("NULL"))str += c.getString(2)+"\n\n";
+            if(!c.getString(3).equals("NULL"))str += c.getString(3)+"\n\n";
+            if(!c.getString(4).equals("NULL"))str += c.getString(4)+"\n\n";
+            if(!c.getString(5).equals("NULL"))str += c.getString(5)+"\n\n";
+            if(!c.getString(6).equals("NULL"))str += c.getString(6)+"\n\n";
             TextView article=(TextView)findViewById(R.id.article);
             article.setText(str);
         } catch (Exception e) {
@@ -78,12 +78,12 @@ public class eat extends AppCompatActivity {
         String str = "";
         TextView title=(TextView)findViewById(R.id.title);
         title.setText(c.getString(0));
-        str += c.getString(1)+"\n\n";
-        str += c.getString(2)+"\n\n";
-        str += c.getString(3)+"\n\n";
-        str += c.getString(4)+"\n\n";
-        str += c.getString(5)+"\n\n";
-        str += c.getString(6)+"\n\n";
+        if(!c.getString(1).equals("NULL"))str += c.getString(1)+"\n\n";
+        if(!c.getString(2).equals("NULL"))str += c.getString(2)+"\n\n";
+        if(!c.getString(3).equals("NULL"))str += c.getString(3)+"\n\n";
+        if(!c.getString(4).equals("NULL"))str += c.getString(4)+"\n\n";
+        if(!c.getString(5).equals("NULL"))str += c.getString(5)+"\n\n";
+        if(!c.getString(6).equals("NULL"))str += c.getString(6)+"\n\n";
         TextView article=(TextView)findViewById(R.id.article);
         article.setText(str);
         ImageButton star = (ImageButton)findViewById(R.id.star);
