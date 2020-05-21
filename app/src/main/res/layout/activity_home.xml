@@ -12,10 +12,17 @@
     <LinearLayout
         android:id="@+id/person"
         android:layout_width="0dp"
-        android:layout_height="102dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="105dp"
+
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:background="#B4F37C57"
+        android:gravity="center"
         android:orientation="horizontal"
+        android:padding="3dp"
         app:layout_constraintBottom_toTopOf="@+id/MM"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
@@ -25,14 +32,16 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="92dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/person_icon" />
 
         <LinearLayout
             android:layout_width="323dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:orientation="vertical"
             android:padding="15sp">
@@ -48,7 +57,7 @@
 
             <TextView
                 android:id="@+id/textView13"
-                android:layout_width="208dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="查看/修改個人資料"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -59,7 +68,7 @@
 
     <LinearLayout
         android:id="@+id/MM"
-        android:layout_width="0dp"
+        android:layout_width="301dp"
         android:layout_height="301dp"
         android:layout_margin="45sp"
         android:layout_marginStart="15dp"
