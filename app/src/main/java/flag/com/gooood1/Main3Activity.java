@@ -23,7 +23,7 @@ public class Main3Activity extends AppCompatActivity {
         //建立SQLOHleper物件
         dbHelper = new StdDBHelper(this);
         db =dbHelper.getWritableDatabase();//開啟資料庫
-        LinearLayout mm = (LinearLayout)findViewById(R.id.linearLayout6);
+        /*LinearLayout mm = (LinearLayout)findViewById(R.id.linearLayout6);
         mm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 goto_EAT();
@@ -32,10 +32,10 @@ public class Main3Activity extends AppCompatActivity {
 
         TextView EAT = (TextView)findViewById(R.id.eat);
         SqlQuery("SELECT _name FROM EAT");
-        EAT.setText(str);
+        EAT.setText(str);*/
     }
 
-    public void goto_EAT(){
+    public void goto_EAT(View view){
         Intent intent = new Intent();
         intent.setClass(Main3Activity.this, eat.class);
         startActivity(intent);

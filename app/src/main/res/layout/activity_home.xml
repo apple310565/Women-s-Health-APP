@@ -13,7 +13,7 @@
         android:id="@+id/person"
         android:layout_width="0dp"
         android:layout_height="102dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="20dp"
         android:background="#B4F37C57"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/MM"
@@ -21,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.51">
 
         <ImageView
             android:id="@+id/imageView"
@@ -59,18 +59,20 @@
 
     <LinearLayout
         android:id="@+id/MM"
-        android:layout_width="309dp"
+        android:layout_width="0dp"
         android:layout_height="301dp"
         android:layout_margin="45sp"
-        android:layout_marginStart="17dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="20dp"
         android:background="#FFFFFF"
         android:gravity="left"
         android:orientation="vertical"
         android:padding="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/person">
@@ -118,8 +120,8 @@
 
         <LinearLayout
             android:id="@+id/進入經期紀錄頁面"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_width="287dp"
+            android:layout_height="73dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -138,15 +140,18 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout12"
         android:layout_width="0dp"
         android:layout_height="174dp"
         android:layout_marginStart="14dp"
         android:layout_marginLeft="14dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="14dp"
         android:layout_marginRight="14dp"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.913"
         app:layout_constraintStart_toStartOf="parent"

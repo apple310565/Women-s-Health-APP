@@ -19,6 +19,8 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Calendar;
@@ -114,6 +116,21 @@ public class home extends AppCompatActivity {
                     Nan();
                 }
             });
+
+            FileOutputStream pout = null;
+            String str="";
+            int ppp=days%peroid;
+            if(ppp<=5)str="1,";
+            else if(ppp<=14)str="2,";
+            else if(ppp<=21)str="3,";
+            else str="4,";
+            try {
+                pout = openFileOutput("PPP.txt",MODE_PRIVATE);
+                pout.write(str.getBytes());
+                pout.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

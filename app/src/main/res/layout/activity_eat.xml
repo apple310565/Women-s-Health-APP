@@ -11,46 +11,73 @@
         android:id="@+id/linearLayout10"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Spinner
-            android:id="@+id/spinner_order"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@drawable/spinner_style"
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="篩選:  "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#535151"
             android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_select"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@drawable/spinner_style"
-            android:textSize="20sp" />
+            android:textSize="35sp" />
+
+        <Button
+            android:id="@+id/ZoomIn"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="10dp"
+            android:background="#FAA346"
+            android:onClick="ZoomIn"
+            android:text="+"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/ZoomOut"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="#FAA346"
+            android:onClick="ZoomOut"
+            android:text="-"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout11"
         android:layout_width="0dp"
-        android:layout_height="550dp"
+        android:layout_height="0dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:background="@drawable/corner_round"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
@@ -71,26 +98,26 @@
                 android:layout_weight="1"
                 android:text="紅糖順經茶"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="30sp" />
+                android:textSize="28sp" />
 
             <ImageButton
                 android:id="@+id/star"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
                 android:background="#00FFFFFF"
                 android:onClick="star_click"
-                app:srcCompat="@drawable/star1"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="5dp"/>
+                app:srcCompat="@drawable/star1" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="2dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/bottom_stoken"
+            android:background="#989898"
             android:orientation="horizontal"></LinearLayout>
 
         <ScrollView
@@ -114,6 +141,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -137,8 +165,11 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
+            android:background="#F8880F"
             android:onClick="goto_M3"
-            android:text="回上一頁" />
+            android:text="回上一頁"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/button6"
@@ -148,7 +179,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:background="#F8880F"
             android:onClick="Click_Next"
-            android:text="下一個" />
+            android:text="下一個"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
