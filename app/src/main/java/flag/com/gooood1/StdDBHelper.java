@@ -19,7 +19,7 @@ public class StdDBHelper extends SQLiteOpenHelper {
                 "flow int , color int , quality int , isStart int , isEnd int)");
 
         db.execSQL("CREATE TABLE EAT(_name Text primary key, "+
-                "subset Text ,effect Text , method Text , who Text , main Text , main2 Text ,favor int,P int,D int)");
+                "subset Text ,effect Text , method Text , who Text , main Text , main2 Text ,favor int,P int,D int,Source Text)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db,int oldVersion,int Version){

@@ -198,6 +198,7 @@ public class home extends AppCompatActivity {
                     String subset=Eat[6];
                     int P = Integer.parseInt(Eat[7]);
                     int D = Integer.parseInt(Eat[8]);
+                    String Source=Eat[9];
                     int f=0;
                     ContentValues cv = new ContentValues();
                     cv.put("_name",name);
@@ -210,6 +211,7 @@ public class home extends AppCompatActivity {
                     cv.put("favor",f);
                     cv.put("P",P);
                     cv.put("D",D);
+                    cv.put("Source",Source);
                     db.insert("EAT",null,cv);
             }
         } catch (Exception e) {

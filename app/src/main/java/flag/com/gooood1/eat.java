@@ -60,6 +60,7 @@ public class eat extends AppCompatActivity {
             if(!c.getString(4).equals("NULL"))str += c.getString(4)+"\n\n";
             if(!c.getString(5).equals("NULL"))str += c.getString(5)+"\n\n";
             if(!c.getString(6).equals("NULL"))str += c.getString(6)+"\n\n";
+            if(!c.getString(10).equals("NULL"))str += c.getString(10)+"\n\n";
             TextView article=(TextView)findViewById(R.id.article);
             article.setText(str);
         } catch (Exception e) {
@@ -73,7 +74,8 @@ public class eat extends AppCompatActivity {
     }
 
     public void Click_Next(View view){
-        if (c.isLast())c.moveToFirst();
+        //if (c.isLast())c.moveToFirst();
+        if(c.isLast())SqlQuery("SELECT * FROM EAT ORDER BY favor DESC");
         else  c.moveToNext();
         String str = "";
         TextView title=(TextView)findViewById(R.id.title);
@@ -84,6 +86,7 @@ public class eat extends AppCompatActivity {
         if(!c.getString(4).equals("NULL"))str += c.getString(4)+"\n\n";
         if(!c.getString(5).equals("NULL"))str += c.getString(5)+"\n\n";
         if(!c.getString(6).equals("NULL"))str += c.getString(6)+"\n\n";
+        if(!c.getString(10).equals("NULL"))str += c.getString(10)+"\n\n";
         TextView article=(TextView)findViewById(R.id.article);
         article.setText(str);
         ImageButton star = (ImageButton)findViewById(R.id.star);
