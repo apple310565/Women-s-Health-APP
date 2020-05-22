@@ -23,16 +23,12 @@ public class Main3Activity extends AppCompatActivity {
         //建立SQLOHleper物件
         dbHelper = new StdDBHelper(this);
         db =dbHelper.getWritableDatabase();//開啟資料庫
-        /*LinearLayout mm = (LinearLayout)findViewById(R.id.linearLayout6);
+        LinearLayout mm = (LinearLayout)findViewById(R.id.linearLayout8);
         mm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                goto_EAT();
+                Nan();
             }
         });
-
-        TextView EAT = (TextView)findViewById(R.id.eat);
-        SqlQuery("SELECT _name FROM EAT");
-        EAT.setText(str);*/
     }
 
     public void goto_EAT(View view){
@@ -45,6 +41,12 @@ public class Main3Activity extends AppCompatActivity {
     public void goto_ACUP(View view){
         Intent intent = new Intent();
         intent.setClass(Main3Activity.this, acup.class);
+        startActivity(intent);
+        Main3Activity.this.finish();
+    }
+    public void goto_SPORT(View view){
+        Intent intent = new Intent();
+        intent.setClass(Main3Activity.this, sport.class);
         startActivity(intent);
         Main3Activity.this.finish();
     }
@@ -70,5 +72,9 @@ public class Main3Activity extends AppCompatActivity {
         intent.setClass(Main3Activity.this,home.class);
         startActivity(intent);
         Main3Activity.this.finish();
+    }
+
+    public void Nan(){
+        Toast.makeText(this,"還未完工，敬請期待~ (,,・ω・,,)",Toast.LENGTH_SHORT).show();
     }
 }

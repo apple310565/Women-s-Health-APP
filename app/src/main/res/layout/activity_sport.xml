@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".acup">
+    tools:context=".sport">
 
     <LinearLayout
         android:id="@+id/linearLayout10"
@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="公孫穴"
+                android:text="慢跑"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textSize="28sp" />
 

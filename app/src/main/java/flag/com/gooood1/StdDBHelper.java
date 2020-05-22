@@ -23,6 +23,9 @@ public class StdDBHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE ACUP(_name Text primary key, "+
                 "subset Text ,effect Text , who Text , main Text , main2 Text, method Text ,theory Text,Source Text, favor int,P int,D int,note Text)");
+
+        db.execSQL("CREATE TABLE SPORT(_name Text primary key, "+
+                "subset1 Text , subset2 Text, effect Text , who Text , main Text , main2 Text, method Text ,theory Text,Source Text, favor int,P int,D int)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db,int oldVersion,int Version){

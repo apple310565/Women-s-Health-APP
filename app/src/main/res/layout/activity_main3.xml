@@ -136,6 +136,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="#52FFFFFF"
+            android:onClick="goto_SPORT"
             android:text="運動"
             android:textColor="#FFFFFF"
             android:textSize="36sp" />
