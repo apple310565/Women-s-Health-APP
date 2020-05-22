@@ -42,6 +42,13 @@ public class Main3Activity extends AppCompatActivity {
         Main3Activity.this.finish();
     }
 
+    public void goto_ACUP(View view){
+        Intent intent = new Intent();
+        intent.setClass(Main3Activity.this, acup.class);
+        startActivity(intent);
+        Main3Activity.this.finish();
+    }
+
     public void SqlQuery(String sql) {
         try {
             Cursor c= db.rawQuery(sql, null);

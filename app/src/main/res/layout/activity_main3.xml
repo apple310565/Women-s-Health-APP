@@ -148,6 +148,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="#52FFFFFF"
+            android:onClick="goto_ACUP"
             android:text="穴道\n按摩"
             android:textColor="#FFFFFF"
             android:textSize="30sp" />
