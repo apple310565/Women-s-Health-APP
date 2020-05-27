@@ -103,7 +103,7 @@ public class home extends AppCompatActivity {
             LinearLayout P = (LinearLayout)findViewById(R.id.person);
             P.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Nan();
+                    goto_Person();
                 }
             });
             LinearLayout H = (LinearLayout)findViewById(R.id.health);
@@ -181,6 +181,12 @@ public class home extends AppCompatActivity {
         startActivity(intent);
         home.this.finish();
     }
+    public void goto_Person(){
+        Intent intent = new Intent();
+        intent.setClass(home.this, person.class);
+        startActivity(intent);
+        home.this.finish();
+    }
 
     public void Nan(){
         Toast.makeText(this,"還未完工，敬請期待~ (,,・ω・,,)",Toast.LENGTH_SHORT).show();
@@ -232,6 +238,7 @@ public class home extends AppCompatActivity {
                     cv.put("D",D);
                     cv.put("Source",Source);
                     db.insert("EAT",null,cv);
+                    db.update("EAT",cv,"_name='"+name+"'",null);
             }
         } catch (Exception e) {
             e.printStackTrace();

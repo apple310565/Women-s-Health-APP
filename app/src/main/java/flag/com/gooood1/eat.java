@@ -123,7 +123,11 @@ public class eat extends AppCompatActivity {
                 if (!c.getString(3).equals("NULL")) str += c.getString(3) + "\n\n";
                 if (!c.getString(4).equals("NULL")) str += c.getString(4) + "\n\n";
                 if (!c.getString(5).equals("NULL")) str += c.getString(5) + "\n\n";
-                if (!c.getString(6).equals("NULL")) str += c.getString(6) + "\n\n";
+                if (!c.getString(6).equals("NULL")) {
+                    String[] tmp = c.getString(6).split("@");
+                    for(int i=0;i<tmp.length;i++)str+=tmp[i]+"\n";
+                    str +="\n";
+                }
                 if (!c.getString(10).equals("NULL")) str += c.getString(10) + "\n\n";
 
                 TextView article = (TextView) findViewById(R.id.article);
@@ -159,7 +163,11 @@ public class eat extends AppCompatActivity {
         if(!c.getString(3).equals("NULL"))str += c.getString(3)+"\n\n";
         if(!c.getString(4).equals("NULL"))str += c.getString(4)+"\n\n";
         if(!c.getString(5).equals("NULL"))str += c.getString(5)+"\n\n";
-        if(!c.getString(6).equals("NULL"))str += c.getString(6)+"\n\n";
+        if (!c.getString(6).equals("NULL")) {
+            String[] tmp = c.getString(6).split("@");
+            for(int i=0;i<tmp.length;i++)str+=tmp[i]+"\n";
+            str +="\n";
+        }
         if(!c.getString(10).equals("NULL"))str += c.getString(10)+"\n\n";
         TextView article=(TextView)findViewById(R.id.article);
         article.setText(str);
