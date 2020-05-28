@@ -49,10 +49,10 @@ public class eat extends AppCompatActivity {
             bb = new String(data);
             String[] tmp = bb.split(",");
             String line=tmp[0];
-            if(line.equals("1"))P+=" OR P=1";
-            else if(line.equals("2"))P+=" OR P=2";
-            else if(line.equals("3"))P+=" OR P=3";
-            else if(line.equals("4"))P+=" OR P=4";
+            if(line.equals("1"))P+=" OR P=1 OR P=12 OR P=13 OR P=14 OR P=123 OR P=124 OR P=134 ";
+            else if(line.equals("2"))P+=" OR P=2 OR P=12 OR P=23 OR P=24 OR P=123 OR P=124 OR P=234 ";
+            else if(line.equals("3"))P+=" OR P=3 OR P=13 OR P=23 OR P=34 OR P=123 OR P=134 OR P=234 ";
+            else if(line.equals("4"))P+=" OR P=4 OR P=14 OR P=24 OR P=34 OR P=124 OR P=134 OR P=234 ";
         } catch (IOException e) {
             e.printStackTrace();
          }
