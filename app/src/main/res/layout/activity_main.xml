@@ -88,7 +88,7 @@
         android:layout_marginBottom="10dp"
         android:background="#B4F37C57"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -165,255 +165,230 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
-        android:layout_height="68dp"
+        android:layout_height="0dp"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="3dp"
-        android:background="#F3F37C57"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:text="流\n量"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
-
-        <RadioGroup
-            android:id="@+id/RGflow"
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginEnd="88dp"
-            android:layout_marginRight="88dp"
-            android:background="#92FFFFFF"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/f1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="多"
-                android:textColor="#000000"
-                android:textColorHint="#FFFFFF"
-                android:textSize="12sp" />
-
-            <RadioButton
-                android:id="@+id/f2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="正\n常"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <RadioButton
-                android:id="@+id/f3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="少"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <RadioButton
-                android:id="@+id/f4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="或多\n或少"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <RadioButton
-                android:id="@+id/f5"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="點滴性\n出血"
-                android:textColor="#000000"
-                android:textSize="10sp" />
-        </RadioGroup>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="0dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="3dp"
-        android:background="#BFF16E44"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/aaa"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:text="經\n色"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+            android:orientation="vertical">
 
-        <RadioGroup
-            android:id="@+id/RGcolor"
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginEnd="132dp"
-            android:layout_marginRight="132dp"
-            android:background="#92FFFFFF"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="#F37C57"
+                android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/c1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="黝\n深"
-                android:textColor="#5A5555"
-                android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:text="流\n量"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
 
-            <RadioButton
-                android:id="@+id/c2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="鮮\n紅"
-                android:textColor="#F44336"
-                android:textSize="12sp" />
+                <RadioGroup
+                    android:id="@+id/RGflow"
+                    android:layout_width="300dp"
+                    android:layout_height="55dp"
 
-            <RadioButton
-                android:id="@+id/c3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="淡\n紅"
-                android:textColor="#F3877F"
-                android:textColorLink="#FA7166"
-                android:textSize="12sp" />
+                    android:background="#92FFFFFF"
+                    android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/c4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="紫\n紅"
-                android:textColor="#981047"
-                android:textSize="12sp" />
+                    <RadioButton
+                        android:id="@+id/f1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="多"
+                        android:textColor="#000000"
+                        android:textColorHint="#FFFFFF"
+                        android:textSize="12sp" />
 
-            <RadioButton
-                android:id="@+id/c5"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="紫\n黑"
-                android:textColor="#490255"
-                android:textSize="12sp" />
-        </RadioGroup>
-    </LinearLayout>
+                    <RadioButton
+                        android:id="@+id/f2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="正\n常"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="0dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="50dp"
-        android:background="#BFF16E44"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+                    <RadioButton
+                        android:id="@+id/f3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="少"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:text="質\n地"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp" />
+                    <RadioButton
+                        android:id="@+id/f4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="或多\n或少"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
 
-        <RadioGroup
-            android:id="@+id/RGqaulity"
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginEnd="78dp"
-            android:layout_marginRight="78dp"
-            android:background="#92FFFFFF"
-            android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/f5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="點滴性\n出血"
+                        android:textColor="#000000"
+                        android:textSize="10sp" />
+                </RadioGroup>
 
-            <RadioButton
-                android:id="@+id/q1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="清\n稀"
-                android:textSize="12sp" />
+            </LinearLayout>
 
-            <RadioButton
-                android:id="@+id/q2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="正\n常"
-                android:textSize="12sp" />
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
 
-            <RadioButton
-                android:id="@+id/q3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="黏\n稠"
-                android:textSize="12sp" />
+                android:background="#F37C57"
+                android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/q4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="有血塊"
-                android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="經\n色"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
 
-            <RadioButton
-                android:id="@+id/q5"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="夾雜\n黏液"
-                android:textSize="10sp" />
-        </RadioGroup>
-    </LinearLayout>
+                <RadioGroup
+                    android:id="@+id/RGcolor"
+                    android:layout_width="300dp"
+                    android:layout_height="55dp"
+                    android:background="#92FFFFFF"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/c1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="黝\n深"
+                        android:textColor="#5A5555"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/c2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="鮮\n紅"
+                        android:textColor="#F44336"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/c3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="淡\n紅"
+                        android:textColor="#F3877F"
+                        android:textColorLink="#FA7166"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/c4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="紫\n紅"
+                        android:textColor="#981047"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/c5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="紫\n黑"
+                        android:textColor="#490255"
+                        android:textSize="12sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="#F37C57"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:text="質\n地"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:id="@+id/RGqaulity"
+                    android:layout_width="300dp"
+                    android:layout_height="55dp"
+                    android:background="#92FFFFFF"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/q1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="清\n稀"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/q2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="正\n常"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/q3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="黏\n稠"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/q4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="有血塊"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/q5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="夾雜\n黏液"
+                        android:textSize="10sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+        </LinearLayout>
+        />
+    </ScrollView>
+
 
     <Button
         android:id="@+id/button2"
