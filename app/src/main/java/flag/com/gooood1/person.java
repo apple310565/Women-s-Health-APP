@@ -65,6 +65,21 @@ public class person extends AppCompatActivity {
             TextView Day =(TextView)findViewById(R.id.day);
             Day.setText(name[3]);
 
+            String bb="";
+            try{
+                FileInputStream in2 = openFileInput("PPP.txt");
+                byte[] data2 = new byte[128];
+                in2.read(data2);
+                in2.close();
+                bb = new String(data2);
+                String[] tmp = bb.split(",");
+                String pefer=tmp[1];
+                TextView Pefer =(TextView)findViewById(R.id.pefer);
+                Pefer.setText(pefer);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
         catch (IOException e){
             Toast.makeText(this,"讀檔失敗: "+e.toString(),Toast.LENGTH_SHORT).show();

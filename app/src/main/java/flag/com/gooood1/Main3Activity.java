@@ -19,6 +19,7 @@ import java.io.IOException;
 public class Main3Activity extends AppCompatActivity {
     private SQLiteDatabase db;
     private StdDBHelper dbHelper;
+    String sub;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +83,6 @@ public class Main3Activity extends AppCompatActivity {
             //設定搜尋條件
             String bb="";
             Cursor c;
-            int F;
             String sql="";
             try{
                 FileInputStream in = openFileInput("PPP.txt");
@@ -92,6 +92,7 @@ public class Main3Activity extends AppCompatActivity {
                 bb = new String(data);
                 String[] tmp = bb.split(",");
                 String line=tmp[0];
+                sub=tmp[1];
                 if(line.equals("1")){P+=" OR P=1 OR P=12 OR P=13 OR P=14 OR P=123 OR P=124 OR P=134 ";}
                 else if(line.equals("2")){P+=" OR P=2 OR P=12 OR P=23 OR P=24 OR P=123 OR P=124 OR P=234 ";}
                 else if(line.equals("3")){P+=" OR P=3 OR P=13 OR P=23 OR P=34 OR P=123 OR P=134 OR P=234 ";}
@@ -99,10 +100,6 @@ public class Main3Activity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            //預設成減肥
-            String sub="減肥塑身";
-            F=1;
 
             sql = "SELECT * FROM HABIT WHERE (("+P+") AND subset='"+sub+"'"+") ORDER BY priority DESC";
             c = db.rawQuery(sql, null);

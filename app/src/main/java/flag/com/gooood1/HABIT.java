@@ -31,6 +31,7 @@ public class HABIT extends AppCompatActivity {
     String P=" P=0 ";
     Cursor c;
     int F=0;
+    String sub;
     int size=22,pp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +55,12 @@ public class HABIT extends AppCompatActivity {
             else if(line.equals("2")){P+=" OR P=2 OR P=12 OR P=23 OR P=24 OR P=123 OR P=124 OR P=234 ";pp=2;}
             else if(line.equals("3")){P+=" OR P=3 OR P=13 OR P=23 OR P=34 OR P=123 OR P=134 OR P=234 ";pp=3;}
             else if(line.equals("4")){P+=" OR P=4 OR P=14 OR P=24 OR P=34 OR P=124 OR P=134 OR P=234 ";pp=4;}
+            sub = tmp[1];
+            if(sub.equals("日常保健"))F=0;
+            else F=1;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //Toast.makeText(eat.this, "line = "+line, Toast.LENGTH_SHORT).show();
-        //預設成減肥
-        String sub="減肥塑身";
-        F=1;
-
         Str = "SELECT * FROM HABIT WHERE (("+P+") AND subset='"+sub+"'"+") ORDER BY priority DESC";
 
         //下拉式選單設定
@@ -95,7 +94,7 @@ public class HABIT extends AppCompatActivity {
 
 
         SqlQuery(Str);
-        spinner2.setSelection(1);
+        spinner2.setSelection(F);
 
     }
 

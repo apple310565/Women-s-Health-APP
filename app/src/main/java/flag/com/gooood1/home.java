@@ -120,20 +120,38 @@ public class home extends AppCompatActivity {
                 }
             });
 
-            FileOutputStream pout = null;
-            String str="";
-            int ppp=days%peroid;
-            if(ppp<=5)str="1,";
-            else if(ppp<=14)str="2,";
-            else if(ppp<=21)str="3,";
-            else str="4,";
-            try {
-                pout = openFileOutput("PPP.txt",MODE_PRIVATE);
-                pout.write(str.getBytes());
-                pout.close();
+            try{
+
+                String bb;
+                FileInputStream in = openFileInput("PPP.txt");
+                byte[] data = new byte[128];
+                in.read(data);
+                in.close();
+                bb = new String(data);
+                String[] tmp = bb.split(",");
+                String select=tmp[1];
+
+                FileOutputStream pout = null;
+                String str="";
+                int ppp=days%peroid;
+                if(ppp<=5)str="1,";
+                else if(ppp<=14)str="2,";
+                else if(ppp<=21)str="3,";
+                else str="4,";
+                str+=select+",";
+                //Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
+                try {
+                    pout = openFileOutput("PPP.txt",MODE_PRIVATE);
+                    pout.write(str.getBytes());
+                    pout.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+
         }
     }
 

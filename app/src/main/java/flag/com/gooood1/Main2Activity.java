@@ -11,19 +11,43 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class Main2Activity extends AppCompatActivity {
     private EditText editDate;
+    String select="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         editDate = (EditText)findViewById(R.id.m1);
+
+        //下拉式選單設定
+        Spinner spinner2 = (Spinner)findViewById(R.id.spinner);
+        final String[] lunch2 = {"日常保健","減肥塑身"};
+        ArrayAdapter<String> lunchList2 = new ArrayAdapter<>(Main2Activity.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                lunch2);spinner2.setAdapter(lunchList2);
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                select=lunch2[position];
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+
+        });
+
+
+
     }
 
     public void datePicker(View view){
@@ -35,7 +59,9 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String dateTime = String.valueOf(year)+"/"+String.valueOf(month+1)+"/"+String.valueOf(dayOfMonth);
+                editDate.setEnabled(true);
                 editDate.setText(dateTime);
+                editDate.setEnabled(false);
             }
         },year,month,day).show();
     }
@@ -113,6 +139,19 @@ public class Main2Activity extends AppCompatActivity {
                 Toast.makeText(this,"文件創建失败"+e.toString(),Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
+
+            FileOutputStream pout = null;
+            String str2="";
+            str2="1,"+select+",";
+            try {
+                pout = openFileOutput("PPP.txt",MODE_PRIVATE);
+                pout.write(str2.getBytes());
+                pout.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
             Intent intent = new Intent();
             intent.setClass(Main2Activity.this  , home.class);
             startActivity(intent);
