@@ -32,7 +32,7 @@
             android:text="經期紀錄資料"
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
             android:textColor="#FFFFFF"
-            android:textSize="46sp" />
+            android:textSize="40sp" />
 
         <ImageView
             android:id="@+id/imageView4"
