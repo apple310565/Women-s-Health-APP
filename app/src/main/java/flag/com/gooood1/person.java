@@ -98,4 +98,10 @@ public class person extends AppCompatActivity {
         startActivity(intent);
         person.this.finish();
     }
+    public void  goto_change(View view){
+        Intent intent = new Intent();
+        intent.setClass(person.this,change_person.class);
+        startActivity(intent);
+        person.this.finish();
+    }
 }

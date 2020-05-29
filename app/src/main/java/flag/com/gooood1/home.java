@@ -121,7 +121,6 @@ public class home extends AppCompatActivity {
             });
 
             try{
-
                 String bb;
                 FileInputStream in = openFileInput("PPP.txt");
                 byte[] data = new byte[128];
@@ -150,8 +149,6 @@ public class home extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 
@@ -348,12 +345,8 @@ public class home extends AppCompatActivity {
             Toast.makeText(this, "ACUP_LOAD: " + e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
-        public void load_habit(){
+    public void load_habit(){
             try {
-                db.execSQL("DROP TABLE IF EXISTS HABIT");
-                db.execSQL("CREATE TABLE HABIT(_name Text primary key, "+
-                        "subset Text , priority int ,P int,D int)");
-
                 InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("habit.csv") );
                 //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
                 BufferedReader bufReader = new BufferedReader(inputReader);
