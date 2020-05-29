@@ -20,7 +20,7 @@ public class m4 extends AppCompatActivity {
         //建立SQLOHleper物件
         dbHelper = new StdDBHelper(this);
         db =dbHelper.getWritableDatabase();//開啟資料庫
-        SqlQuery("SELECT * FROM Data ORDER BY _date");
+        SqlQuery("SELECT * FROM Data ORDER BY _date DESC");
 
     }
     public void SqlQuery(String sql) {
@@ -31,7 +31,7 @@ public class m4 extends AppCompatActivity {
         String str = "",str1="";
         Cursor c = db.rawQuery(sql, null);
         colNames = c.getColumnNames();
-        str1 += "日期\t\t\t\t\t\t\t|  流量\t|  經色\t|  質地\t|  其它";
+        str1 += "\t\t\t 日期 \t\t\t\t|  流量\t|  經色\t|  質地\t|  其它";
         TextView T_t= (TextView)findViewById(R.id.title) ;
         T_t.setText(str1);
         c.moveToFirst();
@@ -39,13 +39,13 @@ public class m4 extends AppCompatActivity {
         for (int i = 0; i < c.getCount(); i++) {
             str += c.getString(0) + "\t|  ";
             tmp=Integer.parseInt(c.getString(1));
-            if(tmp!=-1)str += flow[tmp-1] + "\t|  ";
+            if(tmp!=-1 && tmp!=0)str += flow[tmp-1] + "\t|  ";
             else str+="null\t|  ";
             tmp=Integer.parseInt(c.getString(2));
-            if(tmp!=-1)str += color[tmp-1] + "\t|  ";
+            if(tmp!=-1 && tmp!=0 )str += color[tmp-1] + "\t|  ";
             else str+="null\t|  ";
             tmp=Integer.parseInt(c.getString(3));
-            if(tmp!=-1)str += q[tmp-1] + "\t";
+            if(tmp!=-1 && tmp!=0)str += q[tmp-1] + "\t";
             else str+="null\t";
 
             if(c.getString(4).equals("1"))str += "|  "+"經期開始"+ "\t";

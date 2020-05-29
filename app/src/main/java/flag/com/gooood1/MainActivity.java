@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
         if(i_S==1&&i_M!=-1)firstDay();
         if(i_E==1)END();
         Toast.makeText(this,"感謝親的紀錄~ (,,・ω・,,)",Toast.LENGTH_SHORT).show();
-        SqlQuery("SELECT * FROM "+DATABASE_TABLE);
+        //SqlQuery("SELECT * FROM "+DATABASE_TABLE);
     }
     public int is_mense(){
         if(day1>=day2){

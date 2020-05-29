@@ -78,6 +78,7 @@ public class home extends AppCompatActivity {
             load_eat();
             load_acup();
             load_sport();
+            load_habit();
             //初始化
 
             Calendar calendar = Calendar.getInstance();
@@ -287,46 +288,78 @@ public class home extends AppCompatActivity {
             Toast.makeText(this,"ACUP_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
         }
     }
-    public void load_sport(){
+    public void load_sport() {
         try {
-            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("SPORT.csv") );
+            InputStreamReader inputReader = new InputStreamReader(getResources().getAssets().open("SPORT.csv"));
             //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
             BufferedReader bufReader = new BufferedReader(inputReader);
-            String line="";
-            while((line = bufReader.readLine()) != null) {
+            String line = "";
+            while ((line = bufReader.readLine()) != null) {
                 String[] Eat = line.split(",");
-                String name=Eat[0];
-                String effect=Eat[1];
-                String who =Eat[2];
-                String method=Eat[3];
-                String main1 =Eat[4];
-                String main2 =Eat[5];
-                String theory=Eat[6];
-                String Source=Eat[7];
-                String subset1=Eat[8];
-                String subset2=Eat[9];
+                String name = Eat[0];
+                String effect = Eat[1];
+                String who = Eat[2];
+                String method = Eat[3];
+                String main1 = Eat[4];
+                String main2 = Eat[5];
+                String theory = Eat[6];
+                String Source = Eat[7];
+                String subset1 = Eat[8];
+                String subset2 = Eat[9];
                 int P = Integer.parseInt(Eat[10]);
                 int D = Integer.parseInt(Eat[11]);
-                int f=0;
+                int f = 0;
                 ContentValues cv = new ContentValues();
-                cv.put("_name",name);
-                cv.put("effect",effect);
-                cv.put("who",who);
-                cv.put("method",method);
-                cv.put("subset1",subset1);
-                cv.put("subset2",subset2);
-                cv.put("main",main1);
-                cv.put("main2",main2);
-                cv.put("favor",f);
-                cv.put("P",P);
-                cv.put("D",D);
-                cv.put("Source",Source);
-                cv.put("theory",theory);
-                db.insert("SPORT",null,cv);
+                cv.put("_name", name);
+                cv.put("effect", effect);
+                cv.put("who", who);
+                cv.put("method", method);
+                cv.put("subset1", subset1);
+                cv.put("subset2", subset2);
+                cv.put("main", main1);
+                cv.put("main2", main2);
+                cv.put("favor", f);
+                cv.put("P", P);
+                cv.put("D", D);
+                cv.put("Source", Source);
+                cv.put("theory", theory);
+                db.insert("SPORT", null, cv);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this,"ACUP_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ACUP_LOAD: " + e.toString(), Toast.LENGTH_SHORT).show();
         }
+    }
+        public void load_habit(){
+            try {
+                db.execSQL("DROP TABLE IF EXISTS HABIT");
+                db.execSQL("CREATE TABLE HABIT(_name Text primary key, "+
+                        "subset Text , priority int ,P int,D int)");
+
+                InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("habit.csv") );
+                //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
+                BufferedReader bufReader = new BufferedReader(inputReader);
+                String line="";
+                while((line = bufReader.readLine()) != null) {
+                    String[] Eat = line.split(",");
+                    String name=Eat[0];
+                    String subset=Eat[1];
+                    int priority = Integer.parseInt(Eat[2]);
+                    int P = Integer.parseInt(Eat[3]);
+                    int D = Integer.parseInt(Eat[4]);
+                    int f=0;
+                    ContentValues cv = new ContentValues();
+                    cv.put("_name",name);
+                    cv.put("subset",subset);
+                    cv.put("P",P);
+                    cv.put("D",D);
+                    cv.put("priority",priority);
+                    db.insert("HABIT",null,cv);
+                    db.update("HABIT",cv,"_name='"+name+"'",null);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this,"HABIT_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
+            }
     }
 }
