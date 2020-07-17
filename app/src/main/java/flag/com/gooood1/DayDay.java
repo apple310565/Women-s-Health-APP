@@ -173,6 +173,7 @@ public class DayDay extends AppCompatActivity {
 
                 ContentValues cv = new ContentValues();
                 cv.put("progress",p);
+                cv.put("complete",(float)p/(float)SB.getMax());
                 db.update("DayIn",cv, "_ID = '"+ID+"' AND _date = '"+Date+"'" ,null);
             }
         });
@@ -192,6 +193,7 @@ public class DayDay extends AppCompatActivity {
 
                 ContentValues cv = new ContentValues();
                 cv.put("progress",p);
+                cv.put("complete",(float)p/(float)SB.getMax());
                 db.update("DayIn",cv, "_ID = '"+ID+"' AND _date = '"+Date+"'" ,null);
             }
         });
@@ -207,6 +209,7 @@ public class DayDay extends AppCompatActivity {
                 else im.setImageDrawable(getResources().getDrawable( R.drawable.r1 ));
                 ContentValues cv = new ContentValues();
                 cv.put("progress",p);
+                cv.put("complete",(float)p/(float)SB.getMax());
                 db.update("DayIn",cv, "_ID = '"+ID+"' AND _date = '"+Date+"'" ,null);
             }
             @Override

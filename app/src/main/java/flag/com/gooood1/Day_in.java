@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +17,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 
 public class Day_in extends AppCompatActivity {
     private SQLiteDatabase db;
@@ -90,6 +100,64 @@ public class Day_in extends AppCompatActivity {
             Note.setText("目前還沒有任何紀錄，趕快來寫下給自己的鼓勵吧 > <");
         }
         else Note.setText(note);
+
+        //圖表內容設定
+        Cursor DayIn2 = db.rawQuery("SELECT * FROM DayIn WHERE _ID = '" + ID + "' ORDER BY _date", null);
+        DayIn2.moveToFirst();
+        com.github.mikephil.charting.charts.LineChart lineChart = findViewById(R.id.lineChart);
+        try{
+        //x軸
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//X軸標籤顯示位置(預設顯示在上方，分為上方內/外側、下方內/外側及上下同時顯示)
+        xAxis.setTextColor(Color.GRAY);//X軸標籤顏色
+        xAxis.setTextSize(12);//X軸標籤大小
+
+        xAxis.setLabelCount(DayIn2.getCount()+1);//X軸標籤個數
+        xAxis.setSpaceMin(0.2f);//折線起點距離左側Y軸距離
+        xAxis.setSpaceMax(0.2f);//折線終點距離右側Y軸距離
+
+        xAxis.setDrawGridLines(false);//不顯示每個座標點對應X軸的線 (預設顯示)
+
+        //設定所需特定標籤資料
+        List<String> xList = new ArrayList<>();
+        xList.add("NULL");
+        for (j=0;j<DayIn2.getCount();j++) {
+            xList.add(DayIn2.getString(1));
+        }
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(xList));}catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
+        }
+        lineChart.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        ArrayList<Entry> values = new ArrayList<>();
+        DayIn2.moveToFirst();
+
+        for(j =0;j<DayIn2.getCount();j++){
+            values.add(new Entry((float) j, Float.parseFloat(DayIn2.getString(3))));
+            DayIn2.moveToNext();
+        }
+
+
+
+
+        final LineDataSet set;
+        set = new LineDataSet(values, "");
+        set.setDrawValues(false);//不顯示座標點對應Y軸的數字(預設顯示)
+        set.setCircleRadius(5);
+        set.setCircleColor(Color.parseColor("#FF4D00"));
+        set.setMode(LineDataSet.Mode.LINEAR);//類型為折線
+        set.setColor(Color.parseColor("#FF4D00"));//線的顏色
+        set.setLineWidth(1.5f);//線寬
+        LineData data = new LineData(set);
+        lineChart.setTag("完成度");
+        lineChart.setDrawBorders(true);
+        lineChart.setData(data);//一定要放在最後
+        lineChart.invalidate();//繪製圖
+
+
+
+
+
     }
 
 
@@ -182,12 +250,14 @@ public class Day_in extends AppCompatActivity {
                             cv.put("name", name);
                             cv.put("max", max);
                             cv.put("article", article);
+                            cv.put("complete",(float)p/(float)max);
                             db.update("Day", cv, "_ID = '" + ID + "'", null);
 
                             if(max<p){
                                 p=max;
                                 ContentValues cv2 = new ContentValues();
                                 cv2.put("progress",p);
+                                cv2.put("complete",(float)p/(float)max);
                                 db.update("DayIn",cv2, "_ID = '"+ID+"' AND _date = '"+Date+"'" ,null);
                             }
 
