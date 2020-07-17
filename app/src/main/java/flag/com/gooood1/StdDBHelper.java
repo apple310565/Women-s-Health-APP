@@ -29,6 +29,13 @@ public class StdDBHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE HABIT(_name Text primary key, "+
                 "subset Text , priority int ,P int,D int)");
+
+        db.execSQL("CREATE TABLE Day(_ID Text primary key,name Text, article Text ,P int,D int,priority int,max int, selected int)");
+
+        db.execSQL("CREATE TABLE DayIn(_ID Text , _date Text, progress int, complete real, d1 Text, d2 Text, d3 Text, d4 Text, d5 Text, d6 Text, d7 Text"+
+                ",primary key(_ID,_date))");
+
+
     }
     @Override
     public void onUpgrade(SQLiteDatabase db,int oldVersion,int Version){

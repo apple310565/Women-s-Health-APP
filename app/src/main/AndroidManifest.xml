@@ -8,11 +8,14 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/leaf"
-        android:label="月來越好"
+        android:label="養心殿"
         android:roundIcon="@drawable/leaf"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".change_person"></activity>
+        <activity android:name=".Day_add"></activity>
+        <activity android:name=".Day_in" />
+        <activity android:name=".DayDay" />
+        <activity android:name=".change_person" />
         <activity android:name=".HABIT" />
         <activity android:name=".m4" />
         <activity android:name=".person" />

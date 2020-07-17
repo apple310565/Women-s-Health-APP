@@ -159,5 +159,11 @@ public class HABIT extends AppCompatActivity {
         TextView tv =(TextView)findViewById(R.id.article);
         tv.setTextSize(size);
     }
+    public void goto_Day(View view){
+        Intent intent = new Intent();
+        intent.setClass(HABIT.this,DayDay.class);
+        startActivity(intent);
+        HABIT.this.finish();
+    }
 }
 

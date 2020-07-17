@@ -79,6 +79,7 @@ public class home extends AppCompatActivity {
             load_acup();
             load_sport();
             load_habit();
+            load_dayday();
             //初始化
 
             Calendar calendar = Calendar.getInstance();
@@ -372,5 +373,38 @@ public class home extends AppCompatActivity {
                 e.printStackTrace();
                 Toast.makeText(this,"HABIT_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
             }
+    }
+    public void load_dayday(){
+        try {
+            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("DayDay.csv") );
+            //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            while((line = bufReader.readLine()) != null) {
+                String[] Day = line.split(",");
+                String ID = Day[0];
+                String name=Day[1];
+                String article =Day[2];
+                int P=Integer.parseInt(Day[3]);
+                int D=Integer.parseInt(Day[4]);
+                int priority=Integer.parseInt(Day[5]);
+                int max =7;
+                int selected=0;
+                ContentValues cv = new ContentValues();
+                cv.put("name",name);
+                cv.put("_ID",ID);
+                cv.put("P",P);
+                cv.put("D",D);
+                cv.put("priority",priority);
+                cv.put("max",max);
+                cv.put("selected",selected);
+                cv.put("article",article);
+                db.insert("Day",null,cv);
+                //db.update("Day",cv,"_ID='"+ID+"'",null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,"DayDay_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -67,7 +67,7 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     public void submit_onclick(View view){
-        EditText Name =(EditText) findViewById(R.id.name);
+        EditText Name =(EditText) findViewById(R.id.A_name);
         EditText Passwd =(EditText) findViewById(R.id.passwd);
         EditText M1 =(EditText) findViewById(R.id.m1);
         EditText M2 =(EditText) findViewById(R.id.m2);
