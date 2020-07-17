@@ -112,7 +112,8 @@ public class Day_in extends AppCompatActivity {
         xAxis.setTextColor(Color.GRAY);//X軸標籤顏色
         xAxis.setTextSize(12);//X軸標籤大小
 
-        xAxis.setLabelCount(DayIn2.getCount()+1);//X軸標籤個數
+            DayIn2.moveToFirst();
+        xAxis.setLabelCount(DayIn2.getCount());//X軸標籤個數
         xAxis.setSpaceMin(0.2f);//折線起點距離左側Y軸距離
         xAxis.setSpaceMax(0.2f);//折線終點距離右側Y軸距離
 
@@ -120,7 +121,7 @@ public class Day_in extends AppCompatActivity {
 
         //設定所需特定標籤資料
         List<String> xList = new ArrayList<>();
-        xList.add("NULL");
+        //xList.add("NULL");
         for (j=0;j<DayIn2.getCount();j++) {
             xList.add(DayIn2.getString(1));
         }
@@ -131,7 +132,6 @@ public class Day_in extends AppCompatActivity {
         lineChart.setBackgroundColor(Color.parseColor("#FFFFFF"));
         ArrayList<Entry> values = new ArrayList<>();
         DayIn2.moveToFirst();
-
         for(j =0;j<DayIn2.getCount();j++){
             values.add(new Entry((float) j, Float.parseFloat(DayIn2.getString(3))));
             DayIn2.moveToNext();
@@ -250,13 +250,17 @@ public class Day_in extends AppCompatActivity {
                             cv.put("name", name);
                             cv.put("max", max);
                             cv.put("article", article);
-                            cv.put("complete",(float)p/(float)max);
                             db.update("Day", cv, "_ID = '" + ID + "'", null);
 
                             if(max<p){
                                 p=max;
                                 ContentValues cv2 = new ContentValues();
                                 cv2.put("progress",p);
+                                cv2.put("complete",(float)p/(float)max);
+                                db.update("DayIn",cv2, "_ID = '"+ID+"' AND _date = '"+Date+"'" ,null);
+                            }
+                            else{
+                                ContentValues cv2 = new ContentValues();
                                 cv2.put("complete",(float)p/(float)max);
                                 db.update("DayIn",cv2, "_ID = '"+ID+"' AND _date = '"+Date+"'" ,null);
                             }
