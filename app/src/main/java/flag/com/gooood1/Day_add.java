@@ -59,8 +59,8 @@ public class Day_add extends AppCompatActivity {
                     Lout.setGravity(Gravity.CENTER_VERTICAL);
                     Lout.setPadding(20, 60, 20, 20);
                     final ImageView im =new ImageView(this);
-                    im.setImageDrawable(getResources().getDrawable( R.drawable.star1 ));
-                    Lout.addView(im, 200, 200);
+                    im.setImageDrawable(getResources().getDrawable( R.drawable.y2 ));
+                    Lout.addView(im, 100, 100);
                     LinearLayout Loout = new LinearLayout(this);
                     Loout.setPadding(10,10,10,10);
                     LinearLayout Lin = new LinearLayout(this);
@@ -101,8 +101,8 @@ public class Day_add extends AppCompatActivity {
                             cv.put("selected",f);
                             db.update("Day",cv, "_ID='"+id+"'",null);
 
-                            if(f==0)im.setImageDrawable(getResources().getDrawable( R.drawable.star1 ));
-                            else im.setImageDrawable(getResources().getDrawable( R.drawable.star2 ));
+                            if(f==0)im.setImageDrawable(getResources().getDrawable( R.drawable.y1 ));
+                            else im.setImageDrawable(getResources().getDrawable( R.drawable.y2 ));
                         }
                     });
                 }

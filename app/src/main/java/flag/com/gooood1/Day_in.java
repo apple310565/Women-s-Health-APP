@@ -194,11 +194,13 @@ public class Day_in extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
         }
+        Toast.makeText(getApplicationContext(), "記錄新增成功(*´▽`*)y", Toast.LENGTH_SHORT).show();
     }
     public void hide(View view){
         ContentValues cv = new ContentValues();
         cv.put("selected",0);
         db.update("Day",cv, "_ID = '"+ID+"'" ,null);
+        Toast.makeText(getApplicationContext(), "習慣隱藏成功，可以再從新增習慣處加回來喔(*´▽`*)y", Toast.LENGTH_SHORT).show();
     }
     public void  change(View view){
         LayoutInflater inflater = LayoutInflater.from(Day_in.this);
