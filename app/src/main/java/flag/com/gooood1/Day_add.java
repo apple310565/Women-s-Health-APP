@@ -67,6 +67,15 @@ public class Day_add extends AppCompatActivity {
                     Loout.addView(Lin, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     Lout.addView(Loout, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     Lin.setOrientation(LinearLayout.VERTICAL);
+
+                    LinearLayout Liin=new LinearLayout(this);
+                    Liin.setOrientation(LinearLayout.HORIZONTAL);
+                    Lin.addView(Liin,LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    Liin.setGravity(Gravity.CENTER_VERTICAL);
+                    final ImageView im2 =new ImageView(this);
+                    im2.setImageDrawable(getResources().getDrawable( R.drawable.rabbit ));
+                    Liin.addView(im2,100,100);
+                    Liin.setPadding(20,20,20,20);
                     TextView NAME = new TextView(this);
                     NAME.setText(name);
                     NAME.setTextSize(22);
@@ -74,10 +83,10 @@ public class Day_add extends AppCompatActivity {
                     TextView ART = new TextView(this);
                     ART.setText(article);
                     ART.setTextSize(20);
-                    ART.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    Lin.addView(NAME);
+                    ART.setBackgroundColor(Color.parseColor("#97FFFFFF"));
+                    Liin.addView(NAME);
                     Lin.addView(ART);
-                    Loout.setBackgroundColor(Color.parseColor("#FF5722"));
+                    Liin.setBackgroundColor(Color.parseColor("#F37C57"));
                     c.moveToNext();
 
                     im.setOnClickListener(new View.OnClickListener() {
