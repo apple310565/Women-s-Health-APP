@@ -40,6 +40,7 @@ public class Day_in extends AppCompatActivity {
     String article;
     int Max;
     int p;
+    Cursor C;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +66,8 @@ public class Day_in extends AppCompatActivity {
         Cursor DayIn = db.rawQuery("SELECT * FROM DayIn WHERE _ID = '" + ID + "' AND _date = '" + Date + "'", null);
         Day.moveToFirst();
         DayIn.moveToFirst();
+        C = db.rawQuery("SELECT * FROM DayIn WHERE _ID = '" + ID + "'", null);
+        C.moveToFirst();
 
         name = Day.getString(1);
         article=Day.getString(2);
@@ -194,6 +197,11 @@ public class Day_in extends AppCompatActivity {
             Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
         }
         Toast.makeText(getApplicationContext(), "記錄新增成功(*´▽`*)y", Toast.LENGTH_SHORT).show();
+
+        TextView Day=(TextView)findViewById(R.id.day);
+        Day.setText("給自己的話: (當週)");
+
+        C.moveToFirst();
     }
     public void hide(View view){
         ContentValues cv = new ContentValues();
@@ -289,5 +297,48 @@ public class Day_in extends AppCompatActivity {
                 })
 
                 .show();
+    }
+    public void Next(View view){
+        if(C.isLast()){
+            Toast.makeText(getApplicationContext(), "這已經是最後一筆資料了", Toast.LENGTH_SHORT).show();
+            C.moveToFirst();
+            TextView Note=(TextView)findViewById(R.id.note);
+            String note="";
+            int j;
+            for( j=4;j<11;j++){
+                if(!C.getString(j).equals("NULL")){
+                    note+=week[j-4]+" | "+C.getString(j)+"\n";
+                }
+            }
+            if(note.equals("")){
+                Note.setText("你並沒有在這周給自己留下任何的紀錄QWQ");
+            }
+            else Note.setText(note);
+
+            TextView Day=(TextView)findViewById(R.id.day);
+            Day.setText("給自己的話: ("+C.getString(1)+")");
+
+            if(C.getString(1).equals(Date))Day.setText("給自己的話: (當週)");
+        }
+        else {
+            C.moveToNext();
+            TextView Note=(TextView)findViewById(R.id.note);
+            String note="";
+            int j;
+            for( j=4;j<11;j++){
+                if(!C.getString(j).equals("NULL")){
+                    note+=week[j-4]+" | "+C.getString(j)+"\n";
+                }
+            }
+            if(note.equals("")){
+                Note.setText("你並沒有在這周給自己留下任何的紀錄QWQ");
+            }
+            else Note.setText(note);
+
+            TextView Day=(TextView)findViewById(R.id.day);
+            Day.setText("給自己的話: ("+C.getString(1)+")");
+
+            if(C.getString(1).equals(Date))Day.setText("給自己的話: (當週)");
+        }
     }
 }
