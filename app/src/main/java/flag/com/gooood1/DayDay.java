@@ -2,16 +2,20 @@ package flag.com.gooood1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.IDN;
+import java.text.NumberFormat;
 import java.util.Calendar;
 
 public class DayDay extends AppCompatActivity {
@@ -53,7 +58,7 @@ public class DayDay extends AppCompatActivity {
         }
 
 
-        Date= Integer.toString(year)+'/'+Integer.toString(month+1)+'/'+Integer.toString(day)+'@';
+        Date= Integer.toString(year)+'/'+Integer.toString(month+1)+'/'+Integer.toString(day);
         SqlQuery("SELECT * FROM Day WHERE selected=1");
 
     }
@@ -97,6 +102,22 @@ public class DayDay extends AppCompatActivity {
                     cc(ID,name,max,progress);
                     c.moveToNext();
                 }
+            }
+            else{
+                new AlertDialog.Builder(DayDay.this)
+                        .setIcon(R.drawable.ic_launcher_background)
+                        .setTitle("Message")
+                        .setMessage("目前你暫時沒有收藏任何想養成的習慣，將前往新增習慣介面去選擇想養成的習慣喔(*ﾟ∀ﾟ*)")
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent();
+                                intent.setClass(DayDay.this, Day_add.class);
+                                startActivity(intent);
+                                DayDay.this.finish();
+                            }
+                        })
+                        .show();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -251,6 +272,53 @@ public class DayDay extends AppCompatActivity {
         intent.setClass(DayDay.this,Main3Activity.class);
         startActivity(intent);
         DayDay.this.finish();
+    }
+
+    public void rank(View view){
+
+        Cursor DayDay = db.rawQuery("SELECT * FROM Day WHERE selected=1", null);
+        DayDay.moveToFirst();
+        float total=0,avg,rank;
+        int t=0;
+        for(int i=0;i<DayDay.getCount();i++){
+            String ID = DayDay.getString(0);
+            Cursor tmp = db.rawQuery("SELECT * FROM DayIn WHERE _ID = '" + ID + "' AND _date = '" + Date + "'", null);
+            tmp.moveToFirst();
+            total+=Float.parseFloat(tmp.getString(3));
+            t++;
+            DayDay.moveToNext();
+        }
+        avg=(total/(float)t)*100;
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits( 2 );    //小數後兩位
+
+        rank= (float)Math.sqrt((double) avg);
+        rank=rank*(float) 9.7;
+        rank=rank+(float)((Math.random()*300)*0.001);
+
+        LayoutInflater inflater = LayoutInflater.from(DayDay.this);
+        final View v = inflater.inflate(R.layout.rank, null);
+        TextView com=(TextView) (v.findViewById(R.id.r_com));
+        com.setText("本週平均完成度: "+ nf.format(avg)+"%");
+        TextView ran=(TextView) (v.findViewById(R.id.r_rank));
+        ImageView V_img=(ImageView) (v.findViewById(R.id.r_img));
+        if(rank>90)V_img.setImageDrawable(getResources().getDrawable( R.drawable.r5 ));
+        else if(rank>80)V_img.setImageDrawable(getResources().getDrawable( R.drawable.r4 ));
+        else if(rank>60)V_img.setImageDrawable(getResources().getDrawable( R.drawable.r3 ));
+        else if(rank>40)V_img.setImageDrawable(getResources().getDrawable( R.drawable.r2 ));
+        else V_img.setImageDrawable(getResources().getDrawable( R.drawable.r1 ));
+        ran.setText("你比"+nf.format(rank)+"%的人完成度高!");
+        new AlertDialog.Builder(DayDay.this)
+                .setView(v)
+                .setTitle("Message")
+                .setIcon(getResources().getDrawable( R.drawable.crown2 ))
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .show();
     }
 
 }

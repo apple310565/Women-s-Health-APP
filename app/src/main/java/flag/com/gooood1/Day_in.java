@@ -104,35 +104,38 @@ public class Day_in extends AppCompatActivity {
         //圖表內容設定
         Cursor DayIn2 = db.rawQuery("SELECT * FROM DayIn WHERE _ID = '" + ID + "' ORDER BY _date", null);
         DayIn2.moveToFirst();
+        int t=DayIn2.getCount();
         com.github.mikephil.charting.charts.LineChart lineChart = findViewById(R.id.lineChart);
         try{
-        //x軸
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//X軸標籤顯示位置(預設顯示在上方，分為上方內/外側、下方內/外側及上下同時顯示)
-        xAxis.setTextColor(Color.GRAY);//X軸標籤顏色
-        xAxis.setTextSize(12);//X軸標籤大小
+            //x軸
+            XAxis xAxis = lineChart.getXAxis();
+            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//X軸標籤顯示位置(預設顯示在上方，分為上方內/外側、下方內/外側及上下同時顯示)
+            xAxis.setTextColor(Color.GRAY);//X軸標籤顏色
+            xAxis.setTextSize(12);//X軸標籤大小
+            xAxis.setLabelCount(t,true);//X軸標籤個數
+            xAxis.setSpaceMin(0.2f);//折線起點距離左側Y軸距離
+            xAxis.setSpaceMax(0.2f);//折線終點距離右側Y軸距離
+
+            xAxis.setDrawGridLines(false);//不顯示每個座標點對應X軸的線 (預設顯示)
+
+            //設定所需特定標籤資料
+            List<String> xList = new ArrayList<>();
 
             DayIn2.moveToFirst();
-        xAxis.setLabelCount(DayIn2.getCount());//X軸標籤個數
-        xAxis.setSpaceMin(0.2f);//折線起點距離左側Y軸距離
-        xAxis.setSpaceMax(0.2f);//折線終點距離右側Y軸距離
-
-        xAxis.setDrawGridLines(false);//不顯示每個座標點對應X軸的線 (預設顯示)
-
-        //設定所需特定標籤資料
-        List<String> xList = new ArrayList<>();
-        //xList.add("NULL");
-        for (j=0;j<DayIn2.getCount();j++) {
-            xList.add(DayIn2.getString(1));
+            for (j=0;j<t;j++) {
+                xList.add(DayIn2.getString(1));
+                DayIn2.moveToNext();
+            }
+            xAxis.setValueFormatter(new IndexAxisValueFormatter(xList));
         }
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(xList));}catch (Exception e) {
+        catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
         }
         lineChart.setBackgroundColor(Color.parseColor("#FFFFFF"));
         ArrayList<Entry> values = new ArrayList<>();
         DayIn2.moveToFirst();
-        for(j =0;j<DayIn2.getCount();j++){
+        for(j =0;j<t;j++){
             values.add(new Entry((float) j, Float.parseFloat(DayIn2.getString(3))));
             DayIn2.moveToNext();
         }
@@ -153,10 +156,6 @@ public class Day_in extends AppCompatActivity {
         lineChart.setDrawBorders(true);
         lineChart.setData(data);//一定要放在最後
         lineChart.invalidate();//繪製圖
-
-
-
-
 
     }
 
@@ -201,6 +200,12 @@ public class Day_in extends AppCompatActivity {
         cv.put("selected",0);
         db.update("Day",cv, "_ID = '"+ID+"'" ,null);
         Toast.makeText(getApplicationContext(), "習慣隱藏成功，可以再從新增習慣處加回來喔(*´▽`*)y", Toast.LENGTH_SHORT).show();
+
+        //回到上一頁
+        Intent intent = new Intent();
+        intent.setClass(Day_in.this,DayDay.class);
+        startActivity(intent);
+        Day_in.this.finish();
     }
     public void  change(View view){
         LayoutInflater inflater = LayoutInflater.from(Day_in.this);
