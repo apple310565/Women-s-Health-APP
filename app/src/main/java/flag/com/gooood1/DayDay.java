@@ -158,6 +158,9 @@ public class DayDay extends AppCompatActivity {
         final SeekBar SB =new SeekBar(this);
         SB.setMax(max);
         SB.setProgress(progress);
+        //SB.setProgressDrawable(getResources().getDrawable( R.drawable.star1 ));
+
+
         final Button add = new Button(this);
         final Button sub = new Button(this);
         final String id = tv.getText().toString();
@@ -311,7 +314,6 @@ public class DayDay extends AppCompatActivity {
         new AlertDialog.Builder(DayDay.this)
                 .setView(v)
                 .setTitle("Message")
-                .setIcon(getResources().getDrawable( R.drawable.crown2 ))
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

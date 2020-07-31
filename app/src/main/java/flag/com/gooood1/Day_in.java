@@ -41,6 +41,11 @@ public class Day_in extends AppCompatActivity {
     int Max;
     int p;
     Cursor C;
+    int current=0;
+    int max=0;
+    int flag_last_touch=0;
+    ArrayList<String> history =new ArrayList<String>();
+    ArrayList<String> his_index =new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +71,7 @@ public class Day_in extends AppCompatActivity {
         Cursor DayIn = db.rawQuery("SELECT * FROM DayIn WHERE _ID = '" + ID + "' AND _date = '" + Date + "'", null);
         Day.moveToFirst();
         DayIn.moveToFirst();
-        C = db.rawQuery("SELECT * FROM DayIn WHERE _ID = '" + ID + "'", null);
+        C = db.rawQuery("SELECT * FROM DayIn WHERE _ID = '" + ID + "' ORDER BY _date DESC", null);
         C.moveToFirst();
 
         name = Day.getString(1);
@@ -103,6 +108,10 @@ public class Day_in extends AppCompatActivity {
             Note.setText("目前還沒有任何紀錄，趕快來寫下給自己的鼓勵吧 > <");
         }
         else Note.setText(note);
+
+        history.add(Note.getText().toString());
+        TextView dd=(TextView)findViewById(R.id.day) ;
+        his_index.add(dd.getText().toString());
 
         //圖表內容設定
         Cursor DayIn2 = db.rawQuery("SELECT * FROM DayIn WHERE _ID = '" + ID + "' ORDER BY _date", null);
@@ -143,9 +152,6 @@ public class Day_in extends AppCompatActivity {
             DayIn2.moveToNext();
         }
 
-
-
-
         final LineDataSet set;
         set = new LineDataSet(values, "");
         set.setDrawValues(false);//不顯示座標點對應Y軸的數字(預設顯示)
@@ -159,6 +165,14 @@ public class Day_in extends AppCompatActivity {
         lineChart.setDrawBorders(true);
         lineChart.setData(data);//一定要放在最後
         lineChart.invalidate();//繪製圖
+
+        //setOnClickListener
+        lineChart.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ZoomIn();
+            }
+        });
+
 
     }
 
@@ -202,6 +216,13 @@ public class Day_in extends AppCompatActivity {
         Day.setText("給自己的話: (當週)");
 
         C.moveToFirst();
+        his_index.clear();
+        history.clear();
+        current=0;
+        max=0;
+        TextView Note=(TextView)findViewById(R.id.note);
+        history.add(Note.getText().toString());
+        his_index.add(Day.getText().toString());
     }
     public void hide(View view){
         ContentValues cv = new ContentValues();
@@ -299,46 +320,117 @@ public class Day_in extends AppCompatActivity {
                 .show();
     }
     public void Next(View view){
-        if(C.isLast()){
+        if(C.isLast()&&(current==max)){
             Toast.makeText(getApplicationContext(), "這已經是最後一筆資料了", Toast.LENGTH_SHORT).show();
-            C.moveToFirst();
-            TextView Note=(TextView)findViewById(R.id.note);
-            String note="";
-            int j;
-            for( j=4;j<11;j++){
-                if(!C.getString(j).equals("NULL")){
-                    note+=week[j-4]+" | "+C.getString(j)+"\n";
-                }
-            }
-            if(note.equals("")){
-                Note.setText("你並沒有在這周給自己留下任何的紀錄QWQ");
-            }
-            else Note.setText(note);
-
-            TextView Day=(TextView)findViewById(R.id.day);
-            Day.setText("給自己的話: ("+C.getString(1)+")");
-
-            if(C.getString(1).equals(Date))Day.setText("給自己的話: (當週)");
         }
         else {
-            C.moveToNext();
-            TextView Note=(TextView)findViewById(R.id.note);
-            String note="";
-            int j;
-            for( j=4;j<11;j++){
-                if(!C.getString(j).equals("NULL")){
-                    note+=week[j-4]+" | "+C.getString(j)+"\n";
+            if(current==max) {
+                TextView Note = (TextView) findViewById(R.id.note);
+                TextView Day = (TextView) findViewById(R.id.day);
+                C.moveToNext();
+                max++;
+                current++;
+                String note = "";
+                int j;
+                for (j = 4; j < 11; j++) {
+                    if (!C.getString(j).equals("NULL")) {
+                        note += week[j - 4] + " | " + C.getString(j) + "\n";
+                    }
                 }
+                if (note.equals("")) {
+                    Note.setText("你並沒有在這周給自己留下任何的紀錄QWQ");
+                } else Note.setText(note);
+                Day.setText("給自己的話: (" + C.getString(1) + ")");
+                history.add(Note.getText().toString());
+                his_index.add(Day.getText().toString());
+                //if (C.getString(1).equals(Date)) Day.setText("給自己的話: (當週)");
             }
-            if(note.equals("")){
-                Note.setText("你並沒有在這周給自己留下任何的紀錄QWQ");
+            else {
+                current++;
+                TextView Note = (TextView) findViewById(R.id.note);
+                TextView Day = (TextView) findViewById(R.id.day);
+                Note.setText(history.get(current));
+                Day.setText(his_index.get(current));
             }
-            else Note.setText(note);
-
-            TextView Day=(TextView)findViewById(R.id.day);
-            Day.setText("給自己的話: ("+C.getString(1)+")");
-
-            if(C.getString(1).equals(Date))Day.setText("給自己的話: (當週)");
         }
+    }
+    public void  Pre(View view){
+        if(current==0){
+            Toast.makeText(getApplicationContext(), "這已經是第一筆資料了", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            current--;
+            TextView Note = (TextView) findViewById(R.id.note);
+            TextView Day = (TextView) findViewById(R.id.day);
+            Note.setText(history.get(current));
+            Day.setText(his_index.get(current));
+        }
+    }
+    public void ZoomIn(){
+        //圖表內容設定
+        Cursor DayIn2 = db.rawQuery("SELECT * FROM DayIn WHERE _ID = '" + ID + "' ORDER BY _date", null);
+        DayIn2.moveToFirst();
+        int t=DayIn2.getCount();
+        LayoutInflater inflater = LayoutInflater.from(Day_in.this);
+        final View v = inflater.inflate(R.layout.graph, null);
+        com.github.mikephil.charting.charts.LineChart lineChart =v.findViewById(R.id.lineChart);
+        try{
+            //x軸
+            XAxis xAxis = lineChart.getXAxis();
+            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//X軸標籤顯示位置(預設顯示在上方，分為上方內/外側、下方內/外側及上下同時顯示)
+            xAxis.setTextColor(Color.GRAY);//X軸標籤顏色
+            xAxis.setTextSize(12);//X軸標籤大小
+            xAxis.setLabelCount(t,true);//X軸標籤個數
+            xAxis.setSpaceMin(0.2f);//折線起點距離左側Y軸距離
+            xAxis.setSpaceMax(0.2f);//折線終點距離右側Y軸距離
+
+            xAxis.setDrawGridLines(false);//不顯示每個座標點對應X軸的線 (預設顯示)
+
+            //設定所需特定標籤資料
+            List<String> xList = new ArrayList<>();
+
+            DayIn2.moveToFirst();
+            for (int j=0;j<t;j++) {
+                xList.add(DayIn2.getString(1));
+                DayIn2.moveToNext();
+            }
+            xAxis.setValueFormatter(new IndexAxisValueFormatter(xList));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
+        }
+        lineChart.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        ArrayList<Entry> values = new ArrayList<>();
+        DayIn2.moveToFirst();
+        for(int j =0;j<t;j++){
+            values.add(new Entry((float) j, Float.parseFloat(DayIn2.getString(3))));
+            DayIn2.moveToNext();
+        }
+
+        final LineDataSet set;
+        set = new LineDataSet(values, "");
+        set.setDrawValues(false);//不顯示座標點對應Y軸的數字(預設顯示)
+        set.setCircleRadius(5);
+        set.setCircleColor(Color.parseColor("#FF4D00"));
+        set.setMode(LineDataSet.Mode.LINEAR);//類型為折線
+        set.setColor(Color.parseColor("#FF4D00"));//線的顏色
+        set.setLineWidth(1.5f);//線寬
+        LineData data = new LineData(set);
+        lineChart.setTag("完成度");
+        lineChart.setDrawBorders(true);
+        lineChart.setData(data);//一定要放在最後
+        lineChart.invalidate();//繪製圖
+
+        new AlertDialog.Builder(Day_in.this)
+                .setView(v)
+                .setTitle("歷史紀錄")
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .show();
     }
 }

@@ -192,6 +192,15 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
+                        <ImageButton
+                            android:id="@+id/imageButton4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:background="#00FFFFFF"
+                            android:onClick="Pre"
+                            app:srcCompat="@android:drawable/ic_media_rew" />
+
                         <TextView
                             android:id="@+id/day"
                             android:layout_width="344dp"
@@ -199,15 +208,16 @@
                             android:layout_weight="1"
                             android:text="給自己的話: (當週)"
                             android:textColor="#FFFFFF"
-                            android:textSize="24sp" />
+                            android:textSize="21sp" />
 
                         <ImageButton
                             android:id="@+id/imageButton3"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:background="#00FFFFFF"
                             android:onClick="Next"
                             app:srcCompat="@android:drawable/ic_media_ff" />
+
                     </LinearLayout>
 
                     <LinearLayout
