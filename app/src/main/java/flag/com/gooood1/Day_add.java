@@ -37,6 +37,11 @@ public class Day_add extends AppCompatActivity {
         dbHelper = new StdDBHelper(this);
         db =dbHelper.getWritableDatabase();//開啟資料庫
 
+        LinearLayout P1=(LinearLayout)findViewById(R.id.P);
+        LinearLayout L1=(LinearLayout)findViewById(R.id.L1);
+        L1.removeView(P1); //之後要改成若是沒有推薦的，才刪掉P
+
+
         Str="SELECT * FROM Day WHERE selected=0 ORDER BY priority";
         SqlQuery(Str);
     }
@@ -57,7 +62,7 @@ public class Day_add extends AppCompatActivity {
                     LinearLayout Lout = new LinearLayout(this);
                     LL.addView(Lout, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     Lout.setGravity(Gravity.CENTER_VERTICAL);
-                    Lout.setPadding(20, 60, 20, 20);
+                    Lout.setPadding(20, 60, 85, 20);
                     final ImageView im =new ImageView(this);
                     im.setImageDrawable(getResources().getDrawable( R.drawable.y2 ));
                     Lout.addView(im, 150, 150);
@@ -68,13 +73,13 @@ public class Day_add extends AppCompatActivity {
                     Lout.addView(Loout, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     Lin.setOrientation(LinearLayout.VERTICAL);
 
-                    LinearLayout Liin=new LinearLayout(this);
+                    final LinearLayout Liin=new LinearLayout(this);
                     Liin.setOrientation(LinearLayout.HORIZONTAL);
                     Lin.addView(Liin,LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     Liin.setGravity(Gravity.CENTER_VERTICAL);
                     final ImageView im2 =new ImageView(this);
                     im2.setImageDrawable(getResources().getDrawable( R.drawable.rabbit ));
-                    Liin.addView(im2,100,100);
+                    //Liin.addView(im2,100,100);
                     Liin.setPadding(20,20,20,20);
                     TextView NAME = new TextView(this);
                     NAME.setText(name);
@@ -83,10 +88,10 @@ public class Day_add extends AppCompatActivity {
                     TextView ART = new TextView(this);
                     ART.setText(article);
                     ART.setTextSize(20);
-                    ART.setBackgroundColor(Color.parseColor("#97FFFFFF"));
+                    ART.setBackgroundColor(Color.parseColor("#FFF3EE"));
                     Liin.addView(NAME);
                     Lin.addView(ART);
-                    Liin.setBackgroundColor(Color.parseColor("#F37C57"));
+                    Liin.setBackgroundColor(Color.parseColor("#444444"));
                     c.moveToNext();
 
                     im.setOnClickListener(new View.OnClickListener() {
@@ -96,13 +101,18 @@ public class Day_add extends AppCompatActivity {
                             tmp.moveToFirst();
                             if(tmp.getString(0).equals("1"))f=0;
                             else f=1;
-
                             ContentValues cv = new ContentValues();
                             cv.put("selected",f);
                             db.update("Day",cv, "_ID='"+id+"'",null);
 
-                            if(f==0)im.setImageDrawable(getResources().getDrawable( R.drawable.y2 ));
-                            else im.setImageDrawable(getResources().getDrawable( R.drawable.y1_4 ));
+                            if(f==0){
+                                im.setImageDrawable(getResources().getDrawable( R.drawable.y2 ));
+                                Liin.setBackgroundColor(Color.parseColor("#444444"));
+                            }
+                            else {
+                                im.setImageDrawable(getResources().getDrawable( R.drawable.y1_1 ));
+                                Liin.setBackgroundColor(Color.parseColor("#FF8888"));
+                            }
                         }
                     });
                 }

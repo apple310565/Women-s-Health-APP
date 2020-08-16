@@ -5,45 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".Day_in">
-
+    tools:context=".Day_in"
+    >
     <LinearLayout
-        android:id="@+id/linearLayout18"
+        android:id="@+id/linearLayout15"
         android:layout_width="0dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:background="#000000"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView25"
+            android:id="@+id/textView23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center"
+            android:shadowColor="#FFFFFF"
             android:text="一週の自我管理"
             android:textColor="#FFFFFF"
-            android:textSize="28sp" />
+            android:textSize="35sp" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/button19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:background="#57FFFFFF"
+            android:layout_marginLeft="10dp"
+            android:background="#72FFFFFF"
             android:onClick="goto_Day"
             android:text="回上一頁"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -51,15 +51,16 @@
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
         android:layout_marginBottom="1dp"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout18">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout15">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -73,16 +74,26 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="#F37C57"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="#BCFF5722"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/IM"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        app:srcCompat="@drawable/r5" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/IM"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            app:srcCompat="@drawable/r5" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -182,8 +193,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="#F37C57"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="#BCFF5722"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -203,7 +216,7 @@
 
                         <TextView
                             android:id="@+id/day"
-                            android:layout_width="344dp"
+                            android:layout_width="302dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="給自己的話: (當週)"
@@ -226,7 +239,9 @@
                         android:layout_margin="10dp"
                         android:layout_marginRight="30dp"
                         android:background="#FFFFFF"
-                        android:orientation="horizontal"></LinearLayout>
+                        android:orientation="horizontal">
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/note"
@@ -276,18 +291,14 @@
                             android:textColor="#FFFFFF" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"></LinearLayout>
-
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:background="#F37C57"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="#BCFF5722"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -315,7 +326,15 @@
                         android:layout_margin="8dp" />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+
             </LinearLayout>
         </ScrollView>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

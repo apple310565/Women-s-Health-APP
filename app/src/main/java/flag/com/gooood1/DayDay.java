@@ -54,10 +54,8 @@ public class DayDay extends AppCompatActivity {
         if(day<=0){
             if(month>0)month--;
             else {month=12;year--;}
-            day=Mon[month]-day;
+            day=Mon[month]+day;
         }
-
-
         Date= Integer.toString(year)+'/'+Integer.toString(month+1)+'/'+Integer.toString(day);
         SqlQuery("SELECT * FROM Day WHERE selected=1");
 
@@ -158,6 +156,7 @@ public class DayDay extends AppCompatActivity {
         final SeekBar SB =new SeekBar(this);
         SB.setMax(max);
         SB.setProgress(progress);
+
         //SB.setProgressDrawable(getResources().getDrawable( R.drawable.star1 ));
 
 
@@ -260,8 +259,6 @@ public class DayDay extends AppCompatActivity {
         });
         t++;
     }
-
-
 
     public void goto_ADD(View view){
         Intent intent = new Intent();

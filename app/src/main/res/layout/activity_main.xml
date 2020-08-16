@@ -14,7 +14,7 @@
         android:layout_height="140dp"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="25dp"
 
         android:layout_marginRight="25dp"
@@ -79,7 +79,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
-        android:layout_height="169dp"
+        android:layout_height="155dp"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="5dp"
@@ -111,7 +111,7 @@
             <TextView
                 android:id="@+id/tvDate"
                 android:layout_width="164dp"
-                android:layout_height="50dp"
+                android:layout_height="36dp"
                 android:layout_gravity="center"
                 android:layout_margin="20sp"
                 android:background="#4FFFFFFF"
@@ -119,7 +119,7 @@
                 android:text="2020/4/22"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -137,23 +137,23 @@
                 android:layout_marginRight="18dp"
                 android:text="經期開始"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <Switch
                 android:id="@+id/end"
-                android:layout_width="145dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="18dp"
                 android:enabled="false"
                 android:text="經期結束"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <Button
             android:id="@+id/button3"
             android:layout_width="181dp"
-            android:layout_height="wrap_content"
+            android:layout_height="36dp"
             android:layout_gravity="center"
             android:background="#4FFFFFFF"
             android:onClick="change_firstday"
@@ -161,7 +161,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="#FFFFFF"
             android:textColorHint="#B8B8B8"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -174,7 +174,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -185,6 +185,74 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+
+                android:background="#F37C57"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="經\n色"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:id="@+id/RGcolor"
+                    android:layout_width="800px"
+                    android:layout_height="55dp"
+                    android:background="#92FFFFFF"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/c1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="黝\n深"
+                        android:textColor="#5A5555"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/c2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="鮮\n紅"
+                        android:textColor="#F44336"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/c3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="淡\n紅"
+                        android:textColor="#F3877F"
+                        android:textColorLink="#FA7166"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/c4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="紫\n紅"
+                        android:textColor="#981047"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/c5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="紫\n黑"
+                        android:textColor="#490255"
+                        android:textSize="12sp" />
+                </RadioGroup>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayout3"
@@ -206,7 +274,7 @@
 
                 <RadioGroup
                     android:id="@+id/RGflow"
-                    android:layout_width="300dp"
+                    android:layout_width="800px"
                     android:layout_height="55dp"
 
                     android:background="#92FFFFFF"
@@ -257,77 +325,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout5"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-
-                android:background="#F37C57"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="經\n色"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp" />
-
-                <RadioGroup
-                    android:id="@+id/RGcolor"
-                    android:layout_width="300dp"
-                    android:layout_height="55dp"
-                    android:background="#92FFFFFF"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/c1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="黝\n深"
-                        android:textColor="#5A5555"
-                        android:textSize="12sp" />
-
-                    <RadioButton
-                        android:id="@+id/c2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="鮮\n紅"
-                        android:textColor="#F44336"
-                        android:textSize="12sp" />
-
-                    <RadioButton
-                        android:id="@+id/c3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="淡\n紅"
-                        android:textColor="#F3877F"
-                        android:textColorLink="#FA7166"
-                        android:textSize="12sp" />
-
-                    <RadioButton
-                        android:id="@+id/c4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="紫\n紅"
-                        android:textColor="#981047"
-                        android:textSize="12sp" />
-
-                    <RadioButton
-                        android:id="@+id/c5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="紫\n黑"
-                        android:textColor="#490255"
-                        android:textSize="12sp" />
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/linearLayout4"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:background="#F37C57"
                 android:orientation="horizontal">
 
@@ -343,8 +343,8 @@
 
                 <RadioGroup
                     android:id="@+id/RGqaulity"
-                    android:layout_width="300dp"
-                    android:layout_height="55dp"
+                    android:layout_width="800px"
+                    android:layout_height="50dp"
                     android:background="#92FFFFFF"
                     android:orientation="horizontal">
 
@@ -352,41 +352,240 @@
                         android:id="@+id/q1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="清\n稀"
+                        android:text="清稀"
                         android:textSize="12sp" />
 
                     <RadioButton
                         android:id="@+id/q2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="正\n常"
+                        android:text="正常"
                         android:textSize="12sp" />
 
                     <RadioButton
                         android:id="@+id/q3"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="黏\n稠"
+                        android:text="黏稠"
                         android:textSize="12sp" />
 
-                    <RadioButton
-                        android:id="@+id/q4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="有血塊"
-                        android:textSize="12sp" />
-
-                    <RadioButton
-                        android:id="@+id/q5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="夾雜\n黏液"
-                        android:textSize="10sp" />
                 </RadioGroup>
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/linearLayout77"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#F37C57"
+                android:orientation="horizontal"
+                android:paddingBottom="3dp">
+
+                <TextView
+                    android:id="@+id/textView88"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="挾\n帶"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:id="@+id/RGcarry"
+                    android:layout_width="800px"
+                    android:layout_height="55dp"
+                    android:background="#92FFFFFF"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/ca1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="無"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/ca2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="黏液"
+                        android:textSize="12sp" />
+
+                    <RadioButton
+                        android:id="@+id/ca3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="血塊"
+                        android:textSize="12sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="320px"
+                android:background="#F37C57"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:text="症\n狀"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="800px"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="#92FFFFFF"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
+
+                        <CheckBox
+                            android:id="@+id/checkBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="經\n痛"
+                            android:textSize="12sp" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="身\n痛"
+                            android:textSize="12sp" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="皮膚\n異常"
+                            android:textSize="12sp" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="口腔\n異常"
+                            android:textSize="12sp" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="出\n血"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="800px"
+                        android:layout_height="55dp"
+                        android:background="#92FFFFFF"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <CheckBox
+                            android:id="@+id/checkBox6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="情緒\n不受控"
+                            android:textSize="12sp" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="月經氣\n味異常"
+                            android:textSize="12sp" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="頭\n暈"
+                            android:textSize="12sp" />
+
+                        <CheckBox
+                            android:id="@+id/checkBox9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="頭\n痛"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Else"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FD6536"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="2dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="詳細內容"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Else_V"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutn"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#F37C57"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_marginLeft="19px"
+                    android:layout_width="71px"
+                    android:layout_height="match_parent"
+                    android:text="其\n他"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/LC"
+                    android:layout_width="800px"
+                    android:layout_height="50dp"
+                    android:background="#92FFFFFF"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/checkBox10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="大便溏瀉"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
-        />
     </ScrollView>
 
 
@@ -398,7 +597,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginEnd="75dp"
         android:layout_marginRight="75dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="12dp"
         android:background="#F8880F"
         android:onClick="submit_click"
         android:text="送出"
@@ -418,7 +617,7 @@
         android:layout_marginLeft="75dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="12dp"
         android:background="#F8880F"
         android:onClick="goto_home"
         android:text="回上一頁"

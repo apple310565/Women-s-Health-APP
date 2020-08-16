@@ -62,4 +62,9 @@ public class m4 extends AppCompatActivity {
         startActivity(intent);
         m4.this.finish();
     }
+    public void  goto_graph(View view){
+        Intent intent = new Intent();
+        intent.setClass(m4.this,graph.class);
+        startActivity(intent);
+    }
 }

@@ -10,9 +10,14 @@
     <LinearLayout
         android:id="@+id/linearLayout15"
         android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:background="#050505"
-        android:gravity="center_vertical"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#000000"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,17 +27,17 @@
             android:id="@+id/textView23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center"
             android:shadowColor="#FFFFFF"
             android:text="一週の自我管理"
             android:textColor="#FFFFFF"
-            android:textSize="40sp" />
+            android:textSize="35sp" />
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:background="#00FFFFFF"
             android:onClick="rank"
             app:srcCompat="@android:drawable/ic_dialog_info" />
@@ -47,7 +52,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="#00FFFFFF"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout17"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +63,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#00FFFFFF">
 
             <LinearLayout
                 android:id="@+id/LL"
@@ -88,10 +95,8 @@
             android:layout_gravity="top"
             android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="#F8880F"
             android:onClick="goto_M3"
             android:text="回上一頁"
-            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <Button
@@ -101,10 +106,8 @@
             android:layout_gravity="top"
             android:layout_margin="15dp"
             android:layout_weight="1"
-            android:background="#F8880F"
             android:onClick="goto_ADD"
             android:text="新增習慣"
-            android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </LinearLayout>
 

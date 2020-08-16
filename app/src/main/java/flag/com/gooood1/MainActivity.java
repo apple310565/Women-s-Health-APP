@@ -14,9 +14,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
@@ -37,8 +40,20 @@ public class MainActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener m1DataSetListerner;
     int [] Mon = {0,31,59,90,120,151,181,212,243,273,304,334};
     int Y,M,D,peroid=29,flag=0,a,flag2=0,day1=0,day2=0,i_M;
+    int w=90;
     String account,passWD,email;
-
+    LinearLayout Ch2=null,Ch3=null,Ch4=null,Ch5=null,Ch6=null;
+    CheckBox [] ch2_v =new CheckBox[7];
+    CheckBox [] ch3_v =new CheckBox[3];
+    CheckBox [] ch4_v =new CheckBox[3];
+    CheckBox [] ch5_v =new CheckBox[4];
+    CheckBox [] ch6_v =new CheckBox[3];
+    LinearLayout LL;
+    String [] str2={"腰臀部\n脹痛","乳房\n脹痛","面目\n浮腫","肢軟\n無力","肢體腫\n脹不適","肢體麻\n木疼痛","關節\n疼痛"};
+    String []str3={"皮膚\n起疹","膚色\n焮紅","身癢"};
+    String [] str4={"口糜\n舌爛","口\n臭","口燥\n咽乾"};
+    String [] str5={"吐\n血","衄\n血","齒\n衄","咯\n血"};
+    String [] str6={"無故\n悲傷","煩躁\n易怒","神志\n不清"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String line="User not exist";
@@ -86,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         //選擇日期
         /*參考網址: https://www.youtube.com/watch?v=hwe1abDO2Ag*/
         if(flag==1){
+            LL=(LinearLayout)findViewById(R.id.Else_V);
             m1DisplayDate = (TextView)findViewById(R.id.tvDate);
             Calendar cal = Calendar.getInstance();
             int year =cal.get(Calendar.YEAR);
@@ -142,6 +158,78 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
+            //監聽症狀是否被選取
+            final CheckBox ch2 = (CheckBox)findViewById(R.id.checkBox2);
+            ch2.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if(ch2.isChecked()){
+                            produce_Ch2();
+                    }
+                    else {
+                        if(Ch2!=null){
+                            LL.removeView(Ch2);
+                            Ch2=null;
+                        }
+                    }
+                }
+            });
+            final CheckBox ch3 = (CheckBox)findViewById(R.id.checkBox3);
+            ch3.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if(ch3.isChecked()){
+                        produce_Ch3();
+                    }
+                    else {
+                        if(Ch3!=null){
+                            LL.removeView(Ch3);
+                            Ch3=null;
+                        }
+                    }
+                }
+            });
+            final CheckBox ch4 = (CheckBox)findViewById(R.id.checkBox4);
+            ch4.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if(ch4.isChecked()){
+                        produce_Ch4();
+                    }
+                    else {
+                        if(Ch4!=null){
+                            LL.removeView(Ch4);
+                            Ch4=null;
+                        }
+                    }
+                }
+            });
+            final CheckBox ch5 = (CheckBox)findViewById(R.id.checkBox5);
+            ch5.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if(ch5.isChecked()){
+                        produce_Ch5();
+                    }
+                    else {
+                        if(Ch5!=null){
+                            LL.removeView(Ch5);
+                            Ch5=null;
+                        }
+                    }
+                }
+            });
+            final CheckBox ch6 = (CheckBox)findViewById(R.id.checkBox6);
+            ch6.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if(ch6.isChecked()){
+                        produce_Ch6();
+                    }
+                    else {
+                        if(Ch6!=null){
+                            LL.removeView(Ch6);
+                            Ch6=null;
+                        }
+                    }
+                }
+            });
+
         }
 
     }
@@ -152,29 +240,28 @@ public class MainActivity extends AppCompatActivity {
     }
     //紀錄
     public void submit_click(View view){
-        int f=-1,c=-1,q=-1,i_S=0,i_E=0;
-
+        //基本選項(Data1)
+        int f=-1,c=-1,q=-1,ca=-1,i_S=0,i_E=0;
         RadioGroup flow = (RadioGroup)findViewById(R.id.RGflow);
         if(flow.getCheckedRadioButtonId()==R.id.f1)f=1;
         else if(flow.getCheckedRadioButtonId()==R.id.f2)f=2;
         else if(flow.getCheckedRadioButtonId()==R.id.f3)f=3;
         else if(flow.getCheckedRadioButtonId()==R.id.f4)f=4;
         else if(flow.getCheckedRadioButtonId()==R.id.f5)f=5;
-
         RadioGroup color = (RadioGroup)findViewById(R.id.RGcolor);
         if(color.getCheckedRadioButtonId()==R.id.c1)c=1;
         else if(color.getCheckedRadioButtonId()==R.id.c2)c=2;
         else if(color.getCheckedRadioButtonId()==R.id.c3)c=3;
         else if(color.getCheckedRadioButtonId()==R.id.c4)c=4;
         else if(color.getCheckedRadioButtonId()==R.id.c5)c=5;
-
         RadioGroup quality = (RadioGroup)findViewById(R.id.RGqaulity);
         if(quality.getCheckedRadioButtonId()==R.id.q1)q=1;
         else if(quality.getCheckedRadioButtonId()==R.id.q2)q=2;
         else if(quality.getCheckedRadioButtonId()==R.id.q3)q=3;
-        else if(quality.getCheckedRadioButtonId()==R.id.q4)q=4;
-        else if(quality.getCheckedRadioButtonId()==R.id.q5)q=5;
-
+        RadioGroup carry = (RadioGroup)findViewById(R.id.RGcarry);
+        if(carry.getCheckedRadioButtonId()==R.id.ca1)ca=1;
+        else if(carry.getCheckedRadioButtonId()==R.id.ca2)ca=2;
+        else if(carry.getCheckedRadioButtonId()==R.id.ca3)ca=3;
         Switch isStart = (Switch)findViewById(R.id.switch3);
         Switch isEnd = (Switch)findViewById(R.id.end);
         if(isStart.isChecked())i_S=1;
@@ -184,6 +271,7 @@ public class MainActivity extends AppCompatActivity {
         if(flag2==0)cv.put("_date",m1DisplayDate.getText().toString());
         cv.put("flow",f);
         cv.put("color",c);
+        cv.put("carry",ca);
         cv.put("quality",q);
         cv.put("isStart",i_S);
         cv.put("isEnd",i_E);
@@ -197,6 +285,54 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        //CheckBox(Data2)
+        ContentValues cv2 = new ContentValues();
+        cv2.put("_date",m1DisplayDate.getText().toString());
+        CheckBox ch1=(CheckBox)findViewById(R.id.checkBox);
+        if(ch1.isChecked())cv2.put("ch1",true);
+        else cv2.put("ch1",false);
+        CheckBox ch2=(CheckBox)findViewById(R.id.checkBox2);
+        if(ch2.isChecked()){
+            cv2.put("ch2",true);
+            sumbit_Ch2();
+        }
+        else cv2.put("ch2",false);
+        CheckBox ch3=(CheckBox)findViewById(R.id.checkBox3);
+        if(ch3.isChecked()){
+            cv2.put("ch3",true);
+            sumbit_Ch3();
+        }
+        else cv2.put("ch3",false);
+        CheckBox ch4=(CheckBox)findViewById(R.id.checkBox4);
+        if(ch4.isChecked()){
+            cv2.put("ch4",true);
+            sumbit_Ch4();
+        }
+        else cv2.put("ch4",false);
+        CheckBox ch5=(CheckBox)findViewById(R.id.checkBox5);
+        if(ch5.isChecked()){
+            cv2.put("ch5",true);
+            sumbit_Ch5();
+        }
+        else cv2.put("ch5",false);
+        CheckBox ch6=(CheckBox)findViewById(R.id.checkBox6);
+        if(ch6.isChecked()){
+            cv2.put("ch6",true);
+            sumbit_Ch6();
+        }
+        else cv2.put("ch6",false);
+        CheckBox ch7=(CheckBox)findViewById(R.id.checkBox7);
+        if(ch7.isChecked())cv2.put("ch7",true);
+        else cv2.put("ch7",false);
+        CheckBox ch8=(CheckBox)findViewById(R.id.checkBox8);
+        if(ch8.isChecked())cv2.put("ch8",true);
+        else cv2.put("ch8",false);
+        CheckBox ch9=(CheckBox)findViewById(R.id.checkBox9);
+        if(ch9.isChecked())cv2.put("ch9",true);
+        else cv2.put("ch9",false);
+        db.insert("Data2",null,cv2);
+        db.update("Data2",cv2, "_date='"+id+"'",null);
+
         if(((day2+i_M)==day1)&&i_E==0)cancel_END();
         if(i_S==1&&i_M!=-1)firstDay();
         if(i_E==1)END();
@@ -211,17 +347,8 @@ public class MainActivity extends AppCompatActivity {
         return 0;
     }
     public void in_memse(){
-        //ConstraintLayout bg =(ConstraintLayout)findViewById(R.id.day);
-        //bg.setBackgroundColor(Color.parseColor("#FFB0E0E6"));
-       // Button Bt = (Button)findViewById(R.id.button2);
-        //Bt.setBackgroundColor(Color.parseColor("#FF6DD0CD"));
-        //Bt.setTextColor(Color.parseColor("#FFFFFFFF"));
-        //Button Bt2 = (Button)findViewById(R.id.button3);
-        //Bt2.setBackgroundColor(Color.parseColor("#FF6DD0CD"));
-        //Bt2.setTextColor(Color.parseColor("#FFFFFFFF"));
         TextView text1 = (TextView)findViewById(R.id.text1);
         text1.setText("經期已經開始");
-        //text1.setTextSize(18);
         TextView tvDay = (TextView)findViewById(R.id.tvDay);
         int days=day1-day2;
         tvDay.setText(Integer.toString(days+1));
@@ -231,21 +358,10 @@ public class MainActivity extends AppCompatActivity {
         Switch i_E = (Switch)findViewById(R.id.end);
         if(day1==day2||(i_M!=-1&&day2+i_M!=day1))i_E.setEnabled(false);
         else i_E.setEnabled(true);
-
-        //Toast.makeText(this,"IN_MEMSE!!!!",Toast.LENGTH_SHORT).show();
     }
     public void out_memse(){
-        //ConstraintLayout bg =(ConstraintLayout)findViewById(R.id.day);
-        //bg.setBackgroundColor(Color.parseColor("#FFFCDF"));
-       // Button Bt = (Button)findViewById(R.id.button2);
-        //Bt.setBackgroundColor(Color.parseColor("#B8B8B8"));
-        //Bt.setTextColor(Color.parseColor("#FFFFFFFF"));
-        //Button Bt2 = (Button)findViewById(R.id.button3);
-       // Bt2.setBackgroundColor(Color.parseColor("#B8B8B8"));
-        //Bt2.setTextColor(Color.parseColor("#FFFFFFFF"));
         TextView text1 = (TextView)findViewById(R.id.text1);
-        text1.setText("經期倒數");
-        //text1.setTextSize(24);
+        text1.setText("經期倒數");;
         Switch i_S = (Switch)findViewById(R.id.switch3);
         if(day1>day2)i_S.setEnabled(true);
         else i_S.setEnabled(false);
@@ -280,6 +396,12 @@ public class MainActivity extends AppCompatActivity {
         D=Integer.parseInt(Date[2]);
         day2=Mon[M-1]+D;
         i_M=-1;
+
+        ContentValues cv = new ContentValues();
+        cv.put("_date",m1DisplayDate.getText().toString());
+        cv.put("p",peroid);
+        db.insert("Period",null,cv);
+
         in_memse();
     }
     public void END(){
@@ -295,53 +417,56 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    public void SqlQuery(String sql){
-        String[] colNames;
-        String str="";
-        Cursor c = db.rawQuery(sql,null);
-        colNames =c.getColumnNames();
-        str+=colNames[0]+"\t\t\t\t\t";
-        for(int i=1;i<colNames.length;i++)
-            str+=colNames[i]+"\t\t";
-        str+="\n";
-        c.moveToFirst();
-
-        for(int i=0;i<c.getCount();i++){
-            str+=c.getString(0)+"\t\t\t";
-            str+=c.getString(1)+"\t\t\t\t";
-            str+=c.getString(2)+"\t\t\t\t\t";
-            str+=c.getString(3)+"\t\t\t\t\t";
-            str+=c.getString(4)+"\t\t\t\t\t";
-            str+=c.getString(5)+"\n";
-            c.moveToNext();
-        }
-        new AlertDialog.Builder(MainActivity.this)
-                .setIcon(R.drawable.ic_launcher_background)
-                .setTitle("Save sucessful")
-                .setMessage(str)
-                .show();
-    }
     public void New(){
         RadioGroup flow = (RadioGroup)findViewById(R.id.RGflow);
-        if(flow.getCheckedRadioButtonId()==R.id.f1){RadioButton f1 = (RadioButton)findViewById(R.id.f1);f1.setChecked(false);}
-        else if(flow.getCheckedRadioButtonId()==R.id.f2){RadioButton f1 = (RadioButton)findViewById(R.id.f2);f1.setChecked(false);}
-        else if(flow.getCheckedRadioButtonId()==R.id.f3){RadioButton f1 = (RadioButton)findViewById(R.id.f3);f1.setChecked(false);}
-        else if(flow.getCheckedRadioButtonId()==R.id.f4){RadioButton f1 = (RadioButton)findViewById(R.id.f4);f1.setChecked(false);}
-        else if(flow.getCheckedRadioButtonId()==R.id.f5){RadioButton f1 = (RadioButton)findViewById(R.id.f5);f1.setChecked(false);}
-
+        flow.clearCheck();
         RadioGroup color = (RadioGroup)findViewById(R.id.RGcolor);
-        if(color.getCheckedRadioButtonId()==R.id.c1){RadioButton c1 = (RadioButton)findViewById(R.id.c1);c1.setChecked(false);}
-        else if(color.getCheckedRadioButtonId()==R.id.c2){RadioButton c1 = (RadioButton)findViewById(R.id.c2);c1.setChecked(false);}
-        else if(color.getCheckedRadioButtonId()==R.id.c3){RadioButton c1 = (RadioButton)findViewById(R.id.c3);c1.setChecked(false);}
-        else if(color.getCheckedRadioButtonId()==R.id.c4){RadioButton c1 = (RadioButton)findViewById(R.id.c4);c1.setChecked(false);}
-        else if(color.getCheckedRadioButtonId()==R.id.c5){RadioButton c1 = (RadioButton)findViewById(R.id.c5);c1.setChecked(false);}
-
+        color.clearCheck();
         RadioGroup quality = (RadioGroup)findViewById(R.id.RGqaulity);
-        if(quality.getCheckedRadioButtonId()==R.id.q1){RadioButton q1 = (RadioButton)findViewById(R.id.q1);q1.setChecked(false);}
-        else if(quality.getCheckedRadioButtonId()==R.id.q2){RadioButton q1 = (RadioButton)findViewById(R.id.q2);q1.setChecked(false);}
-        else if(quality.getCheckedRadioButtonId()==R.id.q3){RadioButton q1 = (RadioButton)findViewById(R.id.q3);q1.setChecked(false);}
-        else if(quality.getCheckedRadioButtonId()==R.id.q4){RadioButton q1 = (RadioButton)findViewById(R.id.q4);q1.setChecked(false);}
-        else if(quality.getCheckedRadioButtonId()==R.id.q5){RadioButton q1 = (RadioButton)findViewById(R.id.q5);q1.setChecked(false);}
+        quality.clearCheck();
+        RadioGroup carry = (RadioGroup)findViewById(R.id.RGcarry);
+        carry.clearCheck();
+        Check_clear();
+    }
+    public void Check_clear(){
+        CheckBox ch1=(CheckBox)findViewById(R.id.checkBox);
+        ch1.setChecked(false);
+        CheckBox ch2=(CheckBox)findViewById(R.id.checkBox2);
+        ch2.setChecked(false);
+        CheckBox ch3=(CheckBox)findViewById(R.id.checkBox3);
+        ch3.setChecked(false);
+        CheckBox ch4=(CheckBox)findViewById(R.id.checkBox4);
+        ch4.setChecked(false);
+        CheckBox ch5=(CheckBox)findViewById(R.id.checkBox5);
+        ch5.setChecked(false);
+        CheckBox ch6=(CheckBox)findViewById(R.id.checkBox6);
+        ch6.setChecked(false);
+        CheckBox ch7=(CheckBox)findViewById(R.id.checkBox7);
+        ch7.setChecked(false);
+        CheckBox ch8=(CheckBox)findViewById(R.id.checkBox8);
+        ch8.setChecked(false);
+        CheckBox ch9=(CheckBox)findViewById(R.id.checkBox9);
+        ch9.setChecked(false);
+        if(Ch2!=null){
+            LL.removeView(Ch2);
+            Ch2=null;
+        }
+        if(Ch3!=null){
+            LL.removeView(Ch3);
+            Ch3=null;
+        }
+        if(Ch4!=null){
+            LL.removeView(Ch4);
+            Ch4=null;
+        }
+        if(Ch5!=null){
+            LL.removeView(Ch5);
+            Ch5=null;
+        }
+        if(Ch6!=null){
+            LL.removeView(Ch6);
+            Ch6=null;
+        }
     }
     public void isExist(String date){
         if(is_mense()==1)in_memse();
@@ -350,7 +475,7 @@ public class MainActivity extends AppCompatActivity {
         queryStr = String.format(queryStr, date);
         Cursor c = db.rawQuery(queryStr, null);
         c.moveToFirst();
-        if (c.isLast()) {
+        if (c.getCount()>0) {
             flag2=1;
 
             Switch s = (Switch) findViewById(R.id.switch3);
@@ -369,6 +494,10 @@ public class MainActivity extends AppCompatActivity {
             else if (F==4) f_b = (RadioButton)findViewById(R.id.f4);
             else if (F==5) f_b = (RadioButton)findViewById(R.id.f5);
             if(F!=-1)f_b.setChecked(true);
+            else{
+                RadioGroup flow = (RadioGroup)findViewById(R.id.RGflow);
+                flow.clearCheck();
+            }
 
             int C =Integer.parseInt(c.getString(2));
             RadioButton c_b= (RadioButton)findViewById(R.id.c1);;
@@ -378,19 +507,117 @@ public class MainActivity extends AppCompatActivity {
             else if (C==4) c_b = (RadioButton)findViewById(R.id.c4);
             else if (C==5) c_b = (RadioButton)findViewById(R.id.c5);
             if(C!=-1)c_b.setChecked(true);
+            else{
+                RadioGroup color = (RadioGroup)findViewById(R.id.RGcolor);
+                color.clearCheck();
+            }
 
             int Q =Integer.parseInt(c.getString(3));
             RadioButton q_b= (RadioButton)findViewById(R.id.q1);;
             if(Q==1) q_b = (RadioButton)findViewById(R.id.q1);
             else  if(Q==2) q_b = (RadioButton)findViewById(R.id.q2);
             else  if(Q==3) q_b = (RadioButton)findViewById(R.id.q3);
-            else  if(Q==4) q_b = (RadioButton)findViewById(R.id.q4);
-            else  if(Q==5) q_b = (RadioButton)findViewById(R.id.q5);
             if(Q!=-1)q_b.setChecked(true);
+            else {
+                RadioGroup quality = (RadioGroup)findViewById(R.id.RGqaulity);
+                quality.clearCheck();
+            }
+
+            int CA =Integer.parseInt(c.getString(6));
+            RadioButton ca_b= (RadioButton)findViewById(R.id.ca1);;
+            if(CA==1) ca_b = (RadioButton)findViewById(R.id.ca1);
+            else  if(CA==2) ca_b = (RadioButton)findViewById(R.id.ca2);
+            else  if(CA==3) ca_b = (RadioButton)findViewById(R.id.ca3);
+            if(CA!=-1)ca_b.setChecked(true);
+            else{
+                RadioGroup carry = (RadioGroup)findViewById(R.id.RGcarry);
+                carry.clearCheck();
+            }
+
+            Check_clear();
+            Cursor c2=db.rawQuery("SELECT * FROM Data2 Where _date = '"+date+"'",null);
+            c2.moveToFirst();
+            if(c2.getString(1).equals("1")){
+                CheckBox ch1=(CheckBox)findViewById(R.id.checkBox);
+                ch1.setChecked(true);
+            }
+            if(c2.getString(2).equals("1")){
+                CheckBox ch2=(CheckBox)findViewById(R.id.checkBox2);
+                ch2.setChecked(true);
+                produce_Ch2();
+                Cursor c3=db.rawQuery("SELECT * FROM Ch2 Where _date = '"+date+"'",null);
+                c3.moveToFirst();
+                if(c3.getCount()!=0){
+                    for(int i=0;i<7;i++){
+                        if(c3.getString(i+1).equals("1"))ch2_v[i].setChecked(true);
+                    }
+                }
+            }
+            if(c2.getString(3).equals("1")){
+                CheckBox ch3=(CheckBox)findViewById(R.id.checkBox3);
+                ch3.setChecked(true);
+                produce_Ch3();
+                Cursor c3=db.rawQuery("SELECT * FROM Ch3 Where _date = '"+date+"'",null);
+                c3.moveToFirst();
+                if(c3.getCount()!=0){
+                    for(int i=0;i<3;i++){
+                        if(c3.getString(i+1).equals("1"))ch3_v[i].setChecked(true);
+                    }
+                }
+            }
+            if(c2.getString(4).equals("1")){
+                CheckBox ch4=(CheckBox)findViewById(R.id.checkBox4);
+                ch4.setChecked(true);
+                produce_Ch4();
+                Cursor c3=db.rawQuery("SELECT * FROM Ch4 Where _date = '"+date+"'",null);
+                c3.moveToFirst();
+                if(c3.getCount()!=0){
+                    for(int i=0;i<3;i++){
+                        if(c3.getString(i+1).equals("1"))ch4_v[i].setChecked(true);
+                    }
+                }
+            }
+            if(c2.getString(5).equals("1")){
+                CheckBox ch5=(CheckBox)findViewById(R.id.checkBox5);
+                ch5.setChecked(true);
+                produce_Ch5();
+                Cursor c3=db.rawQuery("SELECT * FROM Ch5 Where _date = '"+date+"'",null);
+                c3.moveToFirst();
+                if(c3.getCount()!=0){
+                    for(int i=0;i<4;i++){
+                        if(c3.getString(i+1).equals("1"))ch5_v[i].setChecked(true);
+                    }
+                }
+            }
+            if(c2.getString(6).equals("1")){
+                CheckBox ch6=(CheckBox)findViewById(R.id.checkBox6);
+                ch6.setChecked(true);
+                produce_Ch6();
+                Cursor c3=db.rawQuery("SELECT * FROM Ch6 Where _date = '"+date+"'",null);
+                c3.moveToFirst();
+                if(c3.getCount()!=0){
+                    for(int i=0;i<3;i++){
+                        if(c3.getString(i+1).equals("1"))ch6_v[i].setChecked(true);
+                    }
+                }
+            }
+            if(c2.getString(7).equals("1")){
+                CheckBox ch7=(CheckBox)findViewById(R.id.checkBox7);
+                ch7.setChecked(true);
+            }
+            if(c2.getString(8).equals("1")){
+                CheckBox ch8=(CheckBox)findViewById(R.id.checkBox8);
+                ch8.setChecked(true);
+            }
+            if(c2.getString(9).equals("1")){
+                CheckBox ch9=(CheckBox)findViewById(R.id.checkBox9);
+                ch9.setChecked(true);
+            }
+
         }
         else {
             flag2=0;
-            //New();
+            New();
         }
     }
     public void cancel_END(){
@@ -459,6 +686,7 @@ public class MainActivity extends AppCompatActivity {
                             .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    try{
                                     /*將原日期is_Start改為0*/
                                     ContentValues cv = new ContentValues();
                                     cv.put("isStart",0);
@@ -473,14 +701,25 @@ public class MainActivity extends AppCompatActivity {
                                     ContentValues cv2 = new ContentValues();
                                     cv2.put("isStart",1);
                                     String id2 =Y+"/"+M+"/"+D;
-                                    db.update(DATABASE_TABLE,cv2, "_date='"+id2+"'",null);
+                                    Cursor tmp=db.rawQuery("SELECT * From Data WHERE _date ='"+id2+"'",null);
+                                    tmp.moveToFirst();
+                                    if(tmp.getCount()!=0){
+                                        db.update(DATABASE_TABLE,cv2, "_date='"+id2+"'",null);
+                                    }
+                                    else{
+                                        cv2.put("_date",id2);
+                                        cv2.put("flow",-1);
+                                        cv2.put("color",-1);
+                                        cv2.put("carry",-1);
+                                        cv2.put("quality",-1);
+                                        cv2.put("isEnd",0);
+                                        db.insert(DATABASE_TABLE,null,cv2);
 
-                                    cv2.put("_Date",id2);
-                                    cv2.put("flow",0);
-                                    cv2.put("color",0);
-                                    cv2.put("quality",0);
-                                    cv2.put("isEnd",0);
-                                    db.insert(DATABASE_TABLE,null,cv2);
+                                        ContentValues cv3 = new ContentValues();
+                                        cv3.put("_date",id2);
+                                        for(int i=1;i<=9;i++)cv3.put("ch"+Integer.toString(i),false);
+                                        db.insert("Data2",null,cv3);
+                                    }
 
                                     /*修改i_M 及 period*/
                                     int day3= Mon[M-1] + D;
@@ -488,15 +727,53 @@ public class MainActivity extends AppCompatActivity {
                                     if(i_M!=-1)i_M=i_M+(day2-day3);
 
                                     String str=account+","+passWD+","+peroid+","+id2+","+i_M+","+email+",";
-                                    try {
+
                                         FileOutputStream out = openFileOutput("passwd.txt",MODE_PRIVATE);
                                         out.write(str.getBytes());
                                         out.close();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
 
-                                    day2=day3;
+                                        //更改資料庫裡的歷史月經週期紀錄
+                                        ContentValues C = new ContentValues();
+                                        C.put("_date",id2);
+                                        C.put("p",peroid);
+                                        db.insert("Period",null,C);
+                                        db.delete("Period","_date = '"+id+"'",null);
+                                        day2=day3;
+
+                                        FileInputStream in = openFileInput("passwd.txt");
+                                        byte[] data = new byte[128];
+                                        in.read(data);
+                                        in.close();
+                                        String line="User not exist";
+                                        line = new String(data);
+
+                                        String[] name = line.split(",");
+                                        String [] DD = name[3].split("/");
+                                        Y=Integer.parseInt(DD[0]);
+                                        M=Integer.parseInt(DD[1]);
+                                        D=Integer.parseInt(DD[2]);
+                                        peroid = Integer.parseInt(name[2]);
+                                        flag=1;
+                                        account=name[0];
+                                        passWD=name[1];
+                                        i_M=Integer.parseInt(name[4]);
+                                        email=name[5];
+
+                                        isExist(id2);
+                                    }catch (IOException e) {
+                                        e.printStackTrace();
+                                        new AlertDialog.Builder(MainActivity.this)
+                                                .setIcon(R.drawable.ic_launcher_background)
+                                                .setTitle("Message")
+                                                .setMessage("ERROR: "+e.toString())
+                                                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+
+                                                    }
+                                                })
+                                                .show();
+                                    }
                                 }
                             })
                             .show();
@@ -511,6 +788,231 @@ public class MainActivity extends AppCompatActivity {
         intent.setClass(MainActivity.this,home.class);
         startActivity(intent);
         MainActivity.this.finish();
+    }
+    //產生表單元件
+    public void produce_Ch2(){
+        Ch2=new LinearLayout(this);
+        LL.addView(Ch2, LinearLayout.LayoutParams.MATCH_PARENT,290);
+        Ch2.setBackgroundColor(Color.parseColor("#F37C57"));
+        Ch2.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout TV_out=new LinearLayout(this);
+        TV_out.setPadding(19,19,19,19);
+        TextView tv1=new TextView(this);
+        tv1.setText("身\n痛");
+        tv1.setTextColor(Color.parseColor("#FFFFFF"));
+        tv1.setTextSize(16);
+        TV_out.addView(tv1, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        Ch2.addView(TV_out, w, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout Lout=new LinearLayout(this);
+        Ch2.addView(Lout,800,290);
+        Lout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout Lout_1=new LinearLayout(this);
+        Lout_1.setPadding(0,0,0,8);
+        final LinearLayout Lin_1=new LinearLayout(this);
+        Lout_1.addView(Lin_1, LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+        Lin_1.setOrientation(LinearLayout.HORIZONTAL);
+        Lin_1.setPadding(13,13,13,13);
+        Lin_1.setGravity(Gravity.CENTER_VERTICAL);
+        Lin_1.setBackgroundColor(Color.parseColor("#92FFFFFF"));
+        for(int i=0;i<4;i++){
+            ch2_v[i]= new CheckBox(this);
+            ch2_v[i].setText(str2[i]);
+            ch2_v[i].setTextSize(12);
+            Lin_1.addView(ch2_v[i]);
+        }
+        Lout.addView(Lout_1, LinearLayout.LayoutParams.MATCH_PARENT,140);
+        final LinearLayout Lin_2=new LinearLayout(this);
+        Lin_2.setOrientation(LinearLayout.HORIZONTAL);
+        Lin_2.setPadding(13,13,13,13);
+        Lin_2.setGravity(Gravity.CENTER_VERTICAL);
+        Lin_2.setBackgroundColor(Color.parseColor("#92FFFFFF"));
+        for(int i=4;i<7;i++){
+            ch2_v[i]= new CheckBox(this);
+            ch2_v[i].setText(str2[i]);
+            ch2_v[i].setTextSize(12);
+            Lin_2.addView(ch2_v[i]);
+        }
+        Lout.addView(Lin_2,LinearLayout.LayoutParams.MATCH_PARENT,140);
+    }
+    public void produce_Ch3(){
+        Ch3=new LinearLayout(this);
+        LL.addView(Ch3, LinearLayout.LayoutParams.MATCH_PARENT,155);
+        Ch3.setBackgroundColor(Color.parseColor("#F37C57"));
+        Ch3.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout TV_out=new LinearLayout(this);
+        TV_out.setPadding(19,0,19,19);
+        TextView tv1=new TextView(this);
+        tv1.setText("皮\n膚");
+        tv1.setTextColor(Color.parseColor("#FFFFFF"));
+        tv1.setTextSize(16);
+        TV_out.addView(tv1, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        Ch3.addView(TV_out, w, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout Lout=new LinearLayout(this);
+        Ch3.addView(Lout,800,148);
+        Lout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout Lout_1=new LinearLayout(this);
+        final LinearLayout Lin_1=new LinearLayout(this);
+        Lout_1.addView(Lin_1, LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+        Lin_1.setOrientation(LinearLayout.HORIZONTAL);
+        Lin_1.setPadding(13,13,13,13);
+        Lin_1.setGravity(Gravity.CENTER_VERTICAL);
+        Lin_1.setBackgroundColor(Color.parseColor("#92FFFFFF"));
+        for(int i=0;i<3;i++){
+            ch3_v[i]= new CheckBox(this);
+            ch3_v[i].setText(str3[i]);
+            ch3_v[i].setTextSize(12);
+            Lin_1.addView(ch3_v[i]);
+        }
+        Lout.addView(Lout_1, LinearLayout.LayoutParams.MATCH_PARENT,140);
+    }
+    public void produce_Ch4(){
+        Ch4=new LinearLayout(this);
+        LL.addView(Ch4, LinearLayout.LayoutParams.MATCH_PARENT,155);
+        Ch4.setBackgroundColor(Color.parseColor("#F37C57"));
+        Ch4.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout TV_out=new LinearLayout(this);
+        TV_out.setPadding(19,0,19,19);
+        TextView tv1=new TextView(this);
+        tv1.setText("口\n腔");
+        tv1.setTextColor(Color.parseColor("#FFFFFF"));
+        tv1.setTextSize(16);
+        TV_out.addView(tv1, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        Ch4.addView(TV_out, w, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout Lout=new LinearLayout(this);
+        Ch4.addView(Lout,800,148);
+        Lout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout Lout_1=new LinearLayout(this);
+        final LinearLayout Lin_1=new LinearLayout(this);
+        Lout_1.addView(Lin_1, LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+        Lin_1.setOrientation(LinearLayout.HORIZONTAL);
+        Lin_1.setPadding(13,13,13,13);
+        Lin_1.setGravity(Gravity.CENTER_VERTICAL);
+        Lin_1.setBackgroundColor(Color.parseColor("#92FFFFFF"));
+        for(int i=0;i<3;i++){
+            ch4_v[i]= new CheckBox(this);
+            ch4_v[i].setText(str4[i]);
+            ch4_v[i].setTextSize(12);
+            Lin_1.addView(ch4_v[i]);
+        }
+        Lout.addView(Lout_1, LinearLayout.LayoutParams.MATCH_PARENT,140);
+    }
+    public void produce_Ch5(){
+        Ch5=new LinearLayout(this);
+        LL.addView(Ch5, LinearLayout.LayoutParams.MATCH_PARENT,155);
+        Ch5.setBackgroundColor(Color.parseColor("#F37C57"));
+        Ch5.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout TV_out=new LinearLayout(this);
+        TV_out.setPadding(19,0,19,19);
+        TextView tv1=new TextView(this);
+        tv1.setText("出\n血");
+        tv1.setTextColor(Color.parseColor("#FFFFFF"));
+        tv1.setTextSize(16);
+        TV_out.addView(tv1, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        Ch5.addView(TV_out, w, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout Lout=new LinearLayout(this);
+        Ch5.addView(Lout,800,148);
+        Lout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout Lout_1=new LinearLayout(this);
+        final LinearLayout Lin_1=new LinearLayout(this);
+        Lout_1.addView(Lin_1, LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+        Lin_1.setOrientation(LinearLayout.HORIZONTAL);
+        Lin_1.setPadding(13,13,13,13);
+        Lin_1.setGravity(Gravity.CENTER_VERTICAL);
+        Lin_1.setBackgroundColor(Color.parseColor("#92FFFFFF"));
+        for(int i=0;i<4;i++){
+            ch5_v[i]= new CheckBox(this);
+            ch5_v[i].setText(str5[i]);
+            ch5_v[i].setTextSize(12);
+            Lin_1.addView(ch5_v[i]);
+        }
+        Lout.addView(Lout_1, LinearLayout.LayoutParams.MATCH_PARENT,140);
+    }
+    public void produce_Ch6(){
+        Ch6=new LinearLayout(this);
+        LL.addView(Ch6, LinearLayout.LayoutParams.MATCH_PARENT,155);
+        Ch6.setBackgroundColor(Color.parseColor("#F37C57"));
+        Ch6.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout TV_out=new LinearLayout(this);
+        TV_out.setPadding(19,0,19,19);
+        TextView tv1=new TextView(this);
+        tv1.setText("情\n緒");
+        tv1.setTextColor(Color.parseColor("#FFFFFF"));
+        tv1.setTextSize(16);
+        TV_out.addView(tv1, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        Ch6.addView(TV_out, w, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout Lout=new LinearLayout(this);
+        Ch6.addView(Lout,800,148);
+        Lout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout Lout_1=new LinearLayout(this);
+        final LinearLayout Lin_1=new LinearLayout(this);
+        Lout_1.addView(Lin_1, LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+        Lin_1.setOrientation(LinearLayout.HORIZONTAL);
+        Lin_1.setPadding(13,13,13,13);
+        Lin_1.setGravity(Gravity.CENTER_VERTICAL);
+        Lin_1.setBackgroundColor(Color.parseColor("#92FFFFFF"));
+        for(int i=0;i<3;i++){
+            ch6_v[i]= new CheckBox(this);
+            ch6_v[i].setText(str6[i]);
+            ch6_v[i].setTextSize(12);
+            Lin_1.addView(ch6_v[i]);
+        }
+        Lout.addView(Lout_1, LinearLayout.LayoutParams.MATCH_PARENT,140);
+    }
+    //資料庫更新
+    public void sumbit_Ch2(){
+        ContentValues cv = new ContentValues();
+        cv.put("_date",m1DisplayDate.getText().toString());
+        for(int i=0;i<7;i++){
+            if(ch2_v[i].isChecked())cv.put("a"+Integer.toString(i+1),true);
+            else cv.put("a"+Integer.toString(i+1),false);
+        }
+        String id =m1DisplayDate.getText().toString();
+        db.insert("Ch2",null,cv);
+        db.update("Ch2",cv, "_date='"+id+"'",null);
+    }
+    public void sumbit_Ch3(){
+        ContentValues cv = new ContentValues();
+        cv.put("_date",m1DisplayDate.getText().toString());
+        for(int i=0;i<3;i++){
+            if(ch3_v[i].isChecked())cv.put("a"+Integer.toString(i+1),true);
+            else cv.put("a"+Integer.toString(i+1),false);
+        }
+        String id =m1DisplayDate.getText().toString();
+        db.insert("Ch3",null,cv);
+        db.update("Ch3",cv, "_date='"+id+"'",null);
+    }
+    public void sumbit_Ch4(){
+        ContentValues cv = new ContentValues();
+        cv.put("_date",m1DisplayDate.getText().toString());
+        for(int i=0;i<3;i++){
+            if(ch4_v[i].isChecked())cv.put("a"+Integer.toString(i+1),true);
+            else cv.put("a"+Integer.toString(i+1),false);
+        }
+        String id =m1DisplayDate.getText().toString();
+        db.insert("Ch4",null,cv);
+        db.update("Ch4",cv, "_date='"+id+"'",null);
+    }
+    public void sumbit_Ch5(){
+        ContentValues cv = new ContentValues();
+        cv.put("_date",m1DisplayDate.getText().toString());
+        for(int i=0;i<4;i++){
+            if(ch5_v[i].isChecked())cv.put("a"+Integer.toString(i+1),true);
+            else cv.put("a"+Integer.toString(i+1),false);
+        }
+        String id =m1DisplayDate.getText().toString();
+        db.insert("Ch5",null,cv);
+        db.update("Ch5",cv, "_date='"+id+"'",null);
+    }
+    public void sumbit_Ch6(){
+        ContentValues cv = new ContentValues();
+        cv.put("_date",m1DisplayDate.getText().toString());
+        for(int i=0;i<3;i++){
+            if(ch6_v[i].isChecked())cv.put("a"+Integer.toString(i+1),true);
+            else cv.put("a"+Integer.toString(i+1),false);
+        }
+        String id =m1DisplayDate.getText().toString();
+        db.insert("Ch6",null,cv);
+        db.update("Ch6",cv, "_date='"+id+"'",null);
     }
 }
 

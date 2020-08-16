@@ -12,13 +12,12 @@
     <LinearLayout
         android:id="@+id/person"
         android:layout_width="0dp"
-        android:layout_height="105dp"
-
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
+        android:layout_height="103dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:background="#B4F37C57"
         android:gravity="center"
         android:orientation="horizontal"
@@ -32,10 +31,9 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_margin="5dp"
-            android:layout_weight="1"
             app:srcCompat="@drawable/person_icon" />
 
         <LinearLayout
@@ -53,7 +51,7 @@
                 android:text="Amy"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                 android:textColor="#FFFFFF"
-                android:textSize="34sp" />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -120,7 +118,6 @@
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="132dp"
-                android:layout_weight="1"
                 android:text="天"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                 android:textColor="#F37C57" />

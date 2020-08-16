@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/leaf"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Day_add"></activity>
+        <activity android:name=".graph"></activity>
+        <activity android:name=".Day_add" />
         <activity android:name=".Day_in" />
         <activity android:name=".DayDay" />
         <activity android:name=".change_person" />
