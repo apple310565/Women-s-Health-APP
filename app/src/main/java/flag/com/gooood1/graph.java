@@ -36,6 +36,7 @@ public class graph extends AppCompatActivity {
     private Legend legend;              //图例
     private LimitLine limitLine;        //限制线
     int [] len={312,208,104,260,40};
+    int [] len2={5,3,2,4,1};
     String [] color={"#5A5555","#FF2424","#F3877F","#981047","#490255"};
     String [] quality={"清","常","稠"};
     String [] carry={"無","黏","塊"};
@@ -80,8 +81,21 @@ public class graph extends AppCompatActivity {
             LinearLayout gg_out =new LinearLayout(this);
             graph_in.addView(gg_out,320,LinearLayout.LayoutParams.WRAP_CONTENT);
             LinearLayout gg_in =new LinearLayout(this);
-            if(Flow>0)gg_out.addView(gg_in,len[Flow-1],120);
-            else gg_out.addView(gg_in,0,120);
+
+            /*if(Flow>0)gg_out.addView(gg_in,len[Flow-1],120);
+            else gg_out.addView(gg_in,0,120);*/
+            if(Flow>0){
+                for(int j=0;j<len2[Flow-1];j++){
+                    LinearLayout gg_in2 =new LinearLayout(this);
+                    gg_in2.setPadding(3,5,3,5);
+                    LinearLayout gg_inn =new LinearLayout(this);
+                    if(cc>0)gg_inn.setBackgroundColor(Color.parseColor(color[cc-1]));
+                    else gg_inn.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    gg_in2.addView(gg_inn,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+                    gg_out.addView(gg_in2,62,120);
+                }
+            }
+
             if(Flow==4){
                 gg_out.setBackground(getResources().getDrawable( R.drawable.graph_frame2 ));
             }
@@ -89,8 +103,8 @@ public class graph extends AppCompatActivity {
                 gg_out.setBackground(getResources().getDrawable( R.drawable.graph_frame ));
             }
             gg_out.setPadding(4,4,4,4);
-            if(cc>0)gg_in.setBackgroundColor(Color.parseColor(color[cc-1]));
-            else gg_in.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            /*if(cc>0)gg_in.setBackgroundColor(Color.parseColor(color[cc-1]));
+            else gg_in.setBackgroundColor(Color.parseColor("#FFFFFF"));*/
 
             //質地和挾帶物
             LinearLayout qc_out =new LinearLayout(this);
