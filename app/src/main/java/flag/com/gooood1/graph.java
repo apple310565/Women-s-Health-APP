@@ -4,12 +4,17 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -61,26 +66,38 @@ public class graph extends AppCompatActivity {
 
         int t=c.getCount();
         for(int i=0;i<t;i++){
-            int Flow,cc,Quality,Carry;
-            String Date=c.getString(0);
-            cc=Integer.parseInt(c.getString(2));
-            Flow=Integer.parseInt(c.getString(1));
-            Quality=Integer.parseInt(c.getString(3));
+            final int Flow,cc,Quality,Carry;
+            final String Date=c.getString(0);
+             cc=Integer.parseInt(c.getString(2));
+             Flow=Integer.parseInt(c.getString(1));
+             Quality=Integer.parseInt(c.getString(3));
             Carry=Integer.parseInt(c.getString(6));
-            LinearLayout date_in=new LinearLayout(this);
+            final LinearLayout date_in=new LinearLayout(this);
             date.addView(date_in, LinearLayout.LayoutParams.MATCH_PARENT,150);
             date_in.setGravity(Gravity.CENTER);
             TextView day=new TextView(this);
             day.setText(Date);
             day.setTextColor(Color.parseColor("#000000"));
             date_in.addView(day);
-            LinearLayout graph_in =new LinearLayout(this);
+            final LinearLayout graph_in =new LinearLayout(this);
             graph.addView(graph_in, LinearLayout.LayoutParams.MATCH_PARENT,150);
             graph_in.setGravity(Gravity.CENTER_VERTICAL);
             graph_in.setOrientation(LinearLayout.HORIZONTAL);
             LinearLayout gg_out =new LinearLayout(this);
             graph_in.addView(gg_out,320,LinearLayout.LayoutParams.WRAP_CONTENT);
             LinearLayout gg_in =new LinearLayout(this);
+
+            //設監聽
+            graph_in.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    pick(Date,Flow,cc,Quality,Carry);
+                }
+            });
+            date_in.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    pick(Date,Flow,cc,Quality,Carry);
+                }
+            });
 
             /*if(Flow>0)gg_out.addView(gg_in,len[Flow-1],120);
             else gg_out.addView(gg_in,0,120);*/
@@ -186,6 +203,153 @@ public class graph extends AppCompatActivity {
             c.moveToNext();
         }
         c.close();
+    }
+    public void pick(String date,int flow,int color,int quality,int carry){
+        String [] F={"多","正常","少","或多或少","點滴性出血"};
+        String [] C ={"黝深","鮮紅","淡紅","紫紅","紫黑"};
+        String [] Q={"清稀","正常","黏稠"};
+        String [] CA ={"無","黏液","血塊"};
+        String [] str2={"腰臀部脹痛","乳房脹痛","面目浮腫","肢軟無力","肢體腫脹不適","肢體麻木疼痛","關節疼痛"};
+        String []str3={"皮膚起疹","膚色焮紅","身癢"};
+        String [] str4={"口糜舌爛","口臭","口燥咽乾"};
+        String [] str5={"吐血","衄血","齒衄","咯血"};
+        String [] str6={"無故悲傷","煩躁易怒","神志不清"};
+        LayoutInflater inflater = LayoutInflater.from(graph.this);
+        final View v = inflater.inflate(R.layout.graph_data, null);
+        TextView tv_color=(TextView) (v.findViewById(R.id.v_color));
+        TextView tv_flow=(TextView) (v.findViewById(R.id.v_flow));
+        TextView tv_quality=(TextView) (v.findViewById(R.id.v_quality));
+        TextView tv_carry=(TextView) (v.findViewById(R.id.v_carry));
+        TextView tv_sym=(TextView) (v.findViewById(R.id.v_sym));
+        if(color>0)tv_color.setText(C[color-1]);
+        else tv_color.setText("無資料");
+        if(flow>0)tv_flow.setText(F[flow-1]);
+        else tv_flow.setText("無資料");
+        if(quality>0)tv_quality.setText(Q[quality-1]);
+        else tv_quality.setText("無資料");
+        if(carry>0)tv_carry.setText(CA[carry-1]);
+        else tv_carry.setText("無資料");
+        int f=0;String str="";
+        Cursor data2 = db.rawQuery("SELECT * FROM Data2 WHERE _date = '" + date + "'", null);
+        data2.moveToFirst();
+        int flag=0;
+        if(data2.getCount()!=0){
+            if(data2.getString(1).equals("1")){
+                str+="經痛";
+                f=1;
+                flag=1;
+            }
+            if(data2.getString(7).equals("1")){
+                if(f!=0)str+="、";
+                str+="月經氣味異常";
+                f=1;
+                flag=1;
+            }
+            if(data2.getString(8).equals("1")){
+                if(f!=0)str+="、";
+                str+="頭暈";
+                f=1;
+                flag=1;
+            }
+            if(data2.getString(9).equals("1")){
+                if(f!=0)str+="、";
+                str+="頭痛";
+                f=1;
+                flag=1;
+            }
+            if(f==1)str+="。\n";
+            if(data2.getString(2).equals("1")){
+                f=0;
+                flag=1;
+                str+="身痛: ";
+                Cursor Ch2 = db.rawQuery("SELECT * FROM Ch2 WHERE _date = '" + date + "'", null);
+                Ch2.moveToFirst();
+                for(int i=0;i<7;i++){
+                    if(Ch2.getString(i+1).equals("1")){
+                        if(f>0)str+="、";
+                        str+=str2[i];
+                        f=1;
+                    }
+                }
+                str+="。\n";
+            }
+            if(data2.getString(3).equals("1")){
+                f=0;
+                flag=1;
+                str+="皮膚異常: ";
+                Cursor Ch3 = db.rawQuery("SELECT * FROM Ch3 WHERE _date = '" + date + "'", null);
+                Ch3.moveToFirst();
+                for(int i=0;i<3;i++){
+                    if(Ch3.getString(i+1).equals("1")){
+                        if(f>0)str+="、";
+                        str+=str3[i];
+                        f=1;
+                    }
+                }
+                str+="。\n";
+            }
+            if(data2.getString(4).equals("1")){
+                f=0;
+                flag=1;
+                str+="口腔異常: ";
+                Cursor Ch4 = db.rawQuery("SELECT * FROM Ch4 WHERE _date = '" + date + "'", null);
+                Ch4.moveToFirst();
+                for(int i=0;i<3;i++){
+                    if(Ch4.getString(i+1).equals("1")){
+                        if(f>0)str+="、";
+                        str+=str4[i];
+                        f=1;
+                    }
+                }
+                str+="。\n";
+            }
+            if(data2.getString(5).equals("1")){
+                f=0;
+                flag=1;
+                str+="出血: ";
+                Cursor Ch5 = db.rawQuery("SELECT * FROM Ch5 WHERE _date = '" + date + "'", null);
+                Ch5.moveToFirst();
+                for(int i=0;i<4;i++){
+                    if(Ch5.getString(i+1).equals("1")){
+                        if(f>0)str+="、";
+                        str+=str5[i];
+                        f=1;
+                    }
+                }
+                str+="。\n";
+            }
+            if(data2.getString(6).equals("1")){
+                f=0;
+                flag=1;
+                str+="情緒不受控: ";
+                Cursor Ch6 = db.rawQuery("SELECT * FROM Ch6 WHERE _date = '" + date + "'", null);
+                Ch6.moveToFirst();
+                for(int i=0;i<3;i++){
+                    if(Ch6.getString(i+1).equals("1")){
+                        if(f>0)str+="、";
+                        str+=str6[i];
+                        f=1;
+                    }
+                }
+                str+="。\n";
+            }
+            if(flag==0)str+="無。\n";
+
+            tv_sym.setText(str);
+        }
+
+
+
+        new AlertDialog.Builder(graph.this)
+                .setView(v)
+                .setIcon(getResources().getDrawable( R.drawable.leaf ))
+                .setTitle(date+" 詳細資料")
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .show();
     }
 
     }
