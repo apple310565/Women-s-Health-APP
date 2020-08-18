@@ -42,7 +42,7 @@ public class graph extends AppCompatActivity {
     private LimitLine limitLine;        //限制线
     int [] len={312,208,104,260,40};
     int [] len2={5,3,2,4,1};
-    String [] color={"#5A5555","#FF2424","#F3877F","#981047","#490255"};
+    String [] color={"#FFA09E","#f70000","#bb053a","#660732","#331207"};
     String [] quality={"清","常","稠"};
     String [] carry={"無","黏","塊"};
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -206,7 +206,7 @@ public class graph extends AppCompatActivity {
     }
     public void pick(String date,int flow,int color,int quality,int carry){
         String [] F={"多","正常","少","或多或少","點滴性出血"};
-        String [] C ={"黝深","鮮紅","淡紅","紫紅","紫黑"};
+        String[] C={"淡紅","鮮紅","紫紅","紫黑","黝深"};
         String [] Q={"清稀","正常","黏稠"};
         String [] CA ={"無","黏液","血塊"};
         String [] str2={"腰臀部脹痛","乳房脹痛","面目浮腫","肢軟無力","肢體腫脹不適","肢體麻木疼痛","關節疼痛"};
@@ -254,6 +254,12 @@ public class graph extends AppCompatActivity {
             if(data2.getString(9).equals("1")){
                 if(f!=0)str+="、";
                 str+="頭痛";
+                f=1;
+                flag=1;
+            }
+            if(data2.getString(10).equals("1")){
+                if(f!=0)str+="、";
+                str+="大便溏瀉";
                 f=1;
                 flag=1;
             }

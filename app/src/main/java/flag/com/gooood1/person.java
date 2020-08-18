@@ -16,7 +16,7 @@ import java.io.IOException;
 public class person extends AppCompatActivity {
     //int [] Mon = {0,31,59,90,120,151,181,212,243,273,304,334};
     int[] Mon={31,28,31,30,31,30,31,31,30,31,30,31};
-    int Y,M,D,peroid=29,flag=0,a,flag2=0,day1=0,day2=0,i_M;
+    int Y,M,D,peroid=29,flag=0,i_M;
     String account,passWD,email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class person extends AppCompatActivity {
             Y=Integer.parseInt(Date[0]);
             M=Integer.parseInt(Date[1]);
             D=Integer.parseInt(Date[2]);
+            IsLeapYear(Y);
             peroid = Integer.parseInt(name[2]);
             flag=1;
             account=name[0];
@@ -103,5 +104,13 @@ public class person extends AppCompatActivity {
         intent.setClass(person.this,change_person.class);
         startActivity(intent);
         person.this.finish();
+    }
+    public void IsLeapYear(int y){
+        int f=0;
+        if(y%4==0)f=1;
+        if(y%100==0)f=0;
+        if(y%400==0)f=1;
+        if(f==1)Mon[1]=29;
+        else Mon[1]=28;
     }
 }

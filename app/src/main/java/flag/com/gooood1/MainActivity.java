@@ -22,6 +22,7 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private StdDBHelper dbHelper;
     private DatePickerDialog.OnDateSetListener m1DataSetListerner;
     int [] Mon = {0,31,59,90,120,151,181,212,243,273,304,334};
+    int [] Mon1={0,31,59,90,120,151,181,212,243,273,304,334};
+    int [] Mon2={0,31,60,91,121,152,182,213,244,274,305,335};
     int Y,M,D,peroid=29,flag=0,a,flag2=0,day1=0,day2=0,i_M;
     int w=90;
     String account,passWD,email;
@@ -107,8 +110,16 @@ public class MainActivity extends AppCompatActivity {
             int year =cal.get(Calendar.YEAR);
             int month = cal.get(Calendar.MONTH);
             int day = cal.get(Calendar.DAY_OF_MONTH);
-            m1DisplayDate.setText(year + "/" + (month+1)+"/"+day);
-            isExist(year + "/" + (month+1)+"/"+day);
+
+            IsLeapYear(year);
+
+            String date =year + "/" ;
+            if((month+1)<10)date+="0";
+            date+=(month+1)+"/";
+            if(day<10)date+="0";
+            date+=day;
+            m1DisplayDate.setText(date);
+            isExist(date);
 
             day1 = Mon[month]+day;day2 = Mon[M-1]+D;
             int days = (year-Y)*365+(day1-day2);
@@ -141,9 +152,13 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                     //New();
-                    Log.d("MainActivity","onDate: date = " +month+" / "+dayOfMonth+ " / "+year);
-                    String date =year + "/" + (month+1)+"/"+dayOfMonth;
+                    String date =year + "/" ;
+                    if((month+1)<10)date+="0";
+                    date+=(month+1)+"/";
+                    if(dayOfMonth<10)date+="0";
+                    date+=dayOfMonth;
                     m1DisplayDate.setText(date);
+                    IsLeapYear(year);
 
                     day1 = Mon[month] + dayOfMonth;
                     day2 = Mon[M - 1] + D;
@@ -248,12 +263,13 @@ public class MainActivity extends AppCompatActivity {
         else if(flow.getCheckedRadioButtonId()==R.id.f3)f=3;
         else if(flow.getCheckedRadioButtonId()==R.id.f4)f=4;
         else if(flow.getCheckedRadioButtonId()==R.id.f5)f=5;
-        RadioGroup color = (RadioGroup)findViewById(R.id.RGcolor);
-        if(color.getCheckedRadioButtonId()==R.id.c1)c=1;
-        else if(color.getCheckedRadioButtonId()==R.id.c2)c=2;
-        else if(color.getCheckedRadioButtonId()==R.id.c3)c=3;
-        else if(color.getCheckedRadioButtonId()==R.id.c4)c=4;
-        else if(color.getCheckedRadioButtonId()==R.id.c5)c=5;
+        SeekBar sb =(SeekBar)findViewById(R.id.seekBar);
+        if(sb.getProgress()==0)c=1;
+        else if(sb.getProgress()==1)c=2;
+        else if(sb.getProgress()==2)c=3;
+        else if(sb.getProgress()==3)c=4;
+        else if(sb.getProgress()==4)c=5;
+
         RadioGroup quality = (RadioGroup)findViewById(R.id.RGqaulity);
         if(quality.getCheckedRadioButtonId()==R.id.q1)q=1;
         else if(quality.getCheckedRadioButtonId()==R.id.q2)q=2;
@@ -330,6 +346,9 @@ public class MainActivity extends AppCompatActivity {
         CheckBox ch9=(CheckBox)findViewById(R.id.checkBox9);
         if(ch9.isChecked())cv2.put("ch9",true);
         else cv2.put("ch9",false);
+        CheckBox ch10=(CheckBox)findViewById(R.id.checkBox10);
+        if(ch10.isChecked())cv2.put("ch10",true);
+        else cv2.put("ch10",false);
         db.insert("Data2",null,cv2);
         db.update("Data2",cv2, "_date='"+id+"'",null);
 
@@ -420,8 +439,8 @@ public class MainActivity extends AppCompatActivity {
     public void New(){
         RadioGroup flow = (RadioGroup)findViewById(R.id.RGflow);
         flow.clearCheck();
-        RadioGroup color = (RadioGroup)findViewById(R.id.RGcolor);
-        color.clearCheck();
+        SeekBar sb=(SeekBar)findViewById(R.id.seekBar);
+        sb.setProgress(1);
         RadioGroup quality = (RadioGroup)findViewById(R.id.RGqaulity);
         quality.clearCheck();
         RadioGroup carry = (RadioGroup)findViewById(R.id.RGcarry);
@@ -447,6 +466,8 @@ public class MainActivity extends AppCompatActivity {
         ch8.setChecked(false);
         CheckBox ch9=(CheckBox)findViewById(R.id.checkBox9);
         ch9.setChecked(false);
+        CheckBox ch10=(CheckBox)findViewById(R.id.checkBox10);
+        ch10.setChecked(false);
         if(Ch2!=null){
             LL.removeView(Ch2);
             Ch2=null;
@@ -499,18 +520,11 @@ public class MainActivity extends AppCompatActivity {
                 flow.clearCheck();
             }
 
+
             int C =Integer.parseInt(c.getString(2));
-            RadioButton c_b= (RadioButton)findViewById(R.id.c1);;
-            if(C==1) c_b = (RadioButton)findViewById(R.id.c1);
-            else if (C==2)c_b = (RadioButton)findViewById(R.id.c2);
-            else if (C==3) c_b = (RadioButton)findViewById(R.id.c3);
-            else if (C==4) c_b = (RadioButton)findViewById(R.id.c4);
-            else if (C==5) c_b = (RadioButton)findViewById(R.id.c5);
-            if(C!=-1)c_b.setChecked(true);
-            else{
-                RadioGroup color = (RadioGroup)findViewById(R.id.RGcolor);
-                color.clearCheck();
-            }
+            SeekBar sb=(SeekBar)findViewById(R.id.seekBar);
+            if(C!=0&&C!=-1)sb.setProgress(C-1);
+            else sb.setProgress(1);
 
             int Q =Integer.parseInt(c.getString(3));
             RadioButton q_b= (RadioButton)findViewById(R.id.q1);;
@@ -613,6 +627,10 @@ public class MainActivity extends AppCompatActivity {
                 CheckBox ch9=(CheckBox)findViewById(R.id.checkBox9);
                 ch9.setChecked(true);
             }
+            if(c2.getString(10).equals("1")){
+                CheckBox ch10=(CheckBox)findViewById(R.id.checkBox10);
+                ch10.setChecked(true);
+            }
 
         }
         else {
@@ -690,7 +708,11 @@ public class MainActivity extends AppCompatActivity {
                                     /*將原日期is_Start改為0*/
                                     ContentValues cv = new ContentValues();
                                     cv.put("isStart",0);
-                                    String id =Y+"/"+M+"/"+D;
+                                    String id =Y+"/";
+                                    if(M<10)id+="0";
+                                    id+=M+"/";
+                                    if(D<10)id+="0";
+                                    id+=D;
                                     db.update(DATABASE_TABLE,cv, "_date='"+id+"'",null);
                                     /*獲取新日期*/
                                     String [] Date = DateTime.split("/");
@@ -700,7 +722,11 @@ public class MainActivity extends AppCompatActivity {
                                     /*將新日期is_Start改為1*/
                                     ContentValues cv2 = new ContentValues();
                                     cv2.put("isStart",1);
-                                    String id2 =Y+"/"+M+"/"+D;
+                                    String id2 =Y+"/";
+                                    if(M<10)id2+="0";
+                                    id2+=M+"/";
+                                    if(D<10)id2+="0";
+                                    id2+=D;
                                     Cursor tmp=db.rawQuery("SELECT * From Data WHERE _date ='"+id2+"'",null);
                                     tmp.moveToFirst();
                                     if(tmp.getCount()!=0){
@@ -717,7 +743,7 @@ public class MainActivity extends AppCompatActivity {
 
                                         ContentValues cv3 = new ContentValues();
                                         cv3.put("_date",id2);
-                                        for(int i=1;i<=9;i++)cv3.put("ch"+Integer.toString(i),false);
+                                        for(int i=1;i<=10;i++)cv3.put("ch"+Integer.toString(i),false);
                                         db.insert("Data2",null,cv3);
                                     }
 
@@ -758,8 +784,6 @@ public class MainActivity extends AppCompatActivity {
                                         passWD=name[1];
                                         i_M=Integer.parseInt(name[4]);
                                         email=name[5];
-
-                                        isExist(id2);
                                     }catch (IOException e) {
                                         e.printStackTrace();
                                         new AlertDialog.Builder(MainActivity.this)
@@ -1013,6 +1037,14 @@ public class MainActivity extends AppCompatActivity {
         String id =m1DisplayDate.getText().toString();
         db.insert("Ch6",null,cv);
         db.update("Ch6",cv, "_date='"+id+"'",null);
+    }
+    public void IsLeapYear(int y){
+        int f=0;
+        if(y%4==0)f=1;
+        if(y%100==0)f=0;
+        if(y%400==0)f=1;
+        if(f==1)Mon=Mon2;
+        else Mon=Mon1;
     }
 }
 

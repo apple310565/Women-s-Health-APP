@@ -19,7 +19,7 @@ public class StdDBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Data(_date Text primary key, "+
                 "flow int , color int , quality int , isStart int , isEnd int, carry int)");
         db.execSQL("CREATE TABLE Data2(_date Text primary key, "+
-                "ch1 boolean , ch2 boolean , ch3 boolean , ch4 boolean, ch5 boolean,ch6 boolean,ch7 boolean,ch8 boolean,ch9 boolean)");
+                "ch1 boolean , ch2 boolean , ch3 boolean , ch4 boolean, ch5 boolean,ch6 boolean,ch7 boolean,ch8 boolean,ch9 boolean,ch10 boolean)");
         db.execSQL("CREATE TABLE Ch2(_date Text primary key, "+
                 " a1 boolean , a2 boolean , a3 boolean , a4 boolean, a5 boolean,a6 boolean,a7 boolean)");
         db.execSQL("CREATE TABLE Ch3(_date Text primary key, "+

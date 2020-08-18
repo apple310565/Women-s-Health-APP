@@ -34,7 +34,7 @@
 
             <TextView
                 android:id="@+id/text1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10sp"
                 android:background="#00FBF7CD"
@@ -42,6 +42,23 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                 android:textColor="#FFFFFF"
                 android:textSize="36sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="right"
+                tools:ignore="RtlHardcoded">
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#00FFFFFF"
+                    android:layout_marginRight="20dp"
+                    app:srcCompat="@android:drawable/ic_dialog_info" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -204,54 +221,26 @@
                     android:textColor="#FFFFFF"
                     android:textSize="16sp" />
 
-                <RadioGroup
-                    android:id="@+id/RGcolor"
+                <LinearLayout
                     android:layout_width="800px"
                     android:layout_height="55dp"
-                    android:background="#92FFFFFF"
+                    android:background="#90FFFFFF"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/c1"
-                        android:layout_width="wrap_content"
+                    <SeekBar
+                        android:id="@+id/seekBar"
+                        style="@style/Widget.AppCompat.SeekBar"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="黝\n深"
-                        android:textColor="#5A5555"
-                        android:textSize="12sp" />
+                        android:layout_margin="4dp"
+                        android:background="@drawable/color"
+                        android:max="4"
+                        android:progress="1"
+                        android:progressDrawable="@color/cardview_shadow_end_color"
+                        android:thumb="@android:drawable/title_bar_tall" />
+                </LinearLayout>
 
-                    <RadioButton
-                        android:id="@+id/c2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="鮮\n紅"
-                        android:textColor="#F44336"
-                        android:textSize="12sp" />
-
-                    <RadioButton
-                        android:id="@+id/c3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="淡\n紅"
-                        android:textColor="#F3877F"
-                        android:textColorLink="#FA7166"
-                        android:textSize="12sp" />
-
-                    <RadioButton
-                        android:id="@+id/c4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="紫\n紅"
-                        android:textColor="#981047"
-                        android:textSize="12sp" />
-
-                    <RadioButton
-                        android:id="@+id/c5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="紫\n黑"
-                        android:textColor="#490255"
-                        android:textSize="12sp" />
-                </RadioGroup>
             </LinearLayout>
 
             <LinearLayout

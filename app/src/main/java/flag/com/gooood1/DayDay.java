@@ -49,6 +49,9 @@ public class DayDay extends AppCompatActivity {
         int month =  cd.get(Calendar.MONTH);
         int day = cd.get(Calendar.DAY_OF_MONTH);
         int date = cd.get(Calendar.DAY_OF_WEEK);
+
+        IsLeapYear(year);
+
         if(date==1)day=day-6;
         else day=day-date+2;
         if(day<=0){
@@ -56,7 +59,11 @@ public class DayDay extends AppCompatActivity {
             else {month=12;year--;}
             day=Mon[month]+day;
         }
-        Date= Integer.toString(year)+'/'+Integer.toString(month+1)+'/'+Integer.toString(day);
+        Date= Integer.toString(year)+'/';
+        if((month+1)<10)Date+="0";
+        Date+=Integer.toString(month+1)+'/';
+        if(day<10)Date+="0";
+        Date+=Integer.toString(day);
         SqlQuery("SELECT * FROM Day WHERE selected=1");
 
     }
@@ -318,6 +325,15 @@ public class DayDay extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    public void IsLeapYear(int y){
+        int f=0;
+        if(y%4==0)f=1;
+        if(y%100==0)f=0;
+        if(y%400==0)f=1;
+        if(f==1)Mon[1]=29;
+        else Mon[1]=28;
     }
 
 }

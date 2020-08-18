@@ -26,7 +26,7 @@ public class m4 extends AppCompatActivity {
     public void SqlQuery(String sql) {
         String[] colNames;
         String[] flow={" 多 ","正常"," 少 ","或多或少","點滴性出血"};
-        String[] color={"黝深","鮮紅","淡紅","紫紅","紫黑"};
+        String[] color={"淡紅","鮮紅","紫紅","紫黑","黝深"};
         String[] q={"清稀","正常","黏稠","有血塊","夾雜黏液"};
         String str = "",str1="";
         Cursor c = db.rawQuery(sql, null);
