@@ -15,6 +15,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -1045,6 +1046,30 @@ public class MainActivity extends AppCompatActivity {
         if(y%400==0)f=1;
         if(f==1)Mon=Mon2;
         else Mon=Mon1;
+    }
+    public void Info_flow(View view){
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("流量分法")
+                .setIcon(getResources().getDrawable( R.drawable.leaf ))
+                .setMessage("以基本型（20~23公分）衛生棉為例:\n1. 正常：平均為每2～3小時需更換一片衛生棉，一天約換6～9片。\n2. 量多：一天衛生棉要更換10片以上，且經血常弄髒衣褲。\n3. 量少：一天只需換5片以下的衛生棉\n4. 點滴性出血: 經血非常少，甚至只有少少幾滴。\n")
+                .setPositiveButton("知道了", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .show();
+    }
+    public void Info_quality(View view){
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("質地分法")
+                .setIcon(getResources().getDrawable( R.drawable.leaf ))
+                .setMessage("1. 正常: 質地如豆漿。\n2. 黏稠: 質地如果凍或軟爛的紅豆湯。\n3. 清稀: 質地清如水。")
+                .setPositiveButton("知道了", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .show();
     }
 }
 
