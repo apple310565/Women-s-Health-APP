@@ -86,6 +86,13 @@ public class men_sym extends AppCompatActivity {
                 CheckBox ch=new CheckBox(this);
                 ch.setText(qestion1[i][j]);
                 qq1_v[i][j]=ch;
+                final CheckBox ch1=ch;
+                final int I=i;
+                ch1.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        ch_check(I,ch1);
+                    }
+                });
                 if(t>2){
                     Lout= new LinearLayout(this);
                     L.addView(Lout,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -212,4 +219,10 @@ public class men_sym extends AppCompatActivity {
                     .show();
         }
 }
+    public void ch_check(int i,CheckBox ch){
+            int flag=0;
+           if(ch.isChecked())flag=1;
+           for(int k=0;k<qq1_v[i].length;k++)qq1_v[i][k].setChecked(false);
+           if(flag==1)ch.setChecked(true);
+    }
 }
