@@ -43,7 +43,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout13"
+        android:id="@+id/LL"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="25dp"
@@ -203,7 +203,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout13" />
+        app:layout_constraintTop_toBottomOf="@+id/LL" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

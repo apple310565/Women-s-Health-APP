@@ -12,7 +12,9 @@
         android:roundIcon="@drawable/leaf"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".graph"></activity>
+        <activity android:name=".men_sym"></activity>
+        <activity android:name=".sym_search" />
+        <activity android:name=".graph" />
         <activity android:name=".Day_add" />
         <activity android:name=".Day_in" />
         <activity android:name=".DayDay" />

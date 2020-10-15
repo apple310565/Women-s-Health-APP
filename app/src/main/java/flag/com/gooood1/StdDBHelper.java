@@ -17,9 +17,11 @@ public class StdDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         /*經期紀錄相關資料*/
         db.execSQL("CREATE TABLE Data(_date Text primary key, "+
-                "flow int , color int , quality int , isStart int , isEnd int, carry int)");
+                " isStart int , isEnd int)");
+        db.execSQL("CREATE TABLE Tampon(_date Text , t int , time Text ,"+
+                " type int, s int, quality int, carry int, color int , primary key(_date,t))");
         db.execSQL("CREATE TABLE Data2(_date Text primary key, "+
-                "ch1 boolean , ch2 boolean , ch3 boolean , ch4 boolean, ch5 boolean,ch6 boolean,ch7 boolean,ch8 boolean,ch9 boolean,ch10 boolean)");
+                "ch1 boolean , ch2 boolean , ch3 boolean , ch4 boolean, ch5 boolean,ch6 boolean,ch7 boolean,ch8 boolean,ch9 boolean,ch10 boolean,ch11 boolean)");
         db.execSQL("CREATE TABLE Ch2(_date Text primary key, "+
                 " a1 boolean , a2 boolean , a3 boolean , a4 boolean, a5 boolean,a6 boolean,a7 boolean)");
         db.execSQL("CREATE TABLE Ch3(_date Text primary key, "+
@@ -30,8 +32,16 @@ public class StdDBHelper extends SQLiteOpenHelper {
                 " a1 boolean , a2 boolean , a3 boolean,a4 boolean)");
         db.execSQL("CREATE TABLE Ch6(_date Text primary key, "+
                 " a1 boolean , a2 boolean , a3 boolean)");
+        db.execSQL("CREATE TABLE Ch11_1(_date Text primary key, "+
+                " a1 boolean , a2 boolean , a3 boolean , a4 boolean, a5 boolean ,a6 boolean)");
+        db.execSQL("CREATE TABLE Ch11_2(_date Text primary key, "+
+                " a1 boolean , a2 boolean , a3 boolean,a4 boolean,a5 boolean)");
         db.execSQL("CREATE TABLE Period(_date Text primary key, "+
                 " p int)");
+        db.execSQL("CREATE TABLE isUpdate(_date Text primary key, "+
+                " flag int)");
+        db.execSQL("CREATE TABLE Temperature(_date Text primary key, "+
+                " temperature real)");
 
         /*健康資訊*/
         db.execSQL("CREATE TABLE EAT(_name Text primary key, "+
@@ -47,6 +57,9 @@ public class StdDBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Day(_ID Text primary key,name Text, article Text ,P int,D int,priority int,max int, selected int)");
         db.execSQL("CREATE TABLE DayIn(_ID Text , _date Text, progress int, complete real, d1 Text, d2 Text, d3 Text, d4 Text, d5 Text, d6 Text, d7 Text"+
                 ",primary key(_ID,_date))");
+
+        /*辨證資料*/
+        db.execSQL("create table men_sym(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db,int oldVersion,int Version){

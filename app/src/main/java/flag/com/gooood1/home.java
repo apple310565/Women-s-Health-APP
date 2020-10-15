@@ -80,6 +80,7 @@ public class home extends AppCompatActivity {
             load_sport();
             load_habit();
             load_dayday();
+            load_men_sym();
             //初始化
 
             Calendar calendar = Calendar.getInstance();
@@ -117,7 +118,7 @@ public class home extends AppCompatActivity {
             LinearLayout S = (LinearLayout)findViewById(R.id.search);
             S.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Nan();
+                    goto_sym_search();
                 }
             });
 
@@ -201,6 +202,12 @@ public class home extends AppCompatActivity {
     public void goto_Person(){
         Intent intent = new Intent();
         intent.setClass(home.this, person.class);
+        startActivity(intent);
+        home.this.finish();
+    }
+    public void goto_sym_search(){
+        Intent intent = new Intent();
+        intent.setClass(home.this, sym_search.class);
         startActivity(intent);
         home.this.finish();
     }
@@ -405,6 +412,27 @@ public class home extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this,"DayDay_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void load_men_sym(){
+        try {
+            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("rr.csv") );
+            //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            while((line = bufReader.readLine()) != null) {
+                String[] Day = line.split(",");
+                ContentValues cv = new ContentValues();
+                cv.put("name",Day[0]);
+                for(int i=1;i<=5;i++){
+                    cv.put("A"+Integer.toString(i),Day[i]);
+                }
+                db.insert("men_sym",null,cv);
+                db.update("men_sym",cv,"name ='"+Day[0]+"'",null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,"men_sym_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -95,9 +95,9 @@ public class person extends AppCompatActivity {
     }
     public void  goto_m4(View view){
         Intent intent = new Intent();
-        intent.setClass(person.this,m4.class);
+        intent.setClass(person.this,graph.class);
         startActivity(intent);
-        person.this.finish();
+        //person.this.finish();
     }
     public void  goto_change(View view){
         Intent intent = new Intent();
