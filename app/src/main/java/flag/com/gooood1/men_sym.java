@@ -22,7 +22,9 @@ import java.util.Arrays;
 public class men_sym extends AppCompatActivity {
     String [][] qestion1={/*{"經期正常","經期提前","經期延後","經來先後無定期"},*/{"經期長度正常","月經經期過長","月經經期過短"},{"月經週期正常","月經先期","月經後期","月經先後不定期"},
             {"月經色淡紅","月經色紅","月經色深紅","月經色紫","月經色黑"},{"月經質地正常","月經質稀","月經質濃"},{"月經量正常","月經量多","月經量少","月經量或多或少","點滴性出血"},
-            {"無挾帶物","月經挾血塊","月經挾黏液","月經挾血水"},{"月經氣味正常","月經味臭"},{"情緒狀態正常","煩躁憤怒","悲傷憂鬱","心慌","失眠","疲憊嗜睡","少氣懶言","恍惚呆滯"},
+            {"無挾帶物","月經挾血塊","月經挾黏液","月經挾血水"},{"月經氣味正常","月經味臭"},
+            {"白帶量正常","白帶量多","白帶量少","陰道乾燥"},{"白帶質正常","白帶質稀","白帶質濃"},{"白帶正常無色","白帶色白","白帶色黃"},{"白帶味正常","白帶味臭"},
+            {"情緒狀態正常","煩躁憤怒","悲傷憂鬱","心慌","失眠","疲憊嗜睡","少氣懶言","恍惚呆滯"},
             /*全身症狀*/{"無發熱","全身發熱","低熱","潮熱","手足心熱","冒汗"},{"無寒冷","畏寒"},{"無頭部症狀","頭痛","頭暈目眩","耳鳴"},{"無胸部症狀","心悸","乳房脹痛","胸脹痛","脅脹痛"},
             {"肢體狀態正常","四肢痠痛","四肢麻木","四肢無力","四肢腫脹","四肢寒冷","下肢痠痛無力","下肢腫脹"},{"臉部狀態正常","面色紅","面色黃","面色白","面色暗","面目浮腫"},
             {"無胃腹部症狀","胃悶脹","食欲低落","嘔吐","腹脹痛","小腹脹痛","小腹空墜","小腹冷","小腹灼熱"},{"口腔狀態正常","口腔破洞","舌頭破洞","口臭","口苦","口乾渴少"},
@@ -31,10 +33,12 @@ public class men_sym extends AppCompatActivity {
             {"舌苔顏色灰","舌苔顏色白","舌苔顏色黃","舌苔顏色黑"},{"舌苔厚度厚","舌苔厚度薄"},{"舌苔質地浮貼","舌苔質地粗糙","舌苔質地緊貼","舌苔質地腐垢","舌苔質地黏膩"},
             /*脈診*/{"脈利度滑","脈利度澀"},{"脈力度弱","脈力度強"},{"脈寬度寬","脈寬度細"},{"脈止率亂","脈止率定"},{"脈緊度散","脈緊度緊"},
             {"脈速度快","脈速度慢","脈速度疾"},{"脈部位中","脈部位伏","脈部位沉","脈部位浮"},{"脈長度短","脈長度長"},{"脈幅異常", "脈形中空"}};
-    String [] qq1={/*"經期",*/"經期長度","月經週期","月經顏色","月經質地","月經量","挾帶物","月經氣味","情緒狀態",
+    String [] qq1={/*"經期",*/"經期長度","月經週期","月經顏色","月經質地","月經量","挾帶物","月經氣味","帶下量","帶下質地","帶下顏色","帶下氣味","情緒狀態",
             /*全身*/"發熱","寒冷","頭部症狀","胸部症狀","肢體狀態","臉部狀態","胃腹部狀態","口腔狀態","喉嚨狀態","小便量","大便量",
             /*舌診*/"舌體顏色","舌苔顏色","舌苔厚度","舌苔質地",
             /*脈診*/ "脈利度","脈力度","脈寬度","脈止率","脈緊度","脈速度","脈部位","脈長度","其他"};
+    int [] isSingle={/*婦科症狀*/1,1,1,1,1,1,1,1,1,1,1,0,/*全身症狀*/1,1,0,0,0,0,0,0,0,1,1,/*舌診*/1,1,1,1,/*脈診症狀*/1,1,1,1,1,1,1,1,0};
+    int [] normal  ={/*婦科症狀*/1,1,0,0,0,0,0,1,1,1,1,1,/*全身症狀*/1,1,1,1,1,1,1,1,1,1,1,/*舌診*/0,0,0,0,/*脈診症狀*/0,0,0,0,0,0,0,0,0};
     CheckBox [][] qq1_v;
     String table="men_sym";
     private SQLiteDatabase db;
@@ -51,6 +55,26 @@ public class men_sym extends AppCompatActivity {
             qq1_v[i]=new CheckBox[qestion1[i].length];
         }
         produce_question1();
+        for(int i=0;i<qestion1.length;i++){
+            if(normal[i]==1) {
+                qq1_v[i][0].setChecked(true);
+                if (isSingle[i]== 0) {
+                    final int I = i;
+                    qq1_v[i][0].setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            ch_check(I, qq1_v[I][0]);
+                        }
+                    });
+                    for (int j = 1; j < qq1_v[i].length; j++) {
+                        qq1_v[i][j].setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                qq1_v[I][0].setChecked(false);
+                            }
+                        });
+                    }
+                }
+            }
+        }
     }
     public void goto_sym_search(View view){
         Intent intent = new Intent();
@@ -68,7 +92,8 @@ public class men_sym extends AppCompatActivity {
             LinearLayout Q= new LinearLayout(this);
             L.addView(Q,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
             TextView tv=new TextView(this);
-            tv.setText(qq1[i]);
+            if(isSingle[i]==1)tv.setText(qq1[i]+"(單選)");
+            else tv.setText(qq1[i]+"(複選)");
             tv.setTextSize(18);
             tv.setTextColor(Color.parseColor("#FFFFFF"));
             Q.addView(tv);
@@ -88,11 +113,13 @@ public class men_sym extends AppCompatActivity {
                 qq1_v[i][j]=ch;
                 final CheckBox ch1=ch;
                 final int I=i;
-                ch1.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        ch_check(I,ch1);
-                    }
-                });
+                if(isSingle[i]==1) {
+                    ch1.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            ch_check(I, ch1);
+                        }
+                    });
+                }
                 if(t>2){
                     Lout= new LinearLayout(this);
                     L.addView(Lout,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -160,13 +187,29 @@ public class men_sym extends AppCompatActivity {
             c.close();
             String ans = "";
             for (int i = 0; i < t; i++) {
+                float ex=1;
                 T_score[i]=0;
                 float [] weight={(float)0.1,(float)0.1,(float)0.2,(float)0.2,(float)0.4};
                 for (int j = 0; j < 5; j++) {
-                    if(total[i][j]!=0)score[i][j] = (float) num[i][j] / (float) total[i][j];
-                    else score[i][j] =0;
+                    if(total[i][j]!=0){
+                        if(num[i][j]==0)score[i][j] =0;
+                        else if(num[i][j]==total[i][j])score[i][j] =1;
+                        else {
+                            float A1=(float)1/(float)total[i][j];
+                            int A2_1=2 << num[i][j];
+                            float A2=(float)(A2_1-1)/(float)A2_1;
+                            float A3=(float)(total[i][j]-1)/(float)total[i][j];
+                            score[i][j] =A1+A2*A3;
+                            //score[i][j] = (float) num[i][j] / (float) total[i][j];
+                        }
+                    }
+                    else {
+                        score[i][j] =0;
+                        ex-=weight[j];
+                    }
                     T_score[i]+=score[i][j]*weight[j];
                 }
+                T_score[i]=T_score[i]/ex;
             }
             //sort(t,name,T_score,total,num,score);
             for(int i=0;i<t;i++){
