@@ -207,6 +207,7 @@ public class men_sym extends AppCompatActivity {
                         score[i][j] =0;
                         ex-=weight[j];
                     }
+
                     T_score[i]+=score[i][j]*weight[j];
                 }
                 T_score[i]=T_score[i]/ex;
