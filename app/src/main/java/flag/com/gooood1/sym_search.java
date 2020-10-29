@@ -26,6 +26,18 @@ public class sym_search extends AppCompatActivity {
                 goto_breast();
             }
         });
+        LinearLayout geni = (LinearLayout)findViewById(R.id.geni);
+        geni.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                goto_geni();
+            }
+        });
+        LinearLayout post = (LinearLayout)findViewById(R.id.post);
+        post.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                goto_post();
+            }
+        });
     }
 
     public void goto_men(){
@@ -46,10 +58,29 @@ public class sym_search extends AppCompatActivity {
         startActivity(intent);
         sym_search.this.finish();
     }
+    public void goto_geni(){
+        Intent intent = new Intent();
+        intent.setClass(sym_search.this, men_sym.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "前陰疾病");
+        intent.putExtras(bundle);
+        startActivity(intent);
+        sym_search.this.finish();
+    }
+    public void goto_post(){
+        Intent intent = new Intent();
+        intent.setClass(sym_search.this, men_sym.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "產後病");
+        intent.putExtras(bundle);
+        startActivity(intent);
+        sym_search.this.finish();
+    }
     public void goto_home(View view){
         Intent intent = new Intent();
         intent.setClass(sym_search.this, home.class);
         startActivity(intent);
         sym_search.this.finish();
     }
+
 }
