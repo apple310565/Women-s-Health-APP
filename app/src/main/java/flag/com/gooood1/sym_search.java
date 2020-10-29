@@ -20,11 +20,35 @@ public class sym_search extends AppCompatActivity {
                 goto_men();
             }
         });
+        LinearLayout breast = (LinearLayout)findViewById(R.id.breast);
+        breast.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                goto_breast();
+            }
+        });
     }
 
     public void goto_men(){
         Intent intent = new Intent();
         intent.setClass(sym_search.this, men_sym.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "月經病");
+        intent.putExtras(bundle);
+        startActivity(intent);
+        sym_search.this.finish();
+    }
+    public void goto_breast(){
+        Intent intent = new Intent();
+        intent.setClass(sym_search.this, men_sym.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "乳病");
+        intent.putExtras(bundle);
+        startActivity(intent);
+        sym_search.this.finish();
+    }
+    public void goto_home(View view){
+        Intent intent = new Intent();
+        intent.setClass(sym_search.this, home.class);
         startActivity(intent);
         sym_search.this.finish();
     }

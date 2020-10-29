@@ -5,239 +5,300 @@
     android:orientation="vertical"
     android:padding="5dp">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/textView39"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="型號: "
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-        <RadioGroup
-            android:id="@+id/v_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="一般" />
-
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="量多" />
-
-            <RadioButton
-                android:id="@+id/radioButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="夜用" />
-
-            <RadioButton
-                android:id="@+id/radioButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="加長夜用 " />
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/textView40"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="滿度:  "
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-        <RadioGroup
-            android:id="@+id/v_full"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/full1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1/5" />
-
-            <RadioButton
-                android:id="@+id/full2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2/5" />
-
-            <RadioButton
-                android:id="@+id/full3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3/5" />
-
-            <RadioButton
-                android:id="@+id/full4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4/5" />
-
-            <RadioButton
-                android:id="@+id/full5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5/5" />
-        </RadioGroup>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/textView41"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="質地:  "
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-        <RadioGroup
-            android:id="@+id/v_quality"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/q1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="清稀" />
-
-            <RadioButton
-                android:id="@+id/q2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="正常" />
-
-            <RadioButton
-                android:id="@+id/q3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="黏稠" />
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_vertical"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/textView42"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="攜帶物: "
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-        <RadioGroup
-            android:id="@+id/v_carry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/carry1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="無" />
-
-            <RadioButton
-                android:id="@+id/carry2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="黏液" />
-
-            <RadioButton
-                android:id="@+id/carry3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="血塊" />
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#90FFFFFF"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/textView47"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="經色: "
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="700px"
-            android:layout_height="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <SeekBar
-                android:id="@+id/seekBar"
-                style="@style/Widget.AppCompat.SeekBar"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:background="@drawable/color2"
-                android:max="20"
-                android:progress="1"
-                android:progressDrawable="@color/cardview_shadow_end_color" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="型號: "
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <RadioGroup
+                        android:id="@+id/v_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/radioButton"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="一般" />
+
+                                <RadioButton
+                                    android:id="@+id/radioButton2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="量多" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/radioButton3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="夜用" />
+
+                                <RadioButton
+                                    android:id="@+id/radioButton4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="加長夜用 " />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="滿度:  "
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <RadioGroup
+                        android:id="@+id/v_full"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/full1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1/5" />
+
+                                <RadioButton
+                                    android:id="@+id/full2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2/5" />
+
+                                <RadioButton
+                                    android:id="@+id/full3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="3/5" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+                                <RadioButton
+                                    android:id="@+id/full4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="4/5" />
+
+                                <RadioButton
+                                    android:id="@+id/full5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="5/5" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/textView41"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="質地:  "
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <RadioGroup
+                        android:id="@+id/v_quality"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/q1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="清稀" />
+
+                        <RadioButton
+                            android:id="@+id/q2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="正常" />
+
+                        <RadioButton
+                            android:id="@+id/q3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="黏稠" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/textView42"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="攜帶物: "
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <RadioGroup
+                        android:id="@+id/v_carry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/carry1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="無" />
+
+                        <RadioButton
+                            android:id="@+id/carry2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="黏液" />
+
+                        <RadioButton
+                            android:id="@+id/carry3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="血塊" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#90FFFFFF"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/textView47"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="經色: "
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <LinearLayout
+                        android:layout_width="700px"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal">
+
+                        <SeekBar
+                            android:id="@+id/seekBar"
+                            style="@style/Widget.AppCompat.SeekBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp"
+                            android:background="@drawable/color2"
+                            android:max="20"
+                            android:progress="1"
+                            android:progressDrawable="@color/cardview_shadow_end_color" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView48"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="20dp"
+                    android:text="質地分法: " />
+
+                <TextView
+                    android:id="@+id/textView49"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="1. 正常: 質地如豆漿。\n2. 黏稠: 質地如果凍或軟爛的紅豆湯。\n3. 清稀: 質地清如水。" />
+
+                <TextView
+                    android:id="@+id/textView50"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="PS. 經色以衛生紙上綱擦出來的為準" />
+
+            </LinearLayout>
         </LinearLayout>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView48"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="質地分法: "
-        android:paddingTop="20dp"
-        android:paddingLeft="20dp"/>
-
-    <TextView
-        android:id="@+id/textView49"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:text="1. 正常: 質地如豆漿。\n2. 黏稠: 質地如果凍或軟爛的紅豆湯。\n3. 清稀: 質地清如水。" />
-
-    <TextView
-        android:id="@+id/textView50"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:text="PS. 經色以衛生紙上綱擦出來的為準" />
+    </ScrollView>
 
 </LinearLayout>
