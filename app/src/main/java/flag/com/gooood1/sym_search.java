@@ -30,6 +30,8 @@ public class sym_search extends AppCompatActivity {
         geni.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 goto_geni();
+
+
             }
         });
         LinearLayout post = (LinearLayout)findViewById(R.id.post);
