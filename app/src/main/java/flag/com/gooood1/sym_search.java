@@ -40,6 +40,12 @@ public class sym_search extends AppCompatActivity {
                 goto_post();
             }
         });
+        LinearLayout gest = (LinearLayout)findViewById(R.id.gest);
+        gest.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                goto_gest();
+            }
+        });
     }
 
     public void goto_men(){
@@ -74,6 +80,15 @@ public class sym_search extends AppCompatActivity {
         intent.setClass(sym_search.this, men_sym.class);
         Bundle bundle = new Bundle();
         bundle.putString("title", "產後病");
+        intent.putExtras(bundle);
+        startActivity(intent);
+        sym_search.this.finish();
+    }
+    public void goto_gest(){
+        Intent intent = new Intent();
+        intent.setClass(sym_search.this, men_sym.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "妊娠病");
         intent.putExtras(bundle);
         startActivity(intent);
         sym_search.this.finish();
