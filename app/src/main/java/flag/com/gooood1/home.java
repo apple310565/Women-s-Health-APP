@@ -275,7 +275,7 @@ public class home extends AppCompatActivity {
     }
     public void load_acup(){
         try {
-            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("ACUP.csv") );
+            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("AUCP.csv") );
             //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
             BufferedReader bufReader = new BufferedReader(inputReader);
             String line="";
@@ -291,6 +291,7 @@ public class home extends AppCompatActivity {
                 String Source=Eat[7];
                 String subset=Eat[8];
                 String note=Eat[9];
+                String link=Eat[12];
                 int P = Integer.parseInt(Eat[10]);
                 int D = Integer.parseInt(Eat[11]);
                 int f=0;
@@ -308,6 +309,7 @@ public class home extends AppCompatActivity {
                 cv.put("Source",Source);
                 cv.put("theory",theory);
                 cv.put("note",note);
+                cv.put("link",link);
                 db.insert("ACUP",null,cv);
             }
         } catch (Exception e) {

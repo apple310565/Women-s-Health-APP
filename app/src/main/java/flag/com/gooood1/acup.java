@@ -123,6 +123,11 @@ public class acup extends AppCompatActivity {
                 if (!c.getString(8).equals("NULL")) str += c.getString(8) + "\n\n";
                 TextView article = (TextView) findViewById(R.id.article);
                 article.setText(str);
+                TextView link=(TextView)findViewById(R.id.link);
+                if(!c.getString(13).equals("NULL")){
+                    link.setText(c.getString(13));
+                }
+                else link.setText("");
 
                 TextView note =(TextView)findViewById(R.id.note);
                 String N="";
@@ -172,6 +177,11 @@ public class acup extends AppCompatActivity {
         TextView article=(TextView)findViewById(R.id.article);
         article.setText(str);
 
+        TextView link=(TextView)findViewById(R.id.link);
+        if(!c.getString(13).equals("NULL")){
+            link.setText(c.getString(13));
+        }
+        else link.setText("");
 
         TextView note =(TextView)findViewById(R.id.note);
         String N="";

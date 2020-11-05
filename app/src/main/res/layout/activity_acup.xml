@@ -156,6 +156,14 @@
                     android:layout_height="wrap_content"
                     android:text="具體內容將顯示於此"
                     android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/link"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web"
+                    android:textColor="#0170C8"
+                    android:textSize="18sp" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
