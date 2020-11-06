@@ -460,6 +460,7 @@ public class men_sym extends AppCompatActivity {
                     }
                 }
             }
+            if(f==1)sym+="。\n";
         }
         ContentValues cv = new ContentValues();
         cv.put("sym",sym);

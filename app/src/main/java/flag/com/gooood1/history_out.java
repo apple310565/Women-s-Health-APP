@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +37,7 @@ public class history_out extends AppCompatActivity {
         try {
             for (int i = 0; i < n; i++) {
                 //load
-                int id = history.getInt(0);
+                final int id = history.getInt(0);
                 String date = history.getString(3);
                 String main = history.getString(1);
                 String NOTE = history.getString(5);
@@ -77,10 +79,27 @@ public class history_out extends AppCompatActivity {
                 note.setText(NOTE);
                 L3.addView(note, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 Lin.addView(L3, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
+                final LinearLayout L=Lin;
+                L.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        goto_history_in(id);
+                    }
+                });
+
                 history.moveToNext();
             }
         }catch (Exception e){
             Toast.makeText(this,e.toString(),Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void goto_history_in(final  int id){
+        Intent intent = new Intent();
+        intent.setClass(history_out.this, history_in.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", id);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
