@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,13 +12,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Arrays;
+import java.util.Calendar;
 
 public class men_sym extends AppCompatActivity {
     String [][] qestion1={/*{"經期正常","經期提前","經期延後","經來先後無定期"},*/{"經期長度正常","月經經期過長","月經經期過短"},{"月經週期正常","月經先期","月經後期","月經先後不定期"},
@@ -40,9 +44,12 @@ public class men_sym extends AppCompatActivity {
     int [] isSingle={/*婦科症狀*/1,1,1,1,1,1,1,1,1,1,1,0,/*全身症狀*/1,1,0,0,0,0,0,0,0,1,1,/*舌診*/1,1,1,1,/*脈診症狀*/1,1,1,1,1,1,1,1,0};
     int [] normal  ={/*婦科症狀*/1,1,1,1,1,1,1,1,1,1,1,1,/*全身症狀*/1,1,1,1,1,1,1,1,1,1,1,/*舌診*/0,1,1,1,/*脈診症狀*/1,1,1,0,1,1,1,1,0};
     CheckBox [][] qq1_v;
+    String title;
     String table="men_sym";
     private SQLiteDatabase db;
     private StdDBHelper dbHelper;
+    int ID=-1;
+    int isch=0;
     @SuppressLint("ShowToast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +61,12 @@ public class men_sym extends AppCompatActivity {
         // 取得前一個Activity傳過來的資料
         Bundle bundle = this.getIntent().getExtras();
         // 將取得的Bundle資料設定
-        String title = bundle.getString("title");
+        title = bundle.getString("title");
         change(title);
+
+        Cursor history=db.rawQuery("Select * from history",null);
+        history.moveToFirst();
+        ID=history.getCount()+1;
 
         qq1_v=new CheckBox[qestion1.length][];
         for(int i=0;i<qestion1.length;i++){
@@ -84,10 +95,13 @@ public class men_sym extends AppCompatActivity {
         }
     }
     public void goto_sym_search(View view){
-        Intent intent = new Intent();
-        intent.setClass(men_sym.this, sym_search.class);
-        startActivity(intent);
-        men_sym.this.finish();
+        if(isch==1)note_store();
+        else{
+            Intent intent = new Intent();
+            intent.setClass(men_sym.this, sym_search.class);
+            startActivity(intent);
+            men_sym.this.finish();
+        }
     }
     public void produce_question1(){
         LinearLayout LL=(LinearLayout)findViewById(R.id.L1);
@@ -145,6 +159,7 @@ public class men_sym extends AppCompatActivity {
 
     public void count(View view){
         try {
+            isch=1;
             Cursor c = db.rawQuery("select * from " + table, null);
             String str = "";
             c.moveToFirst();
@@ -257,6 +272,8 @@ public class men_sym extends AppCompatActivity {
                         }
                     })
                     .show();
+
+            Store(ans);
         }catch (Exception e){
             new AlertDialog.Builder(men_sym.this)
                     .setIcon(R.drawable.ic_launcher_background)
@@ -417,4 +434,95 @@ public class men_sym extends AppCompatActivity {
         }
 
     }
+
+    public void Store(String ans){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month =  calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        String date=Integer.toString(year);
+        if(month+1<10)date+="/0"+Integer.toString(month+1);
+        else date+="/"+Integer.toString(month+1);
+        if(day<10)date+="/0"+Integer.toString(day);
+        else date+="/"+Integer.toString(day);
+
+        String sym="";
+        for(int i=0;i<qq1.length;i++){
+            int f=0;
+            for(int j=0;j<qq1_v[i].length;j++){
+                if(qq1_v[i][j].isChecked()) {
+                    if (f == 0) {
+                        sym += qq1[i] + ": " + qestion1[i][j];
+                        f = 1;
+                    }
+                    else{
+                        sym+="、"+qestion1[i][j];
+                    }
+                }
+            }
+        }
+        ContentValues cv = new ContentValues();
+        cv.put("sym",sym);
+        cv.put("ans",ans);
+        cv.put("id",ID);
+        cv.put("main",title);
+        cv.put("date",date);
+        cv.put("note","");
+        db.insert("history",null,cv);
+        db.update("history",cv,"id='"+ID+"'",null);
+    }
+
+    public void note_store(){
+        new AlertDialog.Builder(men_sym.this)
+                .setTitle("Message")
+                .setMessage("本次的辨證內容已儲存，請問你要為此次的辨證增加備註嗎?")
+                .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        LayoutInflater inflater = LayoutInflater.from(men_sym.this);
+                        final View v = inflater.inflate(R.layout.qanda, null);
+                        final EditText et=v.findViewById(R.id.editText3);
+                        new AlertDialog.Builder(men_sym.this)
+                                .setTitle("請填寫備註內容")
+                                .setView(v)
+                                .setPositiveButton("送出", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        ContentValues cv = new ContentValues();
+                                        cv.put("id",ID);
+                                        cv.put("note",et.getText().toString());
+                                        db.insert("history",null,cv);
+                                        db.update("history",cv,"id='"+ID+"'",null);
+
+                                        Intent intent = new Intent();
+                                        intent.setClass(men_sym.this, sym_search.class);
+                                        startActivity(intent);
+                                        men_sym.this.finish();
+
+                                    }
+                                })
+                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent();
+                                        intent.setClass(men_sym.this, sym_search.class);
+                                        startActivity(intent);
+                                        men_sym.this.finish();
+                                    }
+                                })
+                                .show();
+                    }
+                })
+                .setNegativeButton("否", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.setClass(men_sym.this, sym_search.class);
+                        startActivity(intent);
+                        men_sym.this.finish();
+                    }
+                })
+                .show();
+    }
+
 }

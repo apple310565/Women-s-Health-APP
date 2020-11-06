@@ -99,5 +99,10 @@ public class sym_search extends AppCompatActivity {
         startActivity(intent);
         sym_search.this.finish();
     }
+    public void goto_history(View view){
+        Intent intent = new Intent();
+        intent.setClass(sym_search.this, history_out.class);
+        startActivity(intent);
+    }
 
 }
