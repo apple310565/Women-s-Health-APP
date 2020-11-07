@@ -67,6 +67,10 @@ public class StdDBHelper extends SQLiteOpenHelper {
 
         /*歷史查詢*/
         db.execSQL("create table history(id int primary key,main Text,sym Text,date Text,ans Text,note Text)");
+
+        /*健康資訊與經期紀錄之連動好棒棒*/
+        db.execSQL("create table link(sym_name Text,_name Text,db_name Text,primary key(sym_name,_name))");
+        db.execSQL("create table link_closed(_date Text primary key)");//使用者該日不想再被提醒
     }
     @Override
     public void onUpgrade(SQLiteDatabase db,int oldVersion,int Version){

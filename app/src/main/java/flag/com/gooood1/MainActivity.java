@@ -383,8 +383,8 @@ public class MainActivity extends AppCompatActivity {
             if (i_E == 1) END();
             Toast.makeText(this, "感謝親的紀錄~ (,,・ω・,,)", Toast.LENGTH_SHORT).show();
             //SqlQuery("SELECT * FROM "+DATABASE_TABLE);
-
-            tampon_veiw();
+            if(islink_closed()==0)link();
+            //tampon_veiw();
         }catch (Exception e){
             Toast.makeText(this, "sumbit error: "+e.toString(), Toast.LENGTH_SHORT).show();
         }
@@ -1383,6 +1383,97 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+    public void link(){
+        CheckBox [] link_ch=new CheckBox[4];
+        final String [] link_A={"經痛","痘痘","頭痛","情緒不受控"};
+        link_ch[0]=(CheckBox)findViewById(R.id.checkBox);
+        link_ch[1]=(CheckBox)findViewById(R.id.checkBox11);
+        link_ch[2]=(CheckBox)findViewById(R.id.checkBox9);
+        link_ch[3]=(CheckBox)findViewById(R.id.checkBox6);
+
+        String s1="";
+        String s2="";
+        int f=0,f2=0;
+        for(int i=0;i<link_ch.length;i++){
+            if(link_ch[i].isChecked()){
+                f2=0;
+                String sym_name=link_A[i];
+                Cursor c=db.rawQuery("select * from link where sym_name = '"+sym_name+"'",null);
+                c.moveToFirst();
+                for(int j=0;j<c.getCount();j++){
+                    Cursor L=db.rawQuery("select _name from "+c.getString(2)+" where _name = '"+c.getString(1)+"' AND favor = 0",null);
+                    L.moveToFirst();
+                    if(L.getCount()>0){
+                        f=1;
+                        if(f2==0)s2+=trans(c.getString(2))+": "+L.getString(0);
+                        else s2+="、"+L.getString(0);
+                        f2=1;
+                    }
+                    L.close();
+                }
+                if(f2==1){
+                    s2+="。\n";
+                    if(!s1.equals(""))s1+="、"+sym_name;
+                    else s1+=sym_name;
+                }
+                c.close();
+            }
+        }
+        final CheckBox [] link_ch2=link_ch;
+        if(f==1) {
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Message")
+                    .setMessage("親愛的使用者，你所勾選的症狀:" + s1 + "，有相關的改善方法在健康資訊站中。如:\n" + s2 + "\n請問是否要將其加入收藏?")
+                    .setPositiveButton("是。", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            for (int i = 0; i < link_ch2.length; i++) {
+                                if (link_ch2[i].isChecked()) {
+                                    String sym_name = link_A[i];
+                                    Cursor c = db.rawQuery("select * from link where sym_name = '" + sym_name + "'", null);
+                                    c.moveToFirst();
+                                    for (int j = 0; j < c.getCount(); j++) {
+                                        Cursor L = db.rawQuery("select _name from " + c.getString(2) + " where _name = '" + c.getString(1) + "' AND favor = 0", null);
+                                        L.moveToFirst();
+                                        if (L.getCount() > 0) {
+                                            ContentValues cv = new ContentValues();
+                                            cv.put("favor", 1);
+                                            db.update(c.getString(2), cv, " _name = '" + c.getString(1) + "'", null);
+                                        }
+                                        L.close();
+                                    }
+                                    c.close();
+                                }
+                            }
+                        }
+                    })
+                    .setNegativeButton("否，且今日不再提示。", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ContentValues cv = new ContentValues();
+                            cv.put("_date", m1DisplayDate.getText().toString());
+                            db.insert("link_closed", null, cv);
+                        }
+                    })
+                    .show();
+        }
+    }
+
+    public int islink_closed(){
+
+        Cursor c=db.rawQuery("select * from link_closed where _date='"+m1DisplayDate.getText().toString()+"'",null);
+        c.moveToFirst();
+        int t=c.getCount();
+        c.close();
+        if(t>0)return 1;
+        return  0;
+    }
+    public String trans(String s){
+        if(s.equals("EAT"))return  "飲食";
+        else if(s.equals("ACUP"))return  "穴道按摩";
+        else if(s.equals("SPORT"))return  "運動";
+        return  s;
     }
 }
 
