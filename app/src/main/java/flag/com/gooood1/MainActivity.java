@@ -656,7 +656,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-            tampon_veiw();
+            //tampon_veiw();
         }
         else {
             flag2=0;
@@ -1378,6 +1378,7 @@ public class MainActivity extends AppCompatActivity {
                             cv.put("t",T);
                             cv.put("time",TIME);
                             db.insert("Tampon",null,cv);
+                            tampon_veiw();
                             submit_click();
                         }
                     }
@@ -1406,8 +1407,8 @@ public class MainActivity extends AppCompatActivity {
                     L.moveToFirst();
                     if(L.getCount()>0){
                         f=1;
-                        if(f2==0)s2+=trans(c.getString(2))+": "+L.getString(0);
-                        else s2+="、"+L.getString(0);
+                        if(f2==0)s2+=sym_name+": "+L.getString(0)+"("+trans(c.getString(2))+")";
+                        else s2+="、"+L.getString(0)+"("+trans(c.getString(2))+")";
                         f2=1;
                     }
                     L.close();

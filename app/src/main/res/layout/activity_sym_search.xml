@@ -66,6 +66,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/men2"
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="#A3FFFFFF"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp"
+                        android:text="月經病使用原證型"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                        android:textColor="#636363" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/men"

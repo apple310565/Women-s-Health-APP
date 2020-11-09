@@ -20,6 +20,12 @@ public class sym_search extends AppCompatActivity {
                 goto_men();
             }
         });
+        LinearLayout men2 = (LinearLayout)findViewById(R.id.men2);
+        men2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                goto_men2();
+            }
+        });
         LinearLayout breast = (LinearLayout)findViewById(R.id.breast);
         breast.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -53,6 +59,15 @@ public class sym_search extends AppCompatActivity {
         intent.setClass(sym_search.this, men_sym.class);
         Bundle bundle = new Bundle();
         bundle.putString("title", "月經病");
+        intent.putExtras(bundle);
+        startActivity(intent);
+        sym_search.this.finish();
+    }
+    public void goto_men2(){
+        Intent intent = new Intent();
+        intent.setClass(sym_search.this, men_sym.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", "月經病2");
         intent.putExtras(bundle);
         startActivity(intent);
         sym_search.this.finish();

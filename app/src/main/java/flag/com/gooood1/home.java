@@ -86,6 +86,7 @@ public class home extends AppCompatActivity {
             load_post_sym();
             load_gest_sym();
             load_link();
+            load_men_sym2();
             //初始化
 
             Calendar calendar = Calendar.getInstance();
@@ -440,6 +441,27 @@ public class home extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this,"men_sym_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void load_men_sym2(){
+        try {
+            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("rr2.csv") );
+            //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            while((line = bufReader.readLine()) != null) {
+                String[] Day = line.split(",");
+                ContentValues cv = new ContentValues();
+                cv.put("name",Day[0]);
+                for(int i=1;i<=5;i++){
+                    cv.put("A"+Integer.toString(i),Day[i]);
+                }
+                db.insert("men_sym2",null,cv);
+                db.update("men_sym2",cv,"name ='"+Day[0]+"'",null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,"men_sym2_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
         }
     }
     public void load_breast_sym(){

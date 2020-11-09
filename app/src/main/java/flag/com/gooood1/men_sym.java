@@ -432,6 +432,11 @@ public class men_sym extends AppCompatActivity {
             isSingle=isSingle2;
             normal=normal2;
         }
+        else if(title.equals("月經病2")){
+            TextView Title=(TextView)findViewById(R.id.Title);
+            Title.setText("月經病2辨證");
+            table="men_sym2";
+        }
 
     }
 
@@ -450,7 +455,7 @@ public class men_sym extends AppCompatActivity {
         for(int i=0;i<qq1.length;i++){
             int f=0;
             for(int j=0;j<qq1_v[i].length;j++){
-                if(qq1_v[i][j].isChecked()) {
+                if(qq1_v[i][j].isChecked()&&!(normal[i]==1&&j==0)) {
                     if (f == 0) {
                         sym += qq1[i] + ": " + qestion1[i][j];
                         f = 1;
