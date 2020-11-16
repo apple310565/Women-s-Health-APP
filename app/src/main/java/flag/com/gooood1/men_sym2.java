@@ -344,11 +344,13 @@ public class men_sym2 extends AppCompatActivity {
                     /*脈診*/ "脈利度", "脈力度", "脈寬度", "脈止率", "脈緊度", "脈速度", "脈部位", "脈長度", "其他"};
             int[] isSingle2 = {/*婦科症狀*/0, 0, 0, 1, 0, 0, 0, 0,/*全身症狀*/1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0,/*舌診*/1, 1, 1, 1,/*脈診症狀*/1, 1, 1, 1, 1, 1, 1, 1, 0};
             int[] normal2 = {/*婦科症狀*/1, 1, 1, 0, 1, 1, 1, 1,/*全身症狀*/1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,/*舌診*/0, 1, 1, 1,/*脈診症狀*/1, 1, 1, 0, 1, 1, 1, 1, 0};
-            table="breast_sym";
+            String [] filter2={"無","經前乳脹","乳泣","產後缺乳","產後乳汁自出","乳衄","乳癖"};
+            table="breast_sym2";
             qestion1=qestion2;
             qq1=qq2;
             isSingle=isSingle2;
             normal=normal2;
+            filter=filter2;
         }
         else if(title.equals("前陰疾病"))
         {
@@ -372,11 +374,13 @@ public class men_sym2 extends AppCompatActivity {
                     /*脈診*/ "脈利度","脈力度","脈寬度","脈止率","脈緊度","脈速度","脈部位","脈長度","其他"};
             int [] isSingle2={/*婦科症狀*/1,0,0,1,0,1,0,1,1,1,0,0,0,/*全身症狀*/0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,/*舌診*/1,1,1,1,/*脈診症狀*/1,1,1,1,1,1,1,1,0};
             int [] normal2  ={/*婦科症狀*/1,1,1,1,1,1,1,1,1,1,1,1,1,/*全身症狀*/1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,/*舌診*/0,1,1,1,/*脈診症狀*/1,1,1,0,1,1,1,1,0};
-            table="geni_sym";
+            String [] filter2={"無","陰挺","陰癢","陰瘡","陰痛","陰吹","女陰白色病變"};
+            table="geni_sym2";
             qestion1=qestion2;
             qq1=qq2;
             isSingle=isSingle2;
             normal=normal2;
+            filter=filter2;
         }
         else if(title.equals("產後病"))
         {
@@ -395,11 +399,13 @@ public class men_sym2 extends AppCompatActivity {
                     /*脈診*/ "脈利度","脈力度","脈寬度","脈止率","脈緊度","脈速度","脈部位","脈長度","其他"};
             int [] isSingle2={/*婦科症狀*/0,0,1,1,1,0,0,0,0,1,0,1,0,0,0,0,0,0,/*全身症狀*/0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,/*舌診*/1,1,1,1,/*脈診症狀*/1,1,1,1,1,1,1,1,0};
             int [] normal2  ={/*婦科症狀*/1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,/*全身症狀*/1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,/*舌診*/0,1,1,1,/*脈診症狀*/1,1,1,0,1,1,1,1,0};
-            table="post_sym";
+            String [] filter2={"無","產後血暈","產後痙證","產後腹痛","惡露不絕","產後排尿異常","產後自汗盜汗","產後身痛"};
+            table="post_sym2";
             qestion1=qestion2;
             qq1=qq2;
             isSingle=isSingle2;
             normal=normal2;
+            filter=filter2;
         }
         else if(title.equals("妊娠病")){
             TextView Title=(TextView)findViewById(R.id.Title);
@@ -454,14 +460,14 @@ public class men_sym2 extends AppCompatActivity {
             int [] isSingle2={/*婦科症狀*/0,0,1,0,0,1,1,0,1,0,0,0,0,0,/*全身症狀*/0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,/*舌診*/1,1,1,1,/*脈診症狀*/1,1,1,1,1,1,1,1,0};
 
             int [] normal2  ={/*婦科症狀*/0,0,0,1,1,1,1,0,1,1,1,0,1,1,/*全身症狀*/1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,/*舌診*/0,1,1,1,/*脈診症狀*/1,1,1,0,1,1,1,1,0};
-            table="gest_sym";
+            String [] filter2={"無","惡阻","妊娠腹痛","胎漏。胎動不安","墮胎。小產","滑胎","胎萎不長","胎死不下","子煩","子腫","妊娠眩暈","子癇","子懸","子嗽","子喑","子淋","妊娠小便不通","孕癰","難產"};
+            table="gest_sym2";
             qestion1=qestion2;
             qq1=qq2;
             isSingle=isSingle2;
             normal=normal2;
+            filter=filter2;
         }
-
-
     }
 
     public void Store(String ans){

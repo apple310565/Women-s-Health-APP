@@ -87,6 +87,10 @@ public class home extends AppCompatActivity {
             load_gest_sym();
             load_link();
             load_men_sym2();
+            load_breast_sym2();
+            load_geni_sym2();
+            load_post_sym2();
+            load_gest_sym2();
             //初始化
 
             Calendar calendar = Calendar.getInstance();
@@ -483,6 +487,27 @@ public class home extends AppCompatActivity {
             Toast.makeText(this,"breast_sym_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
         }
     }
+    public void load_breast_sym2(){
+        try {
+            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("breast2.csv") );
+            //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            while((line = bufReader.readLine()) != null) {
+                String[] Day = line.split(",");
+                ContentValues cv = new ContentValues();
+                cv.put("name",Day[0]);
+                for(int i=1;i<=5;i++){
+                    cv.put("A"+Integer.toString(i),Day[i]);
+                }
+                db.insert("breast_sym2",null,cv);
+                db.update("breast_sym2",cv,"name ='"+Day[0]+"'",null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,"breast_sym2_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
     public void load_geni_sym(){
         try {
             InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("geni.csv") );
@@ -502,6 +527,27 @@ public class home extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this,"geni_sym_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void load_geni_sym2(){
+        try {
+            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("geni2.csv") );
+            //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            while((line = bufReader.readLine()) != null) {
+                String[] Day = line.split(",");
+                ContentValues cv = new ContentValues();
+                cv.put("name",Day[0]);
+                for(int i=1;i<=5;i++){
+                    cv.put("A"+Integer.toString(i),Day[i]);
+                }
+                db.insert("geni_sym2",null,cv);
+                db.update("geni_sym2",cv,"name ='"+Day[0]+"'",null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,"geni_sym2_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
         }
     }
     public void load_post_sym(){
@@ -525,6 +571,27 @@ public class home extends AppCompatActivity {
             Toast.makeText(this,"post_sym_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
         }
     }
+    public void load_post_sym2(){
+        try {
+            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("post2.csv") );
+            //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            while((line = bufReader.readLine()) != null) {
+                String[] Day = line.split(",");
+                ContentValues cv = new ContentValues();
+                cv.put("name",Day[0]);
+                for(int i=1;i<=5;i++){
+                    cv.put("A"+Integer.toString(i),Day[i]);
+                }
+                db.insert("post_sym2",null,cv);
+                db.update("post_sym2",cv,"name ='"+Day[0]+"'",null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,"post_sym2_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
     public void load_gest_sym(){
         try {
             InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("gest.csv") );
@@ -546,7 +613,27 @@ public class home extends AppCompatActivity {
             Toast.makeText(this,"gest_sym_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
         }
     }
-
+    public void load_gest_sym2(){
+        try {
+            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("gest2.csv") );
+            //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            while((line = bufReader.readLine()) != null) {
+                String[] Day = line.split(",");
+                ContentValues cv = new ContentValues();
+                cv.put("name",Day[0]);
+                for(int i=1;i<=5;i++){
+                    cv.put("A"+Integer.toString(i),Day[i]);
+                }
+                db.insert("gest_sym2",null,cv);
+                db.update("gest_sym2",cv,"name ='"+Day[0]+"'",null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,"gest_sym2_LOAD: "+e.toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
     public void load_link(){
         try {
             InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("link.csv") );

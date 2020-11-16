@@ -59,12 +59,16 @@ public class StdDBHelper extends SQLiteOpenHelper {
                 ",primary key(_ID,_date))");
 
         /*辨證資料*/
-        db.execSQL("create table men_sym(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*月經病*/
-        db.execSQL("create table breast_sym(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*乳病*/
-        db.execSQL("create table geni_sym(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*前陰疾病*/
-        db.execSQL("create table post_sym(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*產後病*/
-        db.execSQL("create table gest_sym(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*妊娠病*/
-        db.execSQL("create table men_sym2(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*月經病使用原證候*/
+        db.execSQL("create table men_sym(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*月經病使用內科證候*/
+        db.execSQL("create table breast_sym(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*乳病使用內科證候*/
+        db.execSQL("create table geni_sym(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*前陰疾病使用內科證候*/
+        db.execSQL("create table post_sym(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*產後病使用內科證候*/
+        db.execSQL("create table gest_sym(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*妊娠病使用內科證候*/
+        db.execSQL("create table men_sym2(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*月經病使用婦科證候*/
+        db.execSQL("create table breast_sym2(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*乳病使用婦科證候*/
+        db.execSQL("create table geni_sym2(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*前陰疾病使用婦科證候*/
+        db.execSQL("create table post_sym2(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*產後病使用婦科證候*/
+        db.execSQL("create table gest_sym2(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*妊娠病使用婦科證候*/
 
         /*歷史查詢*/
         db.execSQL("create table history(id int primary key,main Text,sym Text,date Text,ans Text,note Text)");
