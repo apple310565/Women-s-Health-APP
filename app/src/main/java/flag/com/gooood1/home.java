@@ -212,30 +212,28 @@ public class home extends AppCompatActivity {
         home.this.finish();
     }
     public void goto_sym_search(){
-        Intent intent = new Intent();
-        intent.setClass(home.this, sym_search.class);
-        startActivity(intent);
-        home.this.finish();
+        new AlertDialog.Builder(home.this)
+                .setTitle("請問要使用哪種證候")
+                .setPositiveButton("內科證候", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.setClass(home.this, sym_search.class);
+                        startActivity(intent);
+                        home.this.finish();
+                    }
+                })
+                .setNegativeButton("婦科證候", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.setClass(home.this, sym_search2.class);
+                        startActivity(intent);
+                        home.this.finish();
+                    }
+                })
+                .show();
     }
-
-    public void Nan(){
-        Toast.makeText(this,"還未完工，敬請期待~ (,,・ω・,,)",Toast.LENGTH_SHORT).show();
-    }
-    public void change_color(int color){
-        Button bt1 = (Button)findViewById(R.id.button3);//純色
-        TextView tv1 =(TextView)findViewById(R.id.textView2) ;//純色
-        TextView tv2 =(TextView)findViewById(R.id.textView12) ;//純色
-        LinearLayout l1 = (LinearLayout)findViewById(R.id.person); //淺色
-        Button bt2 =(Button)findViewById(R.id.button4) ;//淺色
-        ConstraintLayout C = (ConstraintLayout)findViewById(R.id.CC) ;
-        String [] pure ={"#F37C57","#E91E63","#FF5A71F1"};
-        String [] ta ={"#B4F37C57","#FFFF699C","#A4536CF6"};
-        String [] bg ={"@drawable/background","@drawable/background_pink","@drawable/background_blue"};
-        l1.setBackgroundColor(Color.parseColor("#B4F37C57"));
-
-
-    }
-
     public void load_eat(){
         try {
             InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("EAT.csv") );

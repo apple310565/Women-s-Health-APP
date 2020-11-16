@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-public class sym_search extends AppCompatActivity {
+public class sym_search2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sym_search);
+        setContentView(R.layout.activity_sym_search2);
 
         LinearLayout men = (LinearLayout)findViewById(R.id.men);
         men.setOnClickListener(new View.OnClickListener() {
@@ -50,58 +50,58 @@ public class sym_search extends AppCompatActivity {
 
     public void goto_men(){
         Intent intent = new Intent();
-        intent.setClass(sym_search.this, men_sym.class);
+        intent.setClass(sym_search2.this, men_sym2.class);
         Bundle bundle = new Bundle();
         bundle.putString("title", "月經病");
         intent.putExtras(bundle);
         startActivity(intent);
-        sym_search.this.finish();
+        sym_search2.this.finish();
     }
     public void goto_breast(){
         Intent intent = new Intent();
-        intent.setClass(sym_search.this, men_sym.class);
+        intent.setClass(sym_search2.this, men_sym2.class);
         Bundle bundle = new Bundle();
         bundle.putString("title", "乳病");
         intent.putExtras(bundle);
         startActivity(intent);
-        sym_search.this.finish();
+        sym_search2.this.finish();
     }
     public void goto_geni(){
         Intent intent = new Intent();
-        intent.setClass(sym_search.this, men_sym.class);
+        intent.setClass(sym_search2.this, men_sym2.class);
         Bundle bundle = new Bundle();
         bundle.putString("title", "前陰疾病");
         intent.putExtras(bundle);
         startActivity(intent);
-        sym_search.this.finish();
+        sym_search2.this.finish();
     }
     public void goto_post(){
         Intent intent = new Intent();
-        intent.setClass(sym_search.this, men_sym.class);
+        intent.setClass(sym_search2.this, men_sym2.class);
         Bundle bundle = new Bundle();
         bundle.putString("title", "產後病");
         intent.putExtras(bundle);
         startActivity(intent);
-        sym_search.this.finish();
+        sym_search2.this.finish();
     }
     public void goto_gest(){
         Intent intent = new Intent();
-        intent.setClass(sym_search.this, men_sym.class);
+        intent.setClass(sym_search2.this, men_sym2.class);
         Bundle bundle = new Bundle();
         bundle.putString("title", "妊娠病");
         intent.putExtras(bundle);
         startActivity(intent);
-        sym_search.this.finish();
+        sym_search2.this.finish();
     }
     public void goto_home(View view){
         Intent intent = new Intent();
-        intent.setClass(sym_search.this, home.class);
+        intent.setClass(sym_search2.this, home.class);
         startActivity(intent);
-        sym_search.this.finish();
+        sym_search2.this.finish();
     }
     public void goto_history(View view){
         Intent intent = new Intent();
-        intent.setClass(sym_search.this, history_out.class);
+        intent.setClass(sym_search2.this, history_out.class);
         startActivity(intent);
     }
 
