@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -212,27 +213,28 @@ public class men_sym extends AppCompatActivity {
                 float ex=1;
                 T_score[i]=0;
                 float [] weight={(float)0.1,(float)0.1,(float)0.2,(float)0.2,(float)0.4};
+                Switch isbigger=(Switch)findViewById(R.id.switch1);
                 for (int j = 0; j < 5; j++) {
-                    if(total[i][j]!=0){
-                        if(num[i][j]==0)score[i][j] =0;
-                        else if(num[i][j]==total[i][j])score[i][j] =1;
+                    if (total[i][j] != 0) {
+                        if (num[i][j] == 0) score[i][j] = 0;
+                        else if (num[i][j] == total[i][j]) score[i][j] = 1;
                         else {
-                            float A1=(float)1/(float)total[i][j];
-                            int A2_1=2 << num[i][j];
-                            float A2=(float)(A2_1-1)/(float)A2_1;
-                            float A3=(float)(total[i][j]-1)/(float)total[i][j];
-                            score[i][j] =A1+A2*A3;
-                            //score[i][j] = (float) num[i][j] / (float) total[i][j];
+                            if(isbigger.isChecked()){
+                                float A1 = (float) 1 / (float) total[i][j];
+                                int A2_1 = 2 << num[i][j];
+                                float A2 = (float) (A2_1 - 1) / (float) A2_1;
+                                float A3 = (float) (total[i][j] - 1) / (float) total[i][j];
+                                score[i][j] = A1 + A2 * A3;
+                            }
+                            else score[i][j] = (float) num[i][j] / (float) total[i][j];
                         }
+                    } else {
+                        score[i][j] = 0;
+                        ex -= weight[j];
                     }
-                    else {
-                        score[i][j] =0;
-                        ex-=weight[j];
-                    }
-
-                    T_score[i]+=score[i][j]*weight[j];
+                    T_score[i] += score[i][j] * weight[j];
                 }
-                T_score[i]=T_score[i]/ex;
+                T_score[i] = T_score[i] / ex;
             }
             //sort(t,name,T_score,total,num,score);
             for(int i=0;i<t;i++){
@@ -259,8 +261,8 @@ public class men_sym extends AppCompatActivity {
 
 
             for (int i = 0; i < t; i++) {
-                for(int j=0;j<5;j++)ans+=num[i][j] + "/" + total[i][j] + "\t";
-                ans += name[i] + ":" + T_score[i] + "\n";
+                /*for(int j=0;j<5;j++)ans+=num[i][j] + "/" + total[i][j] + "\t";*/
+                ans += Integer.toString(i+1)+". "+name[i] + ":" + T_score[i] + "\n";
             }
             new AlertDialog.Builder(men_sym.this)
                     .setIcon(R.drawable.ic_launcher_background)
@@ -467,11 +469,13 @@ public class men_sym extends AppCompatActivity {
             }
             if(f==1)sym+="。\n";
         }
+        Switch isbigger=(Switch)findViewById(R.id.switch1) ;
         ContentValues cv = new ContentValues();
         cv.put("sym",sym);
         cv.put("ans",ans);
         cv.put("id",ID);
-        cv.put("main",title);
+        if(isbigger.isChecked())cv.put("main",title+"_放大");
+        else cv.put("main",title);
         cv.put("date",date);
         cv.put("note","");
         db.insert("history",null,cv);

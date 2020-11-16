@@ -1307,6 +1307,21 @@ public class MainActivity extends AppCompatActivity {
     public void tampon(View view){
         LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
         final View v = inflater.inflate(R.layout.tampon, null);
+        CheckBox [] ch=new CheckBox[5];
+        ch[0]=(CheckBox)v.findViewById(R.id.checkBox12);
+        ch[1]=(CheckBox)v.findViewById(R.id.checkBox13);
+        ch[2]=(CheckBox)v.findViewById(R.id.checkBox14);
+        ch[3]=(CheckBox)v.findViewById(R.id.checkBox15);
+        ch[4]=(CheckBox)v.findViewById(R.id.checkBox16);
+        final CheckBox [] Ch=ch;
+        for(int i=0;i<5;i++) {
+            final int I=i;
+            ch[i].setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    ch_check(I, Ch);
+                }
+            });
+        }
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("新增衛生棉使用")
                 .setView(v)
@@ -1324,15 +1339,20 @@ public class MainActivity extends AppCompatActivity {
                         RadioGroup type=(RadioGroup) v.findViewById(R.id.v_type);
                         if(type.getCheckedRadioButtonId()==R.id.radioButton)TYPE=1;
                         else if(type.getCheckedRadioButtonId()==R.id.radioButton2)TYPE=2;
-                        else if(type.getCheckedRadioButtonId()==R.id.radioButton3)TYPE=3;
-                        else if(type.getCheckedRadioButtonId()==R.id.radioButton4)TYPE=4;
 
+
+                        /*
                         RadioGroup full=(RadioGroup) v.findViewById(R.id.v_full);
                         if(full.getCheckedRadioButtonId()==R.id.full1)FULL=1;
                         else if(full.getCheckedRadioButtonId()==R.id.full2)FULL=2;
                         else if(full.getCheckedRadioButtonId()==R.id.full3)FULL=3;
                         else if(full.getCheckedRadioButtonId()==R.id.full4)FULL=4;
                         else if(full.getCheckedRadioButtonId()==R.id.full5)FULL=5;
+
+                         */
+                        for(int i=0;i<5;i++){
+                            if(Ch[i].isChecked())FULL=i+1;
+                        }
 
                         RadioGroup quality=(RadioGroup) v.findViewById(R.id.v_quality);
                         if(quality.getCheckedRadioButtonId()==R.id.q1)Q=1;
@@ -1475,6 +1495,12 @@ public class MainActivity extends AppCompatActivity {
         else if(s.equals("ACUP"))return  "穴道按摩";
         else if(s.equals("SPORT"))return  "運動";
         return  s;
+    }
+    public void ch_check(int i,CheckBox [] ch){
+        int flag=0;
+        if(ch[i].isChecked())flag=1;
+        for(int k=0;k<ch.length;k++)ch[k].setChecked(false);
+        if(flag==1)ch[i].setChecked(true);
     }
 }
 
