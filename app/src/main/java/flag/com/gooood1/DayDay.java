@@ -110,7 +110,6 @@ public class DayDay extends AppCompatActivity {
             }
             else{
                 new AlertDialog.Builder(DayDay.this)
-                        .setIcon(R.drawable.ic_launcher_background)
                         .setTitle("Message")
                         .setMessage("目前你暫時沒有收藏任何想養成的習慣，將前往新增習慣介面去選擇想養成的習慣喔(*ﾟ∀ﾟ*)")
                         .setPositiveButton("ok", new DialogInterface.OnClickListener() {
@@ -172,9 +171,9 @@ public class DayDay extends AppCompatActivity {
         final String id = tv.getText().toString();
         add.setText("+");
         sub.setText("-");
-        add.setTextSize(18);
-        sub.setTextSize(18);
-        L3.addView(SB,420,50);
+        add.setTextSize(15);
+        sub.setTextSize(15);
+        L3.addView(SB,360,50);
         L3.addView(add,120,120);
         L3.addView(sub,120,120);
         //SB.setEnabled(false);

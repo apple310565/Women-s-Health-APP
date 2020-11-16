@@ -1325,7 +1325,6 @@ public class MainActivity extends AppCompatActivity {
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("新增衛生棉使用")
                 .setView(v)
-                .setIcon(getResources().getDrawable( R.drawable.leaf ))
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -1371,7 +1370,6 @@ public class MainActivity extends AppCompatActivity {
                             new AlertDialog.Builder(MainActivity.this)
                                     .setTitle("Message")
                                     .setMessage("不可以有選項為空")
-                                    .setIcon(getResources().getDrawable( R.drawable.leaf ))
                                     .setPositiveButton("知道了", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
