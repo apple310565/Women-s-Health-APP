@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             android:background="#00332828"
             android:gravity="bottom|right"
-            android:text="症狀查詢"
+            android:text="婦科辨證"
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
             android:textColor="#FFFFFF"
             android:textSize="40sp" />

@@ -91,6 +91,7 @@ public class home extends AppCompatActivity {
             load_geni_sym2();
             load_post_sym2();
             load_gest_sym2();
+            load_prescription();
             //初始化
 
             Calendar calendar = Calendar.getInstance();
@@ -648,6 +649,26 @@ public class home extends AppCompatActivity {
                 cv.put("db_name",Day[2]);
                 db.insert("link",null,cv);
                 db.update("link",cv,"sym_name ='"+Day[0]+"' and _name = '"+Day[1]+"'",null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this,"gest_link: "+e.toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void load_prescription(){
+        try {
+            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open("prescription.csv") );
+            //Toast.makeText(this,"找到檔案了",Toast.LENGTH_SHORT).show();
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            while((line = bufReader.readLine()) != null) {
+                String[] Day = line.split(",");
+                ContentValues cv = new ContentValues();
+                cv.put("name",Day[0]);
+                cv.put("A1",Day[1]);
+                cv.put("A2",Day[2]);
+                db.insert("prescription",null,cv);
+                db.update("prescription",cv,"name ='"+Day[0]+"'",null);
             }
         } catch (Exception e) {
             e.printStackTrace();

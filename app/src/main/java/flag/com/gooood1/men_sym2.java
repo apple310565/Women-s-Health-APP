@@ -285,21 +285,64 @@ public class men_sym2 extends AppCompatActivity {
                 }
             }
 
+            String me="";
 
             for (int i = 0; i < t; i++) {
                 /*for(int j=0;j<5;j++)ans+=num[i][j] + "/" + total[i][j] + "\t";*/
                 ans += Integer.toString(i+1)+". "+name[i] + ":" + T_score[i] + "\n";
+                if(!Filter.equals("_")){
+                    Cursor M=db.rawQuery("select * from prescription where name='"+name[i]+"'",null);
+                    M.moveToFirst();
+                    if(c.getCount()>0)me+="\n"+(i+1)+". "+name[i]+"\n"+"\t\t治法: "+M.getString(1)+"\n\t\t方藥: "+M.getString(2)+"\n";
+                    M.close();
+                }
             }
-            new AlertDialog.Builder(men_sym2.this)
-                    .setIcon(R.drawable.ic_launcher_background)
-                    .setTitle("辨證結果")
-                    .setMessage(ans)
-                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    })
-                    .show();
+            final String me2=me;
+            if(!Filter.equals("_")){
+                new AlertDialog.Builder(men_sym2.this)
+                        .setIcon(R.drawable.ic_launcher_background)
+                        .setTitle("辨證結果")
+                        .setMessage(ans)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .setNegativeButton("查看建議處方", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                new AlertDialog.Builder(men_sym2.this)
+                                        .setIcon(R.drawable.ic_launcher_background)
+                                        .setTitle("建議處方")
+                                        .setMessage(me2)
+                                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                            }
+                                        })
+                                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                            }
+                                        })
+                                        .show();
+                            }
+                        })
+                        .show();
+            }
+            else{
+                new AlertDialog.Builder(men_sym2.this)
+                        .setIcon(R.drawable.ic_launcher_background)
+                        .setTitle("辨證結果")
+                        .setMessage(ans)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .show();
+            }
+
 
             Store(ans);
         }catch (Exception e){
@@ -425,6 +468,7 @@ public class men_sym2 extends AppCompatActivity {
                     {"無明顯宮縮或宮縮規律","宮縮時間短","宮縮間歇時間長","宮縮強而間歇不勻"},
                     {"腹形大小正常","腹形小於正常妊娠月份","腹中不再繼續長大"},
                     {"無嘔吐","噁心","嘔吐","吐清水","吐酸水"},
+                    {"中毒","妊娠有外傷"},
                     /*全身症狀*/
                     {"無胃部症狀","食欲低落","胃悶","胃脹","胃痛"},
                     {"無腰腹部症狀","腹痛","腹脹","腹冷","腰酸","腰痛","腰冷","腰無力","腰腹陣痛微弱","腰腹疼痛劇烈"},
@@ -452,14 +496,14 @@ public class men_sym2 extends AppCompatActivity {
                     {"脈速度正常","脈速度快","脈速度慢","脈速度疾"},{"脈部位正常","脈部位中","脈部位伏","脈部位沉","脈部位浮"},{"脈長度正常","脈長度短","脈長度長"},{"脈幅異常", "脈形中空"}
             };
 
-            String [] qq2={	/*婦科症狀*/"陰道出血顏色","陰道出血質地","陰道出血量","懷孕狀況","月經狀況","月經週期","月經量","月經顏色","月經質地","子宮頸狀態","子宮狀態","子宮收縮時間","腹形大小","妊娠嘔吐狀況",
+            String [] qq2={	/*婦科症狀*/"陰道出血顏色","陰道出血質地","陰道出血量","懷孕狀況","月經狀況","月經週期","月經量","月經顏色","月經質地","子宮頸狀態","子宮狀態","子宮收縮時間","腹形大小","妊娠嘔吐狀況","其他",
                     /*全身*/"胃部症狀","腰腹部症狀","小腹症狀","頭部症狀","呼吸及心胸部症狀","四肢症狀","膝足部症狀","全身症狀","面部症狀","口腔喉嚨症狀","痰狀況","情緒意識狀態","小便問題","小便量","小便顏色","小便次數","大便質地","大便問題",
                     /*舌診*/"舌體顏色","舌苔顏色","舌苔厚度","舌苔質地",
                     /*脈診*/"脈利度","脈力度","脈寬度","脈止率","脈緊度","脈速度","脈部位","脈長度","其他"};
 
-            int [] isSingle2={/*婦科症狀*/0,0,1,0,0,1,1,0,1,0,0,0,0,0,/*全身症狀*/0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,/*舌診*/1,1,1,1,/*脈診症狀*/1,1,1,1,1,1,1,1,0};
+            int [] isSingle2={/*婦科症狀*/0,0,1,0,0,1,1,0,1,0,0,0,0,0,0,/*全身症狀*/0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,/*舌診*/1,1,1,1,/*脈診症狀*/1,1,1,1,1,1,1,1,0};
 
-            int [] normal2  ={/*婦科症狀*/0,0,0,1,1,1,1,0,1,1,1,0,1,1,/*全身症狀*/1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,/*舌診*/0,1,1,1,/*脈診症狀*/1,1,1,0,1,1,1,1,0};
+            int [] normal2  ={/*婦科症狀*/0,0,0,1,1,1,1,0,1,1,1,0,1,1,0,/*全身症狀*/1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,/*舌診*/0,1,1,1,/*脈診症狀*/1,1,1,0,1,1,1,1,0};
             String [] filter2={"無","惡阻","妊娠腹痛","胎漏。胎動不安","墮胎。小產","滑胎","胎萎不長","胎死不下","子煩","子腫","妊娠眩暈","子癇","子懸","子嗽","子喑","子淋","妊娠小便不通","孕癰","難產"};
             table="gest_sym2";
             qestion1=qestion2;

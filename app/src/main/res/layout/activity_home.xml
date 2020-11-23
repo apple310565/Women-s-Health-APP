@@ -86,14 +86,14 @@
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="wrap_content"
             android:background="#00FFFFFF"
             android:gravity="center"
             android:onClick="goto_M1"
             android:text="經期倒數"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="#F37C57"
-            android:textSize="56sp" />
+            android:textSize="48sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,7 +111,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                 android:textColor="#F37C57"
                 android:textColorLink="#F44336"
-                android:textSize="95sp" />
+                android:textSize="80sp" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -120,6 +120,7 @@
                 android:gravity="bottom"
                 android:padding="3dp"
                 android:text="天"
+                android:textSize="50sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                 android:textColor="#F37C57" />
 
@@ -209,7 +210,7 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="41dp"
-                android:text="症狀查詢"
+                android:text="婦科辨證"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="#FFFFFF" />
         </LinearLayout>

@@ -69,7 +69,8 @@ public class StdDBHelper extends SQLiteOpenHelper {
         db.execSQL("create table geni_sym2(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*前陰疾病使用婦科證候*/
         db.execSQL("create table post_sym2(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*產後病使用婦科證候*/
         db.execSQL("create table gest_sym2(name Text primary key,A1 Text,A2 Text,A3 Text,A4 Text,A5 Text)");/*妊娠病使用婦科證候*/
-
+        /*處方*/
+        db.execSQL("create table prescription(name Text primary key,A1 Text,A2 Text)");
         /*歷史查詢*/
         db.execSQL("create table history(id int primary key,main Text,sym Text,date Text,ans Text,note Text)");
 
