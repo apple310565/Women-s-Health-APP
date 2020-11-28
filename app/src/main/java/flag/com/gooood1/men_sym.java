@@ -129,6 +129,7 @@ public class men_sym extends AppCompatActivity {
             Lout.addView(Lin,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
             Lin.setOrientation(LinearLayout.HORIZONTAL);
             int t=0;
+            int count=0;
             for(int j=0;j<qestion1[i].length;j++){
                 CheckBox ch=new CheckBox(this);
                 ch.setText(qestion1[i][j]);
@@ -142,7 +143,8 @@ public class men_sym extends AppCompatActivity {
                         }
                     });
                 }
-                if(t>2){
+                count+=qestion1[i][j].length();
+                if(count>15){
                     Lout= new LinearLayout(this);
                     L.addView(Lout,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
                     Lout.setPadding(5,5,5,5);
@@ -150,6 +152,7 @@ public class men_sym extends AppCompatActivity {
                     Lout.addView(Lin,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
                     Lin.setOrientation(LinearLayout.HORIZONTAL);
                     t=0;
+                    count=qestion1[i][j].length();
                 }
                 Lin.addView(ch);
                 t++;
