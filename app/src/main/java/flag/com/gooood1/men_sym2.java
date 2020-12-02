@@ -170,7 +170,7 @@ public class men_sym2 extends AppCompatActivity {
                     });
                 }
                 strlen_count+=qestion1[i][j].length();
-                if(/*t>2*/strlen_count>15){
+                if(/*t>2*/strlen_count>12){
                     Lout= new LinearLayout(this);
                     L.addView(Lout,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
                     Lout.setPadding(5,5,5,5);
@@ -191,8 +191,8 @@ public class men_sym2 extends AppCompatActivity {
         try {
             isch=1;
             Cursor c = db.rawQuery("select * from " + table +" where name like '%"+Filter+"%'", null);
-            String str = "";
             c.moveToFirst();
+            String str = "";
             //AA [] x = new AA[c.getCount()];
 
             int t = c.getCount();
@@ -220,10 +220,8 @@ public class men_sym2 extends AppCompatActivity {
                     for (int j = 0; j < qestion1.length; j++) {
                         for (int k = 0; k < qestion1[j].length; k++) {
                             if (qq1_v[j][k].isChecked()) {
-                                //Toast.makeText(this,"in!!!",Toast.LENGTH_SHORT).show();
-                                Cursor cc = db.rawQuery("select A"+Integer.toString(l+1)+" from " + table + " where name = '" + name[i]+ "'" + " and A" + Integer.toString(l+1) + " like '%" + qestion1[j][k] + "%'", null);
-                                //str+=qestion1[j][k]+":"+c.getString(5);
-                                cc.moveToFirst();
+                                Cursor cc = db.rawQuery("select A"+Integer.toString(l+1)+" from " + table + " where name = '"
+                                        + name[i]+ "'" + " and A" + Integer.toString(l+1) + " like '%" + qestion1[j][k] + "%'", null);
                                 cc.moveToFirst();
                                 if (cc.getCount() > 0) {
                                     num[i][l]++;
@@ -291,7 +289,6 @@ public class men_sym2 extends AppCompatActivity {
             String me="";
 
             for (int i = 0; i < t; i++) {
-                /*for(int j=0;j<5;j++)ans+=num[i][j] + "/" + total[i][j] + "\t";*/
                 ans += Integer.toString(i+1)+". "+name[i] + ":" + T_score[i] + "\n";
                 if(!Filter.equals("_")){
                     Cursor M=db.rawQuery("select * from prescription where name='"+name[i]+"'",null);
@@ -345,8 +342,6 @@ public class men_sym2 extends AppCompatActivity {
                         })
                         .show();
             }
-
-
             Store(ans);
         }catch (Exception e){
             new AlertDialog.Builder(men_sym2.this)

@@ -144,7 +144,7 @@ public class men_sym extends AppCompatActivity {
                     });
                 }
                 count+=qestion1[i][j].length();
-                if(count>15){
+                if(count>12){
                     Lout= new LinearLayout(this);
                     L.addView(Lout,LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
                     Lout.setPadding(5,5,5,5);
