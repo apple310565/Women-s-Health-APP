@@ -1340,15 +1340,6 @@ public class MainActivity extends AppCompatActivity {
                         else if(type.getCheckedRadioButtonId()==R.id.radioButton2)TYPE=2;
 
 
-                        /*
-                        RadioGroup full=(RadioGroup) v.findViewById(R.id.v_full);
-                        if(full.getCheckedRadioButtonId()==R.id.full1)FULL=1;
-                        else if(full.getCheckedRadioButtonId()==R.id.full2)FULL=2;
-                        else if(full.getCheckedRadioButtonId()==R.id.full3)FULL=3;
-                        else if(full.getCheckedRadioButtonId()==R.id.full4)FULL=4;
-                        else if(full.getCheckedRadioButtonId()==R.id.full5)FULL=5;
-
-                         */
                         for(int i=0;i<5;i++){
                             if(Ch[i].isChecked())FULL=i+1;
                         }

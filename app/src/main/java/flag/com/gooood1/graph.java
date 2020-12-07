@@ -128,10 +128,12 @@ public class graph extends AppCompatActivity {
                     TAN.moveToNext();
                 }
                 TAN.close();
-                if(score<5)Flow=1;
+                if(score==0)Flow=0;
+                else if(score<5)Flow=1;
                 else if(score<15)Flow=2;
                 else Flow=3;
                 total_score+=score;
+
 
             final LinearLayout date_in=new LinearLayout(this);
             date.addView(date_in, LinearLayout.LayoutParams.MATCH_PARENT,150);
@@ -247,6 +249,7 @@ public class graph extends AppCompatActivity {
                 if(data2.getString(8).equals("1"))f=1;
                 if(data2.getString(9).equals("1"))f=1;
                 if(data2.getString(10).equals("1"))f=1;
+                if(data2.getString(11).equals("1"))f=1;
             }
             TextView SYM =new TextView(this);
             if(f==1)SYM.setText("◯");
@@ -313,7 +316,7 @@ public class graph extends AppCompatActivity {
             else if (color > 8) color = 3;
             else if (color > 4) color = 2;
             else color = 1;
-            String[] F = {"多", "正常", "少", "或多或少", "點滴性出血"};
+            String[] F = {"少", "正常", "多"};
             String[] C = {"淡紅", "鮮紅", "紫紅", "紫黑", "黝深"};
             String[] Q = {"清稀", "正常", "黏稠"};
             String[] CA = {"無", "黏液", "血塊"};
@@ -322,6 +325,9 @@ public class graph extends AppCompatActivity {
             String[] str4 = {"口糜舌爛", "口臭", "口燥咽乾"};
             String[] str5 = {"吐血", "衄血", "齒衄", "咯血"};
             String[] str6 = {"無故悲傷", "煩躁易怒", "神志不清"};
+            String [] str11_1={"額頭","鼻子","左臉","右臉","下巴","唇邊"};
+            String [] str11_2={"有頭膿包","無頭膿包","粉刺","色素沉澱","痘疤"};
+
             LayoutInflater inflater = LayoutInflater.from(graph.this);
             final View v = inflater.inflate(R.layout.graph_data, null);
             TextView tv_color = (TextView) (v.findViewById(R.id.v_color));
@@ -332,6 +338,7 @@ public class graph extends AppCompatActivity {
             TextView tv_temp = (TextView) (v.findViewById(R.id.v_temperature));
             if (temperature > 0)tv_temp.setText(Float.toString(temperature) + " °C");
             else tv_temp.setText("無資料");
+            if(flow==0)color=0;
             if (color > 0) tv_color.setText(C[color - 1]);
             else tv_color.setText("無資料");
             if (flow > 0) tv_flow.setText(F[flow - 1]);
@@ -451,6 +458,32 @@ public class graph extends AppCompatActivity {
                     }
                     str += "。\n";
                 }
+                if (data2.getString(11).equals("1")) {
+                    f = 0;
+                    str += "痘痘: ";
+                    Cursor Ch11_1 = db.rawQuery("SELECT * FROM Ch11_1 WHERE _date = '" + date + "'", null);
+                    Ch11_1.moveToFirst();
+                    for (int i = 0; i < 6; i++) {
+                        if (Ch11_1.getString(i + 1).equals("1")) {
+                            if (f > 0) str += "、";
+                            str += str11_1[i];
+                            f = 1;
+                        }
+                    }
+                    Ch11_1.close();
+                    Cursor Ch11_2 = db.rawQuery("SELECT * FROM Ch11_2 WHERE _date = '" + date + "'", null);
+                    Ch11_2.moveToFirst();
+                    for (int i = 0; i < 5; i++) {
+                        if (Ch11_2.getString(i + 1).equals("1")) {
+                            if (f > 0) str += "、";
+                            str += str11_2[i];
+                            f = 1;
+                        }
+                    }
+                    str += "。\n";
+                    flag = 1;
+                }
+
                 if (flag == 0) str += "無。\n";
 
                 tv_sym.setText(str);
